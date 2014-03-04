@@ -3,7 +3,7 @@ enum Suit
     CLUBS,
     DIAMONDS,
     HEARTS,
-    SPADES
+    SPADES,
 };
 
 enum Rank
@@ -28,5 +28,11 @@ struct Card
 {
     Suit suit;
     Rank rank;
+
+    Card(Rank r, Suit s)
+    {
+        rank = r;
+        suit = s;
+    }
 };
 
