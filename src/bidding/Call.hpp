@@ -1,7 +1,7 @@
 #ifndef CALL_HPP
 #define CALL_HPP
 
-#include "Trump.hpp"
+#include "../Trump.hpp"
 
 struct Call
 {
