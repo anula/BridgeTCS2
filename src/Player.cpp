@@ -7,10 +7,11 @@ std::string Player::getName()
 
 Card Player::getCard(int suit)
 {
+	//throw EmptyHandException();
 }
 
 void Player::addCard(Card card)
 {
-	
+	//throw FullHandException();
 }
 

@@ -1,14 +1,15 @@
-#ifndef PLAYER_H_GUARD
-#define PLAYER_H_GUARD
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
 #include <string>
+#include <stdexcept>
 #include "Card.hpp"
 //#include "Call.hpp"
 
 class Player
 {
 public:		
-	Player(std::string _name) : name(_name) {}	
+	explicit Player(std::string _name) : name(_name) {}	
 	
 	std::string getName();
 	Card getCard(int suit);  //suit - ograniczenie do dodania karty
@@ -17,6 +18,16 @@ public:
 	
 private:
 	std::string name;
+};
+
+struct EmptyHandException : std::logic_error
+{
+	explicit EmptyHandException() : std::logic_error("Cannot get card from empty hand.") {}
+};
+
+struct FullHandException : std::logic_error
+{
+	explicit FullHandException() : std::logic_error("Cannot add card to full hand.") {}
 };
 
 #endif
