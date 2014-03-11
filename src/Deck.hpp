@@ -15,15 +15,14 @@ public:
 class Deck : public IDeck
 {
 public:
-    virtual ~Deck() = 0;
+    virtual ~Deck() {};
     void shuffle();
     Card getCard();
     int count();
 protected:
+    Deck() = default;
     std::vector<Card> deck;
 };
-
-Deck::~Deck() {}
 
 class Standard52Deck : public Deck 
 {
