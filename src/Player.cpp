@@ -1,14 +1,16 @@
-#include <string>
+#include "Player.hpp"
 
-class Player
+std::string Player::getName()
 {
-public:		
-	Player(std::string _name) : name(_name) {}	
+	return name;
+}
+
+Card Player::getCard(int suit)
+{
+}
+
+void Player::addCard(Card card)
+{
 	
-	std::string getName(){
-		return name;
-	}
-	
-private:
-	std::string name;
-};
+}
+

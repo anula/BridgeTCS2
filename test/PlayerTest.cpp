@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 #include <string>
-#include "Player.cpp"
 
 TEST(PlayerTest, konstruktor)
 {
