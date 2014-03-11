@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <vector>
+#include <memory>
 #include "Card.hpp"
 
 class IDeck
@@ -21,7 +22,7 @@ public:
     int count();
 protected:
     Deck() = default;
-    std::vector<Card> deck;
+    std::vector< std::unique_ptr<Card> > deck;
 };
 
 class Standard52Deck : public Deck 

@@ -7,7 +7,9 @@ void Deck::shuffle()
 
 Card Deck::getCard()
 {
-    return deck.back();
+    Card card = *deck.back();
+    deck.pop_back();
+    return card;
 }
 
 int Deck::count()
@@ -17,11 +19,11 @@ int Deck::count()
 
 Standard52Deck::Standard52Deck()
 {
-    for(int i = ONE; i <= ACE; i++)
+    for(int i = 0; i < 13; i++)
     {
-        for(int j = CLUBS; j <= SPADES; j++)
+        for(int j = 0; j < 4; j++)
         {
-            deck.push_back(Card(static_cast<Rank>(i), static_cast<Suit>(j)));
+            deck.push_back(std::unique_ptr<Card>(new Card(static_cast<Rank>(i), static_cast<Suit>(j))));
         }
     }
 }
