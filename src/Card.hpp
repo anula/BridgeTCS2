@@ -1,4 +1,6 @@
-enum Suit
+#ifndef CARD_HPP
+#define CARD_HPP
+enum class Suit
 {
     CLUBS,
     DIAMONDS,
@@ -6,9 +8,8 @@ enum Suit
     SPADES,
 };
 
-enum Rank
+enum class Rank
 {
-    ONE,
     TWO,
     THREE,
     FOUR,
@@ -26,13 +27,11 @@ enum Rank
 
 struct Card
 {
-    Suit suit;
-    Rank rank;
+    const Suit suit;
+    const Rank rank;
 
-    Card(Rank r, Suit s)
+    Card(Rank r, Suit s):rank(r),suit(s)
     {
-        rank = r;
-        suit = s;
     }
 };
-
+#endif

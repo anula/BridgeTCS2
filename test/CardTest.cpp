@@ -4,7 +4,7 @@ using namespace std;
 
 
 TEST(CardTest, Constructor){
-    Card card(ACE, HEARTS);
-    ASSERT_EQ(card.suit, HEARTS);
-    ASSERT_EQ(card.rank, ACE);
+    Card card(Rank::ACE, Suit::HEARTS);
+    ASSERT_EQ(card.suit, Suit::HEARTS);
+    ASSERT_EQ(card.rank, Rank::ACE);
 }
