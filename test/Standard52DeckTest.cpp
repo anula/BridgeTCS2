@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/Deck.hpp"
+#include "Deck.hpp"
 
 TEST(Standard52Test, SimpleTest)
 {
