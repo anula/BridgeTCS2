@@ -1,11 +1,13 @@
 #pragma once
 #include <algorithm>
 #include <vector>
+#include <memory>
 #include "Card.hpp"
+
 class IDeck
 {
 public:
-    virtual ~IDeck() {}
+    virtual ~IDeck() {};
     virtual void shuffle() = 0;
     virtual Card getCard() = 0;
     virtual int count() = 0;
@@ -14,10 +16,18 @@ public:
 class Deck : public IDeck
 {
 public:
+    virtual ~Deck() {};
     void shuffle();
     Card getCard();
     int count();
-private:
-    std::vector<Card> deck;
-    Deck() {}
+protected:
+    Deck() = default;
+    std::vector< std::unique_ptr<Card> > deck;
+};
+
+class Standard52Deck : public Deck 
+{
+public:
+    ~Standard52Deck() {}
+    Standard52Deck(); 
 };
