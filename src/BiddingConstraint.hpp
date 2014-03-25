@@ -1,7 +1,7 @@
 #ifndef BIDDINGCONSTRAINT_HPP
 #define BIDDINGCONSTRAINT_HPP
 
-#include "../Trump.hpp"
+#include "Trump.hpp"
 
 struct BiddingConstraint
 {
