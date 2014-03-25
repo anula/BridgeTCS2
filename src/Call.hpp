@@ -9,7 +9,7 @@ enum CallType
 	DOUBLE,
 	REDOUBLE,
 	STANDARD
-}
+};
 
 struct Call
 {

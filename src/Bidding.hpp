@@ -1,5 +1,8 @@
 #ifndef BIDDING_HPP
 #define  BIDDING_HPP
+
+#include "Call.hpp"
+
 class Bidding
 {
 public:

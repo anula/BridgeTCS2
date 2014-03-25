@@ -1,5 +1,4 @@
 #include "BiddingConstraint.hpp"
-#include "Bidding.hpp"
 
 bool BiddingConstraint::satisfies(Call const & call) const 
 {

@@ -2,6 +2,7 @@
 #define BIDDINGCONSTRAINT_HPP
 
 #include "Trump.hpp"
+#include "Call.hpp"
 
 struct BiddingConstraint
 {
