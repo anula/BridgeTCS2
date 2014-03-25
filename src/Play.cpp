@@ -1,11 +1,5 @@
 #include "Play.hpp"
 
-Play::Play(Trump trump, int firstPlayerID)
-{
-	this->trump = trump;
-	this->beginningPlayer = firstPlayerID;
-}
-
 void Play::play()
 {
 	

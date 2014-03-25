@@ -1,7 +1,6 @@
 #ifndef PLAY_HPP
 #define PLAY_HPP
 
-#include "Trick.hpp"
 #include <array>
 
 class Play
@@ -9,8 +8,8 @@ class Play
 public:
 	/* Przyjmuje: kolor atutowy, ID rozgrywajacego.
 	 */
-	Play(Trump trump, int firstPlayerID);
-	
+	Play(Trump trump, int firstPlayerID) : trump(trump), beginningPlayer(firstPlayer) {}
+
 	/* Przeprowadza rozgrywke.
 	 */
 	void play();	
