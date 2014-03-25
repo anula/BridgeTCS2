@@ -3,12 +3,12 @@
 class Bidding
 {
 public:
-    Bidding();
+	Bidding();
 
-    bool makeCall(Call const& call);
-    Contract getContract();
-    int getDealer();
-    BiddingConstraint
+	bool makeCall(Call const& call);
+	Contract getContract();
+	int getDealer();
+	BiddingConstraint
 
 };
 #endif // BIDDING_HPP

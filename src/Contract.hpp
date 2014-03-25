@@ -3,8 +3,8 @@
 
 struct Contract
 {
-  int count;
-  Trump trump;
-  int multiplier;
+	int count;
+	Trump trump;
+	int multiplier;
 };
 #endif // CONTRACT_HPP
