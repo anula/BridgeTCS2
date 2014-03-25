@@ -30,8 +30,8 @@ struct Card
 {
 	friend class Deck;
 	
+	const Rank rank;
     const Suit suit;
-    const Rank rank;
 
 private:
     Card(Rank r, Suit s) : rank(r), suit(s) {}
