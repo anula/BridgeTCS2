@@ -2,10 +2,10 @@
 #define TRUMP_HPP
 enum Trump
 {
-  Clubs,
-  Diamonds,
-  Hearts,
-  Spades,
-  NT
+	CLUBS,
+	DIAMONDS,
+	HEARTS,
+	SPADES,
+	NT
 };
 #endif // TRUMP_HPP

@@ -16,7 +16,7 @@ bool BiddingConstraint::satisfies(Call const & call) const
 		case STANDARD:
 			if (call.value > value)
 				return true;
-			if (call.value == value && call.trump >= trump)
+			if (call.value == value && call.trump > trump)
 				return true;
 			return false;
 	}
