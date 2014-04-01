@@ -10,9 +10,9 @@ TEST(BiddingConstraintTest, SatisfiesDouble)
   bidCon.doublePossible = true;
   bidCon.redoublePossible = false;
 
-  ASSERT_EQ(true, bidCon.satisfies(Call::createPass()));
-  ASSERT_EQ(true, bidCon.satisfies(Call::createDouble()));
-  ASSERT_EQ(false, bidCon.satisfies(Call::createRedouble()));
+  ASSERT_TRUE(bidCon.satisfies(Call::createPass()));
+  ASSERT_TRUE(bidCon.satisfies(Call::createDouble()));
+  ASSERT_FALSE(bidCon.satisfies(Call::createRedouble()));
 }
 
 TEST(BiddingConstraintTest, SatisfiesStandart)
@@ -21,8 +21,8 @@ TEST(BiddingConstraintTest, SatisfiesStandart)
   bidCon.doublePossible = false;
   bidCon.redoublePossible = false;
   bidCon.value = 2;
-  bidCon.trump = Trump::Clubs;
+  bidCon.trump = Trump::CLUBS;
 
-  ASSERT_EQ(false, bidCon.satisfies(Call::createStandard(1, Trump::NT)));
-  ASSERT_EQ(true, bidCon.satisfies(Call::createStandard(5, Trump::Spades)));
+  ASSERT_FALSE(bidCon.satisfies(Call::createStandard(1, Trump::NT)));
+  ASSERT_TRUE(bidCon.satisfies(Call::createStandard(5, Trump::SPADES)));
 }
