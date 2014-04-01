@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <vector>
+#include <memory>
 #include "Deck.hpp"
 
 void Deck::shuffle()

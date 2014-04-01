@@ -1,9 +1,7 @@
 #pragma once
-#include <algorithm>
+#include "Card.hpp"
 #include <vector>
 #include <memory>
-#include "Card.hpp"
-
 class IDeck
 {
 public:
