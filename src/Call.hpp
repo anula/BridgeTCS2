@@ -3,21 +3,24 @@
 
 #include "Trump.hpp"
 
-struct Call
+enum CallType
 {
-  bool ifRedouble;
-  bool ifDouble;
-  bool ifPass;
-  int value;
-  Trump trump;
+	PASS,
+	DOUBLE,
+	REDOUBLE,
+	STANDARD
 };
 
-class CallFactory
+struct Call
 {
-public:
-    static const Call createPass();
-    static const Call createRedouble();
-    static const Call createDouble();
-    static const Call createStandard(int value, Trump trump);
+	CallType type;
+	int value;
+	Trump trump;
+	
+	static const Call createPass();
+	static const Call createRedouble();
+	static const Call createDouble();
+	static const Call createStandard(int value, Trump trump);
 };
+
 #endif // CALL_HPP

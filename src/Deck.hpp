@@ -22,6 +22,7 @@ public:
     int count();
 protected:
     Deck() = default;
+    std::unique_ptr<Card> generateCard(Rank rank, Suit suit);
     std::vector< std::unique_ptr<Card> > deck;
 };
 

@@ -1,5 +1,6 @@
 #ifndef CARD_HPP
 #define CARD_HPP
+
 enum class Suit
 {
     CLUBS,
@@ -27,11 +28,13 @@ enum class Rank
 
 struct Card
 {
+	friend class Deck;
+	
+	const Rank rank;
     const Suit suit;
-    const Rank rank;
 
-    Card(Rank r, Suit s):rank(r),suit(s)
-    {
-    }
+private:
+    Card(Rank r, Suit s) : rank(r), suit(s) {}
 };
-#endif
+
+#endif // CARD_HPP

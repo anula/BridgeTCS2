@@ -1,17 +1,17 @@
 #include "Player.hpp"
+#include <string>
 
 std::string Player::getName()
 {
 	return name;
 }
 
-Card Player::getCard(int suit)
+int Player::getCard(std::vector<Card> hand)
 {
-	//throw EmptyHandException();
+	
 }
 
-void Player::addCard(Card card)
-{
-	//throw FullHandException();
+Call Player::getCall(){
+	
 }
 
