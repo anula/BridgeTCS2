@@ -4,6 +4,7 @@
 #include <vector>
 #include <utility>
 #include "Call.hpp"
+#include "BiddingConstraint.hpp"
 
 class Bidding
 {

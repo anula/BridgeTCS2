@@ -3,7 +3,7 @@
 
 struct Contract
 {
-	int count;
+	int value;
 	Trump trump;
 	int multiplier;
 };
