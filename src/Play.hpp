@@ -11,10 +11,15 @@ class Trick
 {
 public:
 	Suit colorOfTrick;
-	Trick () : colorOfTrick(-1)	{}
+	bool hasColor;
+	Trick () : hasColor(false)	{}
 	void addCardAt(Card card, int i)
 	{
 		this->cards[i] = card;
+		if (this->hasColor == false) {
+			this->hasColor = true;
+			this->colorOfTrick = card.suit;		
+		}
 	}
 	Card getCardAt(int i)
 	{

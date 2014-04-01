@@ -10,11 +10,11 @@ void Play::play()
 	for (int i = 0; i < 13; i++)
 	{
 		// stwórz nową lewę
-		Trick trick = this->Trick();
+		Trick trick = Trick();
 		// wypełnij ją kartami
 		for (int j = this->beginningPlayer, k = 0; k < 4; j = (j+1)%4, k++)
 		{
-			trick[j] = this->arbiters[j].getCard();
+			trick.addCardAt(this->arbiters[j].getCard(), j);
 		}
 		// lewa pełna: dowiedz się, kto zbiera lewę
 		int winner = this->resolveTrick(&trick);
