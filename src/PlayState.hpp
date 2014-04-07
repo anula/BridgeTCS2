@@ -28,7 +28,7 @@ public:
 	int getPrimaryBeginningPlayer() {
 		return primaryBeginningPlayer;
 	}
-	int getTricksCollectedOf(int player) {
+	int getScoreOf(int player) {
 		return tricksCollected[player];
 	}
 	void incrementPlayerScore(int player) {

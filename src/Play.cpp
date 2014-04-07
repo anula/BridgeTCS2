@@ -32,7 +32,7 @@ int Play::getResult()
 	if(playState.trickCount() < 13)
 		return -1;
 	int fp = (playState.getPrimaryBeginningPlayer() + 1) % 4;
-	return playState.getTricksCollectedOf(fp) + playState.getTricksCollectedOf((fp+2) % 4);
+	return playState.getScoreOf(fp) + playState.getScoreOf((fp+2) % 4);
 }
 
 int Play::resolveTrick(Trick const & trick)
