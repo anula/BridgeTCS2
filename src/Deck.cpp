@@ -8,9 +8,9 @@ void Deck::shuffle()
     std::random_shuffle(deck.begin(), deck.end());
 }
 
-Card Deck::getCard()
+std::unique_ptr<Card> Deck::getCard()
 {
-    Card card = *deck.back();
+    auto card = std::move(deck.back());
     deck.pop_back();
     return card;
 }
