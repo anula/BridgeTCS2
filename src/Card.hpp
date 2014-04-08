@@ -28,6 +28,8 @@ enum class Rank
 
 struct Card
 {
+    Card(const Card &c) = delete;
+
 	friend class Deck;
 	
 	const Rank rank;
