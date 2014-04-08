@@ -1,14 +1,12 @@
 #include "Bidding.hpp"
 
-Bidding::Bidding() : whoBidsNow(0), passCount(0)
+Bidding::Bidding() : whoBidsNow(0), passCount(0), lastNonPass(Call::createPass()), lastActual(Call::createPass())
 {
-	lastNonPass = Call::createPass();
-	lastActual = Call::createPass();
 }
 
 bool Bidding::makeCall(Call const & call)
 {
-	if (!stillGoing)
+	if (!stillGoing())
 		throw 666;
 	if (!getCurrentConstraint().satisfies(call))
 		return false;
@@ -35,7 +33,7 @@ bool Bidding::makeCall(Call const & call)
 
 const Contract Bidding::getContract()
 {
-	if (stillGoing)
+	if (stillGoing())
 		throw 666;
 	Contract result;
 	if (lastNonPass.type == CallType::PASS) 

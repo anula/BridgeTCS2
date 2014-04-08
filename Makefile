@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x
 TESTFLAGS=-Isrc
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Deck.o BiddingConstraint.o Call.o
+all: Deck.o BiddingConstraint.o Call.o Bidding.o
 
 test: Standard52DeckTest BiddingConstraintTest 
 	bin/Standard52DeckTest
@@ -14,6 +14,9 @@ Deck.o: bin src/Deck.cpp src/Deck.hpp
 
 Call.o: bin src/Call.cpp src/Call.hpp src/Trump.hpp
 	$(CC) $(CFLAGS) -c src/Call.cpp -o bin/Call.o
+
+Bidding.o: bin src/Bidding.cpp src/Bidding.hpp src/Call.hpp src/BiddingConstraint.hpp src/Contract.hpp
+	$(CC) $(CFLAGS) -c src/Bidding.cpp -o bin/Bidding.o
 
 BiddingConstraint.o: bin src/BiddingConstraint.cpp src/BiddingConstraint.hpp src/Call.hpp src/Trump.hpp
 	$(CC) $(CFLAGS) -c src/BiddingConstraint.cpp -o bin/BiddingConstraint.o

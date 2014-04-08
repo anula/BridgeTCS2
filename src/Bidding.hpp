@@ -3,8 +3,9 @@
 
 #include <vector>
 #include <utility>
-#include "Call.hpp"
 #include "BiddingConstraint.hpp"
+#include "Call.hpp"
+#include "Contract.hpp"
 
 class Bidding
 {
@@ -33,14 +34,14 @@ private:
 	{
 		NS,   // 0 and 2
 		EW   // 1 and 3
-	}
+	};
 	
 	int whoBidsNow; /* 0, 1, 2, 3 */
 	int passCount; /* how many consecutive passes at the end */
-	const Call lastNonPass; /* last non-pass call */
+	Call lastNonPass; /* last non-pass call */
 	/* ^^^^ convention: if there wasn't any non-pass calls,
 	 * this field is set to pass */
-	const Call lastActual; /* not pass, not double and not redouble */
+	Call lastActual; /* not pass, not double and not redouble */
 	GPair whoDidIt; /* who made lastNonPass */
 	std::vector<std::pair<int, Call>> history;
 	
@@ -68,8 +69,5 @@ private:
 		history.push_back(std::make_pair(whoBidsNow, call));
 	}
 	
-	
-	
-	
-}
+};
 #endif // BIDDING_HPP
