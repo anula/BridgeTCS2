@@ -1,8 +1,10 @@
+#include "Deal.hpp"
+
 void Deal::perform() {
   Standard52Deck deck;
   deck.shuffle();
   for (int i = 0; i < deck.count(); i++) {
-    arbiters[(firstPlayer+i)%4].addCard(deck.getCard());
+    arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
   }
 
 
@@ -10,12 +12,13 @@ void Deal::perform() {
 
   declarer = performBidding();
   if (contract.value == 0) {
-    result.contract = contract;
-    result.tricksCollected = 0;
+    dealResult.contract = contract;
+    dealResult.tricksCollected = 0;
     return;
   }
 
-  performPlay();
+  int tricksCollected = performPlay(declarer);
+  dealResult.tricksCollected = tricksCollected;
 }
 
 int Deal::performBidding() {
@@ -31,4 +34,11 @@ int Deal::performBidding() {
   contract = bidding.getContract();
   
   return (firstPlayer + bidding.getDeclarer())%4;
+}
+
+int Deal::performPlay(int declarer) {
+  PlayState playState(contract.trump, declarer);
+  Play play(playState, arbiters);
+  play.play();
+  return play.getResult();
 }

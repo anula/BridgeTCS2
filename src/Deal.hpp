@@ -1,7 +1,12 @@
 #ifndef DEAL_HPP
 #define DEAL_HPP
 
+#include <array>
+#include <utility>
+
 #include "Arbiter.hpp"
+#include "Bidding.hpp"
+#include "Contract.hpp"
 #include "Deck.hpp"
 
 struct DealResult
@@ -20,7 +25,7 @@ struct DealResult
 class Deal
 {
   public: 
-    Deal(std::array<Arbiter, 4> ref arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
+    Deal(std::array<Arbiter, 4> &arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
     {
     }
 
@@ -34,7 +39,7 @@ class Deal
      * To call after perform returns.
      * Returns result of deal.
      */
-    DealResult getDealResult() {
+    DealResult getDealResult() const {
       return dealResult;
     }
 
@@ -45,7 +50,7 @@ class Deal
     DealResult dealResult;
     
     int performBidding();
-    void performPlay();
+    void performPlay(int declarer);
 };
 
 #endif // DEAL_HPP
