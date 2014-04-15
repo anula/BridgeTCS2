@@ -11,9 +11,9 @@
 class Arbiter{
 public:
 	
-	Arbiter(Player & player, Player & ppartner): 
-		referredPlayer(player), 
-		partner(ppartner) {}
+	Arbiter(Player & player, Player & partner): 
+		player(player), 
+		partner(partner) {}
 	
 	Call getCall(BiddingConstraint constraint); // proxy getcall do playera
 	CardPtr getCard(); // proxy getcard do playera
@@ -28,8 +28,8 @@ private:
 	
 	Role role;
 	
-	Player referredPlayer;
-	Player partner;
+	Player& player;
+	Player& partner;
 	
 	std::vector<CardPtr> hand;	
 };

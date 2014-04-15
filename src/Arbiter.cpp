@@ -3,13 +3,13 @@
 
 Call Arbiter::getCall(BiddingConstraint constraint)
 {
-	return referredPlayer.getCall();
+	return player.getCall();
 	// jakos sprawdz call
 }
 
 CardPtr Arbiter::askPlayer(std::vector<CardPtr> & hand)
 {
-	int cardnum = referredPlayer.getCard(hand);
+	int cardnum = player.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
 	if(cardnum >= (int)hand.size() || cardnum < 0)
 		throw NumberOutOfBounds();
