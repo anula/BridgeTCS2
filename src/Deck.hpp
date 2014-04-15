@@ -1,4 +1,6 @@
-#pragma once
+#ifndef DECK_HPP
+#define DECK_HPP
+
 #include "Card.hpp"
 #include <vector>
 #include <memory>
@@ -27,3 +29,5 @@ class Standard52Deck : public Deck
 public:
     Standard52Deck(); 
 };
+
+#endif // DECK_HPP
