@@ -18,7 +18,18 @@ public:
 	 */
 	bool makeCall(Call const & call);
 	
+	/**
+	 * returns contract (can be called only when stillGoing() returns false,
+	 * otherwise an exception is thrown). 
+	 * in case bidding has ended without any non-pass calls,
+	 * Contract.value is set to zero!
+	 */
 	const Contract getContract();
+	
+	/**
+	 * returns declarer (with respect to the one beggining the auction)
+	 */
+	int getDeclarer();
 	
 	const BiddingConstraint getCurrentConstraint();
 	
