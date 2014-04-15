@@ -1,7 +1,8 @@
 #include "Arbiter.hpp"
 #include "Player.hpp"
 
-Call Arbiter::getCall(){
+Call Arbiter::getCall()
+{
 	return referredPlayer.getCall();
 	// jakos sprawdz call
 }
@@ -9,12 +10,16 @@ Call Arbiter::getCall(){
 CardPtr Arbiter::getReferredCard(std::vector<CardPtr> & hand){
 	int cardnum = referredPlayer.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
+	if(cardnum >= hand.size() || cardnum < 0)
+		throw NumberOutOfBounds();
 	return std::move(hand[cardnum]);
 }
 
 CardPtr Arbiter::getCardByPartner(std::vector<CardPtr> & hand){
 	int cardnum = partner.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
+	if(cardnum >= hand.size() || cardnum < 0)
+		throw NumberOutOfBounds();
 	return std::move(hand[cardnum]);
 }
 

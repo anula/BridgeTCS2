@@ -9,7 +9,7 @@
 
 class Player
 {
-public:		
+public:	
 	explicit Player(std::string _name) : name(_name) {}	
 	
 	std::string getName();

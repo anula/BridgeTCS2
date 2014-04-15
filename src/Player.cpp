@@ -8,10 +8,11 @@ std::string Player::getName()
 
 int Player::getCard(std::vector<CardPtr> & hand)
 {
-	
+	return 0; // TODO
 }
 
-Call Player::getCall(){
-	
+Call Player::getCall()
+{
+	return Call(); // TODO
 }
 
