@@ -12,7 +12,7 @@ class Play
 public:
 	/* Przyjmuje: kolor atutowy, ID rozgrywajacego.
 	 */
-	Play(PlayState& playState, std::array<Arbiter, 4> const & arbiters) : playState(playState), arbiters(arbiters) {}
+	Play(PlayState & playState, std::array<Arbiter, 4> & arbiters) : playState(playState), arbiters(arbiters) {}
 	/* Przeprowadza rozgrywke.
 	 */
 	void play();	
@@ -20,8 +20,8 @@ public:
 	 */
 	int getResult();
 private:
-	PlayState& playState;
-    std::array<Arbiter, 4> const & arbiters;	// arbitrzy graczy 
+	PlayState & playState;
+    std::array<Arbiter, 4> & arbiters;	// arbitrzy graczy 
 	 /* Przyjmuje: referencję na lewę
 	  *
 	  * Zwraca: numer gracza, który dostał lewę

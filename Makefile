@@ -28,10 +28,10 @@ BiddingConstraint.o: bin src/BiddingConstraint.cpp src/BiddingConstraint.hpp src
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)
 
-BiddingConstraintTest: bin test/BiddingConstraintTest.cpp Call.o
+BiddingConstraintTest: bin test/BiddingConstraintTest.cpp Call.o BiddingConstraint.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingConstraintTest.cpp bin/BiddingConstraint.o bin/Call.o -o bin/BiddingConstraintTest $(LDTESTFLAGS)
 
-BiddingTest: bin test/BiddingTest.cpp Call.o BiddingConstraint.o
+BiddingTest: bin test/BiddingTest.cpp Call.o BiddingConstraint.o Bidding.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingTest.cpp bin/BiddingConstraint.o bin/Bidding.o bin/Call.o -o bin/BiddingTest $(LDTESTFLAGS)
 
 clean:

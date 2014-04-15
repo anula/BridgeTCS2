@@ -1,10 +1,5 @@
 #include "Play.hpp"
 
-bool operator == (Suit s, Trump t)
-{
-	return static_cast<Suit>(t) == s;
-}
-
 void Play::play()
 {
 	for (int i = 0; i < 13; i++)
@@ -23,7 +18,7 @@ void Play::play()
 		// ustaw zwycięzcę nowym rozgrywającym
 		playState.setBeginningPlayer(winner);
 		// zapisz lewę do stanu gry
-		playState.addTrick(trick);
+		playState.addTrick(std::move(trick));
 	}	
 }	
 
@@ -37,5 +32,5 @@ int Play::getResult()
 
 int Play::resolveTrick(Trick const & trick)
 {
-	return trick.resolve(this->trump);
+	return trick.resolve(playState.getTrump());
 }

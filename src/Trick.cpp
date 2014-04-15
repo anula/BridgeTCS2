@@ -1,6 +1,11 @@
 #include "Trick.hpp"
 
-int Trick::resolve(Trump trump)
+bool operator == (Suit s, Trump t)
+{
+	return static_cast<Suit>(t) == s;
+}
+
+int Trick::resolve(Trump trump) const
 {
 	// jeśli gramy z atu
 	if (trump != Trump::NT) {
