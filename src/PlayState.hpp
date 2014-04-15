@@ -6,7 +6,6 @@
 #include "Trick.hpp"
 #include <vector>
 
-
 class PlayState
 {
 public:
@@ -34,11 +33,11 @@ public:
 	void incrementPlayerScore(int player) {
 		tricksCollected[player]++;
 	}
-	Trick getTrick(int i) {
+	Trick const & getTrick(int i) {
 		return tricks[i];
 	}
-	void addTrick(Trick trick) {
-		tricks.push_back(trick);
+	void addTrick(Trick && trick) {
+		tricks.emplace_back(std::move(trick));
 	}
 	int trickCount() {
 		return tricks.size();

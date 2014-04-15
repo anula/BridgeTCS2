@@ -9,24 +9,24 @@
 class Trick
 {
 public:
-	Suit colorOfTrick;
-	bool hasColor;
 	Trick () : hasColor(false)	{}
-	void addCardAt(Card* card, int i)
+	void addCardAt(CardPtr && card, int i)
 	{
-		this->cards[i] = card;
-		if (this->hasColor == false) {
-			this->hasColor = true;
-			this->colorOfTrick = card->suit;		
+		cards[i] = std::move(card);
+		if (hasColor == false) {
+			hasColor = true;
+			colorOfTrick = card->suit;		
 		}
 	}
-	Card* getCardAt(int i)
+	CardPtr getCardAt(int i)
 	{
-		return this->cards[i];
+		return std::move(this->cards[i]);
 	}
-	int resolve(Trump trump);
+	int resolve(Trump trump) const;
 private:
-	std::array<Card*, 4> cards;
+	Suit colorOfTrick;
+	bool hasColor;
+	std::array<CardPtr, 4> cards;
 };
 
 #endif
