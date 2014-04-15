@@ -5,7 +5,6 @@
 #include "Call.hpp"
 #include "Player.hpp"
 #include "Role.hpp"
-#include "Hand.hpp"
 #include <vector>
 
 class Arbiter{
