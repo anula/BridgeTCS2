@@ -15,22 +15,22 @@ public:
 		partner(ppartner) {}
 	
 	Call getCall(); // proxy getcall do playera
-	Card getCard(); // proxy getcard do playera
-	void addCard(Card newCard); // dodaj karte do reki
+	CardPtr getCard(); // proxy getcard do playera
+	void addCard(CardPtr && newCard); // dodaj karte do reki
 	void setRole(Role newrole) { role = newrole; }
 	Role getRole() { return role; }
 	
 private:
 	
-	Card getReferredCard(std::vector<Card> hand);
-	Card getCardByPartner(std::vector<Card> hand);
+	CardPtr getReferredCard(std::vector<CardPtr> & hand);
+	CardPtr getCardByPartner(std::vector<CardPtr> & hand);
 	
 	Role role;
 	
 	Player referredPlayer;
 	Player partner;
 	
-	std::vector<Card> hand;	
+	std::vector<CardPtr> hand;	
 };
 
 

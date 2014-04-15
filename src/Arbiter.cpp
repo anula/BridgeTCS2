@@ -6,35 +6,34 @@ Call Arbiter::getCall(){
 	// jakos sprawdz call
 }
 
-Card Arbiter::getReferredCard(std::vector<Card> hand){
+CardPtr Arbiter::getReferredCard(std::vector<CardPtr> & hand){
 	int cardnum = referredPlayer.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
-	return hand[cardnum];	
+	return std::move(hand[cardnum]);
 }
 
-Card Arbiter::getCardByPartner(std::vector<Card> hand){
+CardPtr Arbiter::getCardByPartner(std::vector<CardPtr> & hand){
 	int cardnum = partner.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
-	return hand[cardnum];
+	return std::move(hand[cardnum]);
 }
 
-Card Arbiter::getCard(){
+CardPtr Arbiter::getCard(){
 	
 	if(hand.size() == 0)
 		throw EmptyHandException();
 		
 	if(role != Role::DUMMY)
-		return getReferredCard(hand);
+		return std::move(getReferredCard(hand));
 	else
-		return getCardByPartner(hand);
+		return std::move(getCardByPartner(hand));
 }
 
-void Arbiter::addCard(Card newCard){
+void Arbiter::addCard(CardPtr && newCard){
 	
 	if(hand.size() == 13)
 		throw FullHandException();
 		
-	hand.push_back(newCard);
+	hand.emplace_back(std::move(newCard));
 }
 
-int main(){}

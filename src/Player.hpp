@@ -13,7 +13,7 @@ public:
 	explicit Player(std::string _name) : name(_name) {}	
 	
 	std::string getName();
-	int getCard(std::vector<Card> hand); 
+	int getCard(std::vector<CardPtr> & hand); 
 	Call getCall();
 	
 private:

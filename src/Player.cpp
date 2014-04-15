@@ -6,7 +6,7 @@ std::string Player::getName()
 	return name;
 }
 
-int Player::getCard(std::vector<Card> hand)
+int Player::getCard(std::vector<CardPtr> & hand)
 {
 	
 }
