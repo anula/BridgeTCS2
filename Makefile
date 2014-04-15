@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x
 TESTFLAGS=-Isrc
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Deck.o BiddingConstraint.o Call.o Bidding.o Deal.o
+all: Deck.o BiddingConstraint.o Call.o Bidding.o Deal.o Trick.o Play.o
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -19,6 +19,12 @@ Deal.o: bin src/Deal.cpp src/Deal.hpp
 Call.o: bin src/Call.cpp src/Call.hpp src/Trump.hpp
 	$(CC) $(CFLAGS) -c src/Call.cpp -o bin/Call.o
 
+Trick.o: bin src/Trick.cpp src/Trick.hpp src/Card.hpp src/Trump.hpp
+	$(CC) $(CFLAGS) -c src/Trick.cpp -o bin/Trick.o
+	
+Play.o: bin src/Play.cpp src/Play.hpp src/Card.hpp src/Trump.hpp src/Arbiter.hpp src/Trick.hpp src/PlayState.hpp
+	$(CC) $(CFLAGS) -c src/Play.cpp -o bin/Play.o
+
 Bidding.o: bin src/Bidding.cpp src/Bidding.hpp src/Call.hpp src/BiddingConstraint.hpp src/Contract.hpp
 	$(CC) $(CFLAGS) -c src/Bidding.cpp -o bin/Bidding.o
 
@@ -33,6 +39,7 @@ BiddingConstraintTest: bin test/BiddingConstraintTest.cpp Call.o BiddingConstrai
 
 BiddingTest: bin test/BiddingTest.cpp Call.o BiddingConstraint.o Bidding.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingTest.cpp bin/BiddingConstraint.o bin/Bidding.o bin/Call.o -o bin/BiddingTest $(LDTESTFLAGS)
+
 
 clean:
 	rm -r bin
