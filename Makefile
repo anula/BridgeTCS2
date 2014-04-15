@@ -5,9 +5,10 @@ LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
 all: Deck.o BiddingConstraint.o Call.o Bidding.o Deal.o
 
-test: Standard52DeckTest BiddingConstraintTest 
+test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
 	bin/BiddingConstraintTest
+	bin/BiddingTest
 
 Deck.o: bin src/Deck.cpp src/Deck.hpp
 	$(CC) $(CFLAGS) -c src/Deck.cpp -o bin/Deck.o
@@ -29,6 +30,9 @@ Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 
 BiddingConstraintTest: bin test/BiddingConstraintTest.cpp Call.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingConstraintTest.cpp bin/BiddingConstraint.o bin/Call.o -o bin/BiddingConstraintTest $(LDTESTFLAGS)
+
+BiddingTest: bin test/BiddingTest.cpp Call.o BiddingConstraint.o
+	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingTest.cpp bin/BiddingConstraint.o bin/Bidding.o bin/Call.o -o bin/BiddingTest $(LDTESTFLAGS)
 
 clean:
 	rm -r bin

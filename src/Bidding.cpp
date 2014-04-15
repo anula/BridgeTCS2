@@ -29,6 +29,7 @@ bool Bidding::makeCall(Call const & call)
 	}
 	archive(call);
 	next();
+	return true;
 }
 
 const Contract Bidding::getContract()
@@ -53,6 +54,12 @@ const Contract Bidding::getContract()
 		result.multiplier = 4;
 	return result;
 	
+}
+
+int Bidding::getDeclarer() {
+	if (stillGoing())
+		throw 666;
+	//TODO
 }
 
 const BiddingConstraint Bidding::getCurrentConstraint()
