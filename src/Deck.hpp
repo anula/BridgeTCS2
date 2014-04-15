@@ -1,11 +1,12 @@
-#pragma once
+#ifndef DECK_HPP
+#define DECK_HPP
+
 #include "Card.hpp"
 #include <vector>
 #include <memory>
 class IDeck
 {
 public:
-    virtual ~IDeck() {};
     virtual void shuffle() = 0;
     virtual std::unique_ptr<Card> getCard() = 0;
     virtual int count() = 0;
@@ -14,7 +15,6 @@ public:
 class Deck : public IDeck
 {
 public:
-    virtual ~Deck() {};
     void shuffle();
     std::unique_ptr<Card> getCard();
     int count();
@@ -27,6 +27,7 @@ protected:
 class Standard52Deck : public Deck 
 {
 public:
-    ~Standard52Deck() {}
     Standard52Deck(); 
 };
+
+#endif // DECK_HPP

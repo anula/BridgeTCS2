@@ -39,4 +39,6 @@ private:
     Card(Rank r, Suit s) : rank(r), suit(s) {}
 };
 
+using CardPtr = std::unique_ptr<Card>;
+
 #endif // CARD_HPP

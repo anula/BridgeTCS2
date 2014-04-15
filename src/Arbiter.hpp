@@ -10,7 +10,7 @@
 class Arbiter{
 public:
 	
-	explicit Arbiter(Player & player, Player & ppartner): 
+	Arbiter(Player & player, Player & ppartner): 
 		referredPlayer(player), 
 		partner(ppartner) {}
 	
@@ -22,8 +22,8 @@ public:
 	
 private:
 	
-	Card getReferredCard(std::vector<Card> hand);
-	Card getCardByPartner(std::vector<Card> hand);
+	Card getReferredCard(std::vector<Card> hand); // popros playera o dodanie karty
+	Card getCardByPartner(std::vector<Card> hand); // pozwol partnerowi wziac karte
 	
 	Role role;
 	
@@ -44,5 +44,9 @@ struct FullHandException : std::logic_error
 	explicit FullHandException() : std::logic_error("This player's hand is full.") {}
 };
 
+struct NumberOutOfBounds : std::logic_error
+{
+	explicit NumberOutOfBounds() : std::logic_error("Card number is wrong.") {}
+};
 
 #endif

@@ -3,17 +3,18 @@
 #include "Player.hpp"
 #include "Arbiter.hpp"
 #include<string>
+#include<array>
+
 class Game{
 	
 public:
 	
-	Game();
+	Game(Player p1, Player p2, Player p3, Player p4);
 	void startGame(int starter);
 	
 private:
 	
-	Player players[4];
-	Arbiter arbiters[4];
+	std::array<Arbiter, 4> arbiters;
 };
 
 
