@@ -5,6 +5,7 @@
 #include "Call.hpp"
 #include "Player.hpp"
 #include "Role.hpp"
+#include "BiddingConstraint.hpp"
 #include <vector>
 
 class Arbiter{
