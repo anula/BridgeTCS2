@@ -7,6 +7,8 @@
 #include "Role.hpp"
 #include <vector>
 
+class BiddingConstraint;
+
 class Arbiter{
 public:
 	
