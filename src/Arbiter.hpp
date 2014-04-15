@@ -14,7 +14,7 @@ public:
 		referredPlayer(player), 
 		partner(ppartner) {}
 	
-	Call getCall(); // proxy getcall do playera
+	Call getCall(BiddingConstraint constraint); // proxy getcall do playera
 	CardPtr getCard(); // proxy getcard do playera
 	void addCard(CardPtr && newCard); // dodaj karte do reki
 	void setRole(Role newrole) { role = newrole; }
@@ -22,8 +22,8 @@ public:
 	
 private:
 	
-	CardPtr getReferredCard(std::vector<CardPtr> & hand); // popros playera o dodanie karty
-	CardPtr getCardByPartner(std::vector<CardPtr> & hand); // pozwol partnerowi wziac karte
+	CardPtr askPlayer(std::vector<CardPtr> & hand); // popros playera o dodanie karty
+	CardPtr askPartner(std::vector<CardPtr> & hand); // pozwol partnerowi wziac karte
 	
 	Role role;
 	
