@@ -8,8 +8,6 @@
 #include "BiddingConstraint.hpp"
 #include <vector>
 
-class BiddingConstraint;
-
 class Arbiter{
 public:
 	
