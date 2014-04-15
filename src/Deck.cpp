@@ -15,7 +15,7 @@ std::unique_ptr<Card> Deck::getCard()
     return card;
 }
 
-int Deck::count()
+int Deck::count() const
 {
     return deck.size();
 }
