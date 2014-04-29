@@ -12,6 +12,7 @@ public:
 	CardPtr getCard(int index);
 	void addCard(CardPtr && card);
 	static const int MAX_SIZE;
+	const std::vector<CardPtr>& getCards() const;
 };
 
 struct FullHandException : std::logic_error

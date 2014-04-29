@@ -16,4 +16,9 @@ void Hand::addCard(CardPtr && card){
 	emplace_back(std::move(card));	
 }
 
+const std::vector<CardPtr>& Hand::getCards() const 
+{
+	return *this;
+}
+
 const int Hand::MAX_SIZE = 13;
