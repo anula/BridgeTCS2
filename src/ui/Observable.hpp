@@ -9,14 +9,15 @@
 namespace ui
 {
 
+template <class T>
 class Observable
 {
 public:
-    void addObserver(std::weak_ptr<Observer> observer)
+    void addObserver(std::weak_ptr<Observer<T>> observer)
     {
         observers.insert(observer);
     }
-    bool delObserver(std::weak_ptr<Observer> observer)
+    bool delObserver(std::weak_ptr<Observer<T>> observer)
     {
         return observers.erase(observer);
     }
@@ -32,7 +33,7 @@ public:
         }
     }
 private:
-    std::set<std::weak_ptr<Observer> > observers;
+    std::set<std::weak_ptr<Observer<T>>> observers;
 };
 
 }
