@@ -9,31 +9,31 @@
 namespace ui
 {
 
-    class Observable
+class Observable
+{
+public:
+    void addObserver(std::weak_ptr<Observer> observer)
     {
-    public:
-        void addObserver(std::weak_ptr<Observer> observer)
+        observers.insert(observer);
+    }
+    bool delObserver(std::weak_ptr<Observer> observer)
+    {
+        return observers.erase(observer);
+    }
+    void update()
+    {
+        for(auto it : observers) 
         {
-            observers.insert(observer);
+            auto ptr = it.lock();
+            if(!ptr)
+                delObserver(it);
+            else
+                ptr->notify();
         }
-        bool delObserver(std::weak_ptr<Observer> observer)
-        {
-            return observers.erase(observer);
-        }
-        void update()
-        {
-            for(auto it : observers) 
-            {
-                auto ptr = it.lock();
-                if(!ptr)
-                    delObserver(it);
-                else
-                    ptr->notify();
-            }
-        }
-    private:
-        std::set<std::weak_ptr<Observer> > observers;
-    };
+    }
+private:
+    std::set<std::weak_ptr<Observer> > observers;
+};
 
 }
 
