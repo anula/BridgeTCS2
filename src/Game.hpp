@@ -9,7 +9,7 @@ class Game{
 	
 public:
 	
-	Game(Player p1, Player p2, Player p3, Player p4);
+	Game(Player& p1, Player& p2, Player& p3, Player& p4);
 	void startGame(int starter);
 	
 private:
