@@ -4,11 +4,11 @@
 namespace ui
 {
 
-    class Observer
-    {
-    public:
-        virtual void notify() = 0;
-    };
+class Observer
+{
+public:
+    virtual void notify() = 0;
+};
 
 }
 

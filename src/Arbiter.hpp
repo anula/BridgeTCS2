@@ -3,7 +3,7 @@
 
 #include "Card.hpp"
 #include "Call.hpp"
-#include "Player.hpp"
+#include "IPlayer.hpp"
 #include "Role.hpp"
 #include "BiddingConstraint.hpp"
 #include <vector>
@@ -11,7 +11,7 @@
 class Arbiter{
 public:
 	
-	Arbiter(Player & player, Player & partner): 
+	Arbiter(IPlayer & player, IPlayer & partner): 
 		player(player), 
 		partner(partner) {}
 	
@@ -28,8 +28,8 @@ private:
 	
 	Role role;
 	
-	Player& player;
-	Player& partner;
+	IPlayer& player;
+	IPlayer& partner;
 	
 	std::vector<CardPtr> hand;	
 };

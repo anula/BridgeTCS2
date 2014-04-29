@@ -1,5 +1,5 @@
 #include "Arbiter.hpp"
-#include "Player.hpp"
+#include "IPlayer.hpp"
 
 Call Arbiter::getCall(BiddingConstraint constraint)
 {
