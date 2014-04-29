@@ -10,6 +10,9 @@ test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/BiddingConstraintTest
 	bin/BiddingTest
 
+Arbiter.o: bin src/Arbiter.cpp src/Arbiter.hpp
+	$(CC) $(CFLAGS) -c src/Arbiter.cpp -o bin/Arbiter.o
+	
 Deck.o: bin src/Deck.cpp src/Deck.hpp
 	$(CC) $(CFLAGS) -c src/Deck.cpp -o bin/Deck.o
 
