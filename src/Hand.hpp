@@ -3,7 +3,7 @@
 
 #include "Card.hpp"
 #include "Call.hpp"
-#include "Player.hpp"
+#include "IPlayer.hpp"
 #include "Role.hpp"
 #include <vector>
 

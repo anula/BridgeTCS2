@@ -1,4 +1,5 @@
-#include <DummyComputerPlayer.hpp>
+#include "DummyComputerPlayer.hpp"
+#include "Call.hpp"
 
 int DummyComputerPlayer::getCard(std::vector<CardPtr> & hand)
 {
@@ -7,6 +8,6 @@ int DummyComputerPlayer::getCard(std::vector<CardPtr> & hand)
 
 Call DummyComputerPlayer::getCall()
 {
-	return Call.createPass();
+	return Call::createPass();
 }
 
