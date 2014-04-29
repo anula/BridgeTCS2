@@ -10,17 +10,22 @@ namespace ui
 {
 
 template <class T>
-class Observable
+class Observable : public std::enable_shared_from_this<Observable<T>>
 {
 public:
-    void addObserver(std::weak_ptr<Observer<T>> observer)
+    using ObserverPtr = std::weak_ptr<Observer<T>>;
+    void addObserver(ObserverPtr observer)
     {
         observers.insert(observer);
+        observer.lock()->setTarget(this->shared_from_this());
     }
-    bool delObserver(std::weak_ptr<Observer<T>> observer)
+
+    bool delObserver(ObserverPtr observer)
     {
+        observer.lock()->setTarget(nullptr);
         return observers.erase(observer);
     }
+
     void update()
     {
         for(auto it : observers) 
@@ -32,8 +37,9 @@ public:
                 ptr->notify();
         }
     }
+
 private:
-    std::set<std::weak_ptr<Observer<T>>> observers;
+    std::set<ObserverPtr> observers;
 };
 
 }

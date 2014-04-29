@@ -10,9 +10,10 @@ template <class T>
 class Observer
 {
 public:
-    Observer(std::weak_ptr<T> target) : target(target){}
     virtual void notify() = 0;
-
+    void setTarget(std::weak_ptr<T> t) {
+        target = t;
+    }
 protected:
     std::weak_ptr<T> target;
 };
