@@ -24,16 +24,16 @@ public:
 	 * in case bidding has ended without any non-pass calls,
 	 * Contract.value is set to zero!
 	 */
-	const Contract getContract();
+	const Contract getContract() const;
 	
 	/**
 	 * returns declarer (with respect to the one beggining the auction)
 	 */
-	int getDeclarer();
+	int getDeclarer() const;
 	
-	const BiddingConstraint getCurrentConstraint();
+	const BiddingConstraint getCurrentConstraint() const;
 	
-	bool stillGoing();
+	bool stillGoing() const;
 	
 private:
 	
@@ -53,15 +53,21 @@ private:
 	/* ^^^^ convention: if there wasn't any non-pass calls,
 	 * this field is set to pass */
 	Call lastActual; /* not pass, not double and not redouble */
-	GPair whoDidIt; /* who made lastNonPass */
+	GPair whoDidLastNonPass; /* who made lastNonPass */
+	GPair whoDidLastActual; /* who made lastActual */
 	std::vector<std::pair<int, Call>> history;
 	
-	GPair currentPair()
+	GPair getPair(int who) const
 	{
-		if (whoBidsNow % 2 == 0)
+		if (who % 2 == 0)
 			return GPair::NS;
 		else
 			return GPair::EW;
+	}
+	
+	GPair currentPair() const
+	{
+		return getPair(whoBidsNow);
 	}
 	
 	void next() 
