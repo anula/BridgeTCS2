@@ -5,6 +5,15 @@ bool operator == (Suit s, Trump t)
 	return static_cast<Suit>(t) == s;
 }
 
+void Trick::addCardAt(CardPtr && card, int i)
+{
+	cards[i] = std::move(card);
+	if (hasColor == false) {
+		hasColor = true;
+		colorOfTrick = card->suit;		
+	}
+}
+
 int Trick::resolve(Trump trump) const
 {
 	// jeśli gramy z atu
