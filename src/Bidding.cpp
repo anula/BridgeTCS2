@@ -1,8 +1,9 @@
 #include "Bidding.hpp"
 
-Bidding::Bidding() : whoBidsNow(0), passCount(0), lastNonPass(Call::createPass()), lastActual(Call::createPass())
-{
-}
+Bidding::Bidding() 
+		: whoBidsNow(0), passCount(0), 
+		lastNonPass(Call::createPass()), 
+		lastActual(Call::createPass()) {}
 
 bool Bidding::makeCall(Call const & call)
 {
@@ -19,20 +20,21 @@ bool Bidding::makeCall(Call const & call)
 		case REDOUBLE: // these cases don't differ
 			passCount = 0;
 			lastNonPass = call;
-			whoDidIt = currentPair();
+			whoDidLastNonPass = currentPair();
 			break;
 		case STANDARD: 
 			passCount = 0;
 			lastNonPass = call;
+			whoDidLastNonPass = currentPair();
 			lastActual = call;
-			whoDidIt = currentPair();
+			whoDidLastActual = currentPair();
 	}
 	archive(call);
 	next();
 	return true;
 }
 
-const Contract Bidding::getContract()
+const Contract Bidding::getContract() const
 {
 	if (stillGoing())
 		throw 666;
@@ -56,13 +58,20 @@ const Contract Bidding::getContract()
 	
 }
 
-int Bidding::getDeclarer() {
+int Bidding::getDeclarer() const 
+{
 	if (stillGoing())
 		throw 666;
-	//TODO
+	if (lastNonPass.type == CallType::PASS)
+		return 666; /* don't do it */
+	for (std::pair<int, Call> c : history) {
+		if (c.second.trump == lastActual.trump
+				&& getPair(c.first) == whoDidLastActual)
+			return c.first;
+	}
 }
 
-const BiddingConstraint Bidding::getCurrentConstraint()
+const BiddingConstraint Bidding::getCurrentConstraint() const
 {
 	BiddingConstraint result;
 	if (lastNonPass.type == CallType::PASS)
@@ -81,14 +90,14 @@ const BiddingConstraint Bidding::getCurrentConstraint()
 	bool temp = true;
 	if (lastNonPass.type != CallType::STANDARD)
 		temp = false;
-	if (whoDidIt == currentPair())
+	if (whoDidLastNonPass == currentPair())
 		temp = false;
 	result.doublePossible = temp;
 	/* is redouble possible? */
 	temp = true;
 	if (lastNonPass.type != CallType::DOUBLE)
 		temp = false;
-	if (whoDidIt == currentPair())
+	if (whoDidLastNonPass == currentPair())
 		temp = false;
 	result.redoublePossible = temp;
 	
@@ -96,7 +105,7 @@ const BiddingConstraint Bidding::getCurrentConstraint()
 	
 }
 
-bool Bidding::stillGoing()
+bool Bidding::stillGoing() const
 {
 	/* a bit ugly, I'm sorry */
 	if (passCount == 4)

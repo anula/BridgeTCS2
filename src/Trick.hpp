@@ -10,15 +10,8 @@ class Trick
 {
 public:
 	Trick () : hasColor(false)	{}
-	void addCardAt(CardPtr && card, int i)
-	{
-		cards[i] = std::move(card);
-		if (hasColor == false) {
-			hasColor = true;
-			colorOfTrick = card->suit;		
-		}
-	}
-	CardPtr getCardAt(int i)
+	void addCardAt(CardPtr && card, int i);
+	inline CardPtr getCardAt(int i)
 	{
 		return std::move(this->cards[i]);
 	}
