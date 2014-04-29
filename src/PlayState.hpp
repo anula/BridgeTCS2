@@ -40,15 +40,22 @@ public:
 		tricks.emplace_back(std::move(trick));
 	}
 	int trickCount() {
-		return tricks.size();
-	}
-	
+    return tricks.size();
+  }
+  int getResult()
+  {
+    if(trickCount() < 13)
+      return -1;
+    int fp = (getPrimaryBeginningPlayer() + 1) % 4;
+    return getScoreOf(fp) + getScoreOf((fp+2) % 4);
+  }
+
 private:
-    Trump trump;
-    int beginningPlayer; 						// gracz zaczynajacy nastepna lewe
-    int primaryBeginningPlayer;					// gracz, który zaczynał pierwszą lewę gry
-    std::array<int, 4> tricksCollected;
-    std::vector<Trick> tricks;					// lewy danej gry
+  Trump trump;
+  int beginningPlayer; 						// gracz zaczynajacy nastepna lewe
+  int primaryBeginningPlayer;					// gracz, który zaczynał pierwszą lewę gry
+  std::array<int, 4> tricksCollected;
+  std::vector<Trick> tricks;					// lewy danej gry
 };
 
 #endif

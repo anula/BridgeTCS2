@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x
 TESTFLAGS=-Isrc
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Play.o
+all: Deck.o Deal.o BiddingConstraint.o Call.o Bidding.o Trick.o
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -12,6 +12,9 @@ test: Standard52DeckTest BiddingConstraintTest BiddingTest
 
 Arbiter.o: bin src/Arbiter.cpp src/Arbiter.hpp
 	$(CC) $(CFLAGS) -c src/Arbiter.cpp -o bin/Arbiter.o
+
+Deal.o: bin src/Deal.cpp src/Deal.hpp src/Deal.hpp src/Trick.hpp src/Play.hpp src/Trump.hpp
+	$(CC) $(CFLAGS) -c src/Deal.cpp -o bin/Deal.o
 	
 Deck.o: bin src/Deck.cpp src/Deck.hpp
 	$(CC) $(CFLAGS) -c src/Deck.cpp -o bin/Deck.o
@@ -22,9 +25,6 @@ Call.o: bin src/Call.cpp src/Call.hpp src/Trump.hpp
 Trick.o: bin src/Trick.cpp src/Trick.hpp src/Card.hpp src/Trump.hpp
 	$(CC) $(CFLAGS) -c src/Trick.cpp -o bin/Trick.o
 	
-Play.o: bin src/Play.cpp src/Play.hpp src/Card.hpp src/Trump.hpp src/Arbiter.hpp src/Trick.hpp src/PlayState.hpp
-	$(CC) $(CFLAGS) -c src/Play.cpp -o bin/Play.o
-
 Bidding.o: bin src/Bidding.cpp src/Bidding.hpp src/Call.hpp src/BiddingConstraint.hpp src/Contract.hpp
 	$(CC) $(CFLAGS) -c src/Bidding.cpp -o bin/Bidding.o
 

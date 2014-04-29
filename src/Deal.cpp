@@ -1,4 +1,6 @@
 #include "Deal.hpp"
+#include "Trick.hpp"
+#include "Play.hpp"
 
 void Deal::perform() {
   Standard52Deck deck;
@@ -7,11 +9,10 @@ void Deal::perform() {
     arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
   }
 
-
   int declarer;
 
   declarer = performBidding();
-  if (contract.value == 0) {
+  if (contract.value == 0) { // everyone passed
     dealResult.contract = contract;
     dealResult.tricksCollected = 0;
     return;
@@ -30,15 +31,35 @@ int Deal::performBidding() {
     bool callSucceed = bidding.makeCall(call);
     if (!callSucceed) // should not happen
       throw 666;
+    who++;
+    who %= 4;
   }
-  contract = bidding.getContract();
-  
+  this->contract = bidding.getContract();
+
   return (firstPlayer + bidding.getDeclarer())%4;
 }
 
 int Deal::performPlay(int declarer) {
-  PlayState playState(contract.trump, declarer);
-  Play play(playState, arbiters);
-  play.play();
+  Play play(contract.trump, declarer);
+
+	for (int i = 0; i < 13; i++)
+	{
+		// stwórz nową lewę
+		Trick trick = Trick();
+		// wypełnij ją kartami
+		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (j+1)%4, k++)
+		{
+			trick.addCardAt(this->arbiters[j].getCard(), j);
+		}
+		// lewa pełna: dowiedz się, kto zbiera lewę
+		int winner = trick.resolve(play.getTrump());
+		// zwiększ liczbę lew tego playera
+		play.incrementPlayerScore(winner);
+		// ustaw zwycięzcę nowym rozgrywającym
+		play.setBeginningPlayer(winner);
+		// zapisz lewę do stanu gry
+		play.addTrick(std::move(trick));
+	}	
+
   return play.getResult();
 }

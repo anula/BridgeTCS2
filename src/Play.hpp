@@ -1,32 +1,61 @@
-#ifndef PLAY_HPP
-#define PLAY_HPP
+#ifndef PLAYSTATE_HPP
+#define PLAYSTATE_HPP
 
-#include "Card.hpp"
+#include <array>
 #include "Trump.hpp"
-#include "Arbiter.hpp"
 #include "Trick.hpp"
-#include "PlayState.hpp"
+#include <vector>
 
 class Play
 {
 public:
 	/* Przyjmuje: kolor atutowy, ID rozgrywajacego.
 	 */
-	Play(PlayState & playState, std::array<Arbiter, 4> & arbiters) : playState(playState), arbiters(arbiters) {}
-	/* Przeprowadza rozgrywke.
-	 */
-	void play();	
-	/* Zwraca liczbe lew zebranych przez pare rozgrywajaca.
-	 */
-	int getResult();
+	Play(Trump trump, int firstPlayerID) : trump(trump), beginningPlayer(firstPlayerID), primaryBeginningPlayer(firstPlayerID)
+	{
+		this->tricksCollected.fill(0);
+	}
+	Trump getTrump() {
+		return trump;
+	}
+	int getBeginningPlayer() {
+		return beginningPlayer;
+	}
+	void setBeginningPlayer(int player) {
+		beginningPlayer = player;
+	}
+	int getPrimaryBeginningPlayer() {
+		return primaryBeginningPlayer;
+	}
+	int getScoreOf(int player) {
+		return tricksCollected[player];
+	}
+	void incrementPlayerScore(int player) {
+		tricksCollected[player]++;
+	}
+	Trick const & getTrick(int i) {
+		return tricks[i];
+	}
+	void addTrick(Trick && trick) {
+		tricks.emplace_back(std::move(trick));
+	}
+	int trickCount() {
+    return tricks.size();
+  }
+  int getResult()
+  {
+    if(trickCount() < 13)
+      return -1;
+    int fp = (getPrimaryBeginningPlayer() + 1) % 4;
+    return getScoreOf(fp) + getScoreOf((fp+2) % 4);
+  }
+
 private:
-	PlayState & playState;
-    std::array<Arbiter, 4> & arbiters;	// arbitrzy graczy 
-	 /* Przyjmuje: referencję na lewę
-	  *
-	  * Zwraca: numer gracza, który dostał lewę
-	  */
-	int resolveTrick(Trick const & trick);
+  Trump trump;
+  int beginningPlayer; 						// gracz zaczynajacy nastepna lewe
+  int primaryBeginningPlayer;					// gracz, który zaczynał pierwszą lewę gry
+  std::array<int, 4> tricksCollected;
+  std::vector<Trick> tricks;					// lewy danej gry
 };
 
 #endif

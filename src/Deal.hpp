@@ -25,7 +25,7 @@ struct DealResult
 class Deal
 {
   public: 
-    Deal(std::array<Arbiter, 4> &arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
+    Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
     {
     }
 
@@ -44,13 +44,13 @@ class Deal
     }
 
   private:
-    std::array<Arbiter, 4> arbiters;
+    std::array<Arbiter, 4> & arbiters;
     int firstPlayer;
     Contract contract;
     DealResult dealResult;
     
     int performBidding();
-    void performPlay(int declarer);
+    int performPlay(int declarer);
 };
 
 #endif // DEAL_HPP
