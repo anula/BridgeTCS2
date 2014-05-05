@@ -3,6 +3,7 @@
 
 #include <set>
 #include <memory>
+#include <functional>
 
 #include "Observer.hpp"
 
@@ -14,15 +15,14 @@ class Observable : public std::enable_shared_from_this<Observable<T>>
 {
 public:
     using ObserverPtr = std::weak_ptr<Observer<T>>;
+    Observable() : observers([](ObserverPtr const & lhs, ObserverPtr const & rhs){return lhs.lock() < rhs.lock();}) {}
     void addObserver(ObserverPtr observer)
     {
         observers.insert(observer);
-        observer.lock()->setTarget(this->shared_from_this());
     }
 
     bool delObserver(ObserverPtr observer)
     {
-        observer.lock()->setTarget(nullptr);
         return observers.erase(observer);
     }
 
@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    std::set<ObserverPtr> observers;
+    std::set<ObserverPtr, std::function<bool (ObserverPtr const &, ObserverPtr const &)>> observers;
 };
 
 }
