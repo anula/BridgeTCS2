@@ -1,10 +1,15 @@
-#inlude <iostream>
+#include <iostream>
+#include "ui/Observer.hpp"
 
 namespace ui::text
 {
+
 	
 class Bidding : Observer<::Bidding>
 {
+
+	static const std::string trumps[] = {"C","D","H","S","NT"};
+	
 public:
 	void notify(const ::Bidding & target) 
 	{
@@ -12,7 +17,11 @@ public:
 			
 			std::cout	<< "Bidding is going" << std::endl;
 			
-			// todo
+			BiddingConstraint constraint = target.getConstraint();
+			std::cout	<< "VALUE: "
+						<< constraint.value << std::endl
+						<< "TRUMP: "
+						<< trumps[constraint.trump] << std::endl
 		
 		} else {
 		
@@ -22,7 +31,7 @@ public:
 			std::cout	<< "VALUE: "
 						<< contract.value << std::endl
 						<< "TRUMP: "
-						<< contract.trump << std::endl
+						<< trumps[contract.trump] << std::endl
 						<< "MULTIPLIER: "
 						<< contract.multiplier << std::endl;
 		}
