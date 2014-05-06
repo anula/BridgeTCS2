@@ -6,10 +6,10 @@
 
 int main(int argc, char** argv) 
 {
-    Application application;
+    model::Application application;
     ui::text::Application appView;
     application.sigModified.connect(
-        [&appView] (Application const & app) {
+        [&appView] (model::Application const & app) {
             appView.notify(app);
         }
     );

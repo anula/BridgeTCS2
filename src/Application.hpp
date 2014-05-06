@@ -3,6 +3,9 @@
 
 #include "ui/Observable.hpp"
 
+namespace model
+{
+
 class Application : public ui::Observable<Application>
 {
     
@@ -17,5 +20,7 @@ public:
     std::string name;
 
 };
+
+} // namespace model
 
 #endif // APPLICATION_HPP
