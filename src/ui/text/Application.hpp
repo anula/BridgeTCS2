@@ -10,10 +10,10 @@ namespace ui
 namespace text 
 {
 
-class Application : public ui::Observer< ::Application>
+class Application : public ui::Observer<model::Application>
 {
 public:
-    void notify(::Application const & app) 
+    void notify(model::Application const & app) 
     {
         std::cout << "Hello World!" << std::endl;
         std::cout << app.name << std::endl;
