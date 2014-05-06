@@ -1,11 +1,18 @@
+#include <functional>
+
 #include "Application.hpp"
 #include "ui/text/Application.hpp"
 
+
 int main(int argc, char** argv) 
 {
-    auto application = std::make_shared<Application>();
-    auto uiApplication = std::make_shared<ui::text::Application>();
-    application->addObserver(uiApplication);
-    application->run();
+    Application application;
+    ui::text::Application appView;
+    application.sigModified.connect(
+        [&appView] (Application const & app) {
+            appView.notify(app);
+        }
+    );
+    application.run();
     return 0;
 }

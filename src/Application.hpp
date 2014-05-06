@@ -7,10 +7,15 @@ class Application : public ui::Observable<Application>
 {
     
 public:
+
+    Application() : name("IHaveNoIdeaWhatImDoing") {}
+
     void run()
     {
-        update();
+        sigModified(*this);
     }
+    std::string name;
+
 };
 
 #endif // APPLICATION_HPP
