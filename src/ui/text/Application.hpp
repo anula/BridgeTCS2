@@ -12,7 +12,7 @@ namespace text
 class Application : public ui::Observer< ::Application>
 {
 public:
-    void notify(const ::Application &) 
+    void notify(::Application const &) 
     {
         std::cout << "Hello World!" << std::endl;
     }

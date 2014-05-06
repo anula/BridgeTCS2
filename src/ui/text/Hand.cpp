@@ -10,7 +10,7 @@ class Hand : Observer<::Hand>
 	static const std::string suits[] = {"C","D","H","S"};
 
 public:
-	void notify(const ::Hand & target) 
+	void notify(::Hand const & target) 
 	{
 		std::cout <<	"Hand state:" << std::endl;
 		for(CardPtr card : target.getCards())

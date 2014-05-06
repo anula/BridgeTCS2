@@ -11,9 +11,9 @@ class Trick
 public:
 	Trick () : hasColor(false)	{}
 	void addCardAt(CardPtr && card, int i);
-	inline CardPtr getCardAt(int i)
+	inline Card const & getCardAt(int i)
 	{
-		return std::move(this->cards[i]);
+		return *cards[i];
 	}
 	int resolve(Trump trump) const;
 private:

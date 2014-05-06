@@ -11,7 +11,7 @@ class Bidding : Observer<::Bidding>
 	static const std::string trumps[] = {"C","D","H","S","NT"};
 	
 public:
-	void notify(const ::Bidding & target) 
+	void notify(::Bidding const & target) 
 	{
 		if(target.stillGoing()) {
 			
