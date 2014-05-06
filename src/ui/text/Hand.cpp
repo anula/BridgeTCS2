@@ -6,10 +6,10 @@ namespace ui::text
 class Hand : Observer<::Hand>
 {
 public:
-	void notify() 
+	void notify(const Hand & target) 
 	{
 		std::cout <<	"Hand state:" << std::endl;
-		for(CardPtr card : target->getCards())
+		for(CardPtr card : target.getCards())
 		{
 			std::cout 	<< card->rank
 						<< "["
@@ -19,7 +19,5 @@ public:
 		}
 	}
 }
-	
-	
-	
+
 }
