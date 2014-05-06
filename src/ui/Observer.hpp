@@ -10,7 +10,7 @@ template <class T>
 class Observer
 {
 public:
-    virtual void notify() = 0;
+    virtual void notify(T const &) = 0;
 };
 
 }
