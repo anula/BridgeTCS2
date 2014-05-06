@@ -7,13 +7,15 @@
 #include "Role.hpp"
 #include <vector>
 
+
 class Hand : protected std::vector<CardPtr> {
 public:
 	CardPtr getCard(int index);
 	void addCard(CardPtr && card);
-	static const int MAX_SIZE;
+	static const int MAX_SIZE = 13;
 	const std::vector<CardPtr>& getCards() const;
 };
+
 
 struct FullHandException : std::logic_error
 {

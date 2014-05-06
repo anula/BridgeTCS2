@@ -6,6 +6,7 @@
 #include "IPlayer.hpp"
 #include "Role.hpp"
 #include "BiddingConstraint.hpp"
+#include "Hand.hpp"
 #include <vector>
 
 class Arbiter{
@@ -16,22 +17,22 @@ public:
 		partner(partner) {}
 	
 	Call getCall(BiddingConstraint constraint); // proxy getcall do playera
-	CardPtr getCard(); // proxy getcard do playera
+	CardPtr getCard(Trump trickColor); // proxy getcard do playera
 	void addCard(CardPtr && newCard); // dodaj karte do reki
 	void setRole(Role newrole) { role = newrole; }
 	Role getRole() { return role; }
 	
 private:
 	
-	CardPtr askPlayer(std::vector<CardPtr> & hand); // popros playera o dodanie karty
-	CardPtr askPartner(std::vector<CardPtr> & hand); // pozwol partnerowi wziac karte
+	CardPtr askPlayer(); // popros playera o dodanie karty
+	CardPtr askPartner(); // pozwol partnerowi wziac karte
 	
 	Role role;
 	
 	IPlayer& player;
 	IPlayer& partner;
-	
-	std::vector<CardPtr> hand;	
+
+	Hand hand;	
 };
 
 
