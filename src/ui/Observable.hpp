@@ -1,5 +1,5 @@
-#ifndef OBSERVABLE_HPP
-#define OBSERVABLE_HPP
+#ifndef UI_OBSERVABLE_HPP
+#define UI_OBSERVABLE_HPP
 
 #include <set>
 #include <memory>
@@ -44,4 +44,4 @@ private:
 
 }
 
-#endif // OBSERVABLE_HPP
+#endif // UI_OBSERVABLE_HPP

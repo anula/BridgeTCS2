@@ -1,5 +1,5 @@
-#ifndef OBSERVER_HPP
-#define OBSERVER_HPP
+#ifndef UI_OBSERVER_HPP
+#define UI_OBSERVER_HPP
 
 #include <memory>
 
@@ -15,4 +15,4 @@ public:
 
 }
 
-#endif // OBSERVER_HPP
+#endif // UI_OBSERVER_HPP

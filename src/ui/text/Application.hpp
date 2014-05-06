@@ -1,9 +1,12 @@
+#ifndef UI_TEXT_APPLICATION_HPP
+#define UI_TEXT_APPLICATION_HPP
+
 #include <iostream>
 #include "ui/Observer.hpp"
 
-namespace ui 
+namespace ui
 {
-namespace text
+namespace text 
 {
 
 class Application : public ui::Observer< ::Application>
@@ -17,3 +20,5 @@ public:
 
 }
 }
+
+#endif // UI_TEXT_APPLICATION_HPP
