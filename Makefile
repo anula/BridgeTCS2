@@ -1,14 +1,17 @@
 CC=g++
-CFLAGS=--std=c++0x
-TESTFLAGS=-Isrc
+CFLAGS=--std=c++0x -Isrc
+TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Play.o Hand.o
+all: BridgeTCS Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Play.o Hand.o
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
 	bin/BiddingConstraintTest
 	bin/BiddingTest
+
+BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp
+	$(CC) $(CFLAGS) src/BridgeTCS.cpp -o bin/BridgeTCS
 
 Arbiter.o: bin src/Arbiter.cpp src/Arbiter.hpp
 	$(CC) $(CFLAGS) -c src/Arbiter.cpp -o bin/Arbiter.o

@@ -4,7 +4,9 @@
 #include <iostream>
 #include "ui/Observer.hpp"
 
-namespace ui::text 
+namespace ui
+{
+namespace text 
 {
 
 class Application : public ui::Observer< ::Application>
@@ -16,6 +18,7 @@ public:
     }
 };
 
+}
 }
 
 #endif // UI_TEXT_APPLICATION_HPP
