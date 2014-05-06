@@ -6,9 +6,9 @@ namespace ui::text
 class Bidding : Observer<::Bidding>
 {
 public:
-	void notify() 
+	void notify(const ::Bidding & target) 
 	{
-		if(target->stillGoing()) {
+		if(target.stillGoing()) {
 			
 			std::cout	<< "Bidding is going" << std::endl;
 			
@@ -18,7 +18,7 @@ public:
 		
 			std::cout	<< "Bidding finished" << std::endl;
 			
-			Contract contract = target->getContract();
+			Contract contract = target.getContract();
 			std::cout	<< "VALUE: "
 						<< contract.value << std::endl
 						<< "TRUMP: "

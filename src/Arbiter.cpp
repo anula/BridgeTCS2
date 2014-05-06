@@ -4,10 +4,9 @@
 Call Arbiter::getCall(BiddingConstraint constraint)
 {
 	return player.getCall();
-	// jakos sprawdz call
 }
 
-CardPtr Arbiter::askPlayer(std::vector<CardPtr> & hand)
+CardPtr Arbiter::askPlayer()
 {
 	int cardnum = player.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
@@ -18,7 +17,7 @@ CardPtr Arbiter::askPlayer(std::vector<CardPtr> & hand)
 	return cptr;
 }
 
-CardPtr Arbiter::askPartner(std::vector<CardPtr> & hand)
+CardPtr Arbiter::askPartner()
 {
 	int cardnum = partner.getCard(hand);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
@@ -28,7 +27,7 @@ CardPtr Arbiter::askPartner(std::vector<CardPtr> & hand)
 	return cptr;
 }
 
-CardPtr Arbiter::getCard()
+CardPtr Arbiter::getCard(Trump trickColor)
 {
 	
 	if(hand.size() == 0)
