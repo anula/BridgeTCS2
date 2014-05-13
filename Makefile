@@ -28,14 +28,14 @@ Call.o: bin src/Call.cpp src/Call.hpp src/Trump.hpp
 Trick.o: bin src/Trick.cpp src/Trick.hpp src/Card.hpp src/Trump.hpp
 	$(CC) $(CFLAGS) -c src/Trick.cpp -o bin/Trick.o
 	
-Bidding.o: bin src/Bidding.cpp src/Bidding.hpp src/Call.hpp src/BiddingConstraint.hpp src/Contract.hpp
-	$(CC) $(CFLAGS) -c src/Bidding.cpp -o bin/Bidding.o
+Bidding.o: bin src/model/Bidding.cpp src/model/Bidding.hpp src/Call.hpp src/model/BiddingConstraint.hpp src/model/Contract.hpp
+	$(CC) $(CFLAGS) -c src/model/Bidding.cpp -o bin/Bidding.o
 
-BiddingConstraint.o: bin src/BiddingConstraint.cpp src/BiddingConstraint.hpp src/Call.hpp src/Trump.hpp
-	$(CC) $(CFLAGS) -c src/BiddingConstraint.cpp -o bin/BiddingConstraint.o
+BiddingConstraint.o: bin src/model/BiddingConstraint.cpp src/model/BiddingConstraint.hpp src/Call.hpp src/Trump.hpp
+	$(CC) $(CFLAGS) -c src/model/BiddingConstraint.cpp -o bin/BiddingConstraint.o
 	
-Hand.o: bin src/Hand.cpp src/Hand.hpp
-	$(CC) $(CFLAGS) -c src/Hand.cpp -o bin/Hand.o
+Hand.o: bin src/model/Hand.cpp src/model/Hand.hpp
+	$(CC) $(CFLAGS) -c src/model/Hand.cpp -o bin/Hand.o
 
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)

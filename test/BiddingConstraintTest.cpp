@@ -2,7 +2,7 @@
 
 #include "Trump.hpp"
 #include "Call.hpp"
-#include "BiddingConstraint.hpp"
+#include "model/BiddingConstraint.hpp"
 
 using namespace model;
 

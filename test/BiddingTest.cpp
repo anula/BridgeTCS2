@@ -2,7 +2,7 @@
 
 #include "Trump.hpp"
 #include "Call.hpp"
-#include "Bidding.hpp"
+#include "model/Bidding.hpp"
 
 using namespace model;
 
