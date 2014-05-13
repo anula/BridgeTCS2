@@ -23,4 +23,4 @@ const std::vector<CardPtr>& Hand::getCards() const
 	return *this;
 }
 
-const int Hand::MAX_SIZE = 13;
+//const int Hand::MAX_SIZE = 13;
