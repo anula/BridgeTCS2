@@ -3,20 +3,21 @@
 
 #include "Card.hpp"
 #include "Call.hpp"
-#include "IPlayer.hpp"
 #include "Role.hpp"
 #include <vector>
+#include <stdexcept>
 
 
 namespace model
 {
 
-class Hand : protected std::vector<CardPtr> {
+class Hand : protected std::vector<Card> 
+{
 public:
-	CardPtr getCard(int index);
-	void addCard(CardPtr && card);
+	Card getCard(int index);
+	void addCard(Card card);
 	static const int MAX_SIZE = 13;
-	const std::vector<CardPtr>& getCards() const;
+	const std::vector<Card>& getCards() const;
 };
 
 

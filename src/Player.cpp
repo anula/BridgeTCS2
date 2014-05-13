@@ -8,7 +8,7 @@ std::string Player::getName()
 	return name;
 }
 
-int Player::getCard(std::vector<CardPtr> & hand)
+int Player::getCard(const Hand & hand)
 {
 	return 0; // TODO
 }

@@ -7,12 +7,12 @@ bool operator == (Suit s, Trump t)
 	return static_cast<Suit>(t) == s;
 }
 
-void Trick::addCardAt(CardPtr && card, int i)
+void Trick::addCardAt(Card card, int i)
 {
-	cards[i] = std::move(card);
+	cards[i] = card;
 	if (hasColor == false) {
 		hasColor = true;
-		colorOfTrick = card->suit;		
+		colorOfTrick = card.suit;		
 	}
 }
 
@@ -25,10 +25,10 @@ int Trick::resolve(Trump trump) const
 		// przejrzyj lewę
 		for (int i = 0; i < 4; i++)
 		{	// jeśli karta ma kolor atutowy
-			if (this->cards[i]->suit == trump) {
-				if (static_cast<int>(this->cards[i]->rank) > maximalTrump)
+			if (this->cards[i].suit == trump) {
+				if (static_cast<int>(this->cards[i].rank) > maximalTrump)
 				{	// jeśli da się poprawić zwycięzcę, popraw
-					maximalTrump = static_cast<int>(this->cards[i]->rank);
+					maximalTrump = static_cast<int>(this->cards[i].rank);
 					maximalTrumpOwnerIndex = i;						
 				}
 			}
@@ -42,10 +42,10 @@ int Trick::resolve(Trump trump) const
 	// przejrzyj lewę
 	for (int i = 0; i < 4; i++)
 	{	// jeśli karta ma kolor tej lewy
-		if (this->cards[i]->suit == this->colorOfTrick) {
-			if (static_cast<int>(this->cards[i]->rank) > maximalColor)
+		if (this->cards[i].suit == this->colorOfTrick) {
+			if (static_cast<int>(this->cards[i].rank) > maximalColor)
 			{	// jeśli da się poprawić zwycięzcę, popraw
-				maximalColor = static_cast<int>(this->cards[i]->rank);
+				maximalColor = static_cast<int>(this->cards[i].rank);
 				maximalColorOwnerIndex = i;						
 			}
 		}

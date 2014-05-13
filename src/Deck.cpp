@@ -10,9 +10,9 @@ void Deck::shuffle()
     std::random_shuffle(deck.begin(), deck.end());
 }
 
-std::unique_ptr<Card> Deck::getCard()
+Card Deck::getCard()
 {
-    auto card = std::move(deck.back());
+    auto card = deck.back();
     deck.pop_back();
     return card;
 }
@@ -22,9 +22,9 @@ int Deck::count() const
     return deck.size();
 }
 
-std::unique_ptr<Card> Deck::generateCard(Rank rank, Suit suit)
+Card Deck::generateCard(Rank rank, Suit suit)
 {
-    return std::unique_ptr<Card>(new Card(rank, suit));
+    return Card(rank, suit);
 }
 
 Standard52Deck::Standard52Deck()

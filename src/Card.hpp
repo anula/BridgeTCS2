@@ -33,18 +33,11 @@ enum class Rank
 
 struct Card
 {
-    Card(const Card &c) = delete;
-
-	friend class Deck;
+	Rank rank;
+	Suit suit;
 	
-	const Rank rank;
-    const Suit suit;
-
-private:
     Card(Rank r, Suit s) : rank(r), suit(s) {}
 };
-
-using CardPtr = std::unique_ptr<Card>;
 
 } // namespace model
 
