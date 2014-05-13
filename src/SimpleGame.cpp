@@ -10,4 +10,3 @@ void SimpleGame::start(int starter)
 	DealResult results = oneAndOnly.getDealResult();
 	std::cout << "Gratulacje, udalo sie zgarnac " << results.tricksCollected << " lew!" << std::endl;
 }
-

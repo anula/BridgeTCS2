@@ -15,5 +15,4 @@ public:
 	void start(int starter);
 };
 
-
 #endif
