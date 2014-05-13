@@ -13,16 +13,17 @@ class Trick
 {
 public:
 	Trick () : hasColor(false)	{}
-	void addCardAt(CardPtr && card, int i);
+	void addCardAt(Card card, int i);
 	inline Card const & getCardAt(int i)
 	{
-		return *cards[i];
+		return cards[i];
 	}
 	int resolve(Trump trump) const;
 private:
 	Suit colorOfTrick;
 	bool hasColor;
-	std::array<CardPtr, 4> cards;
+	std::vector<Card> cards;
+	//std::array<Card, 4> cards;
 };
 
 } // namespace model
