@@ -25,11 +25,11 @@ void Deal::perform() {
 }
 
 int Deal::performBidding() {
-  Bidding bidding;
+  bidding = Bidding();
   int who = firstPlayer;
   while (bidding.stillGoing()) {
     BiddingConstraint constraint = bidding.getCurrentConstraint();
-    Call call = arbiters[who].getCall(constraint);
+    Call call = arbiters[who].getCall(bidding);
     bool callSucceed = bidding.makeCall(call);
     if (!callSucceed) // should not happen
       throw 666;
@@ -51,7 +51,7 @@ int Deal::performPlay(int declarer) {
 		// wypełnij ją kartami
 		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (j+1)%4, k++)
 		{
-			trick.addCardAt(this->arbiters[j].getCard(), j);
+			trick.addCardAt(arbiters[j].getCard(bidding, play), j);
 		}
 		// lewa pełna: dowiedz się, kto zbiera lewę
 		int winner = trick.resolve(play.getTrump());

@@ -6,6 +6,9 @@
 #include <vector>
 #include "Card.hpp"
 #include "Call.hpp"
+#include "Hand.hpp"
+#include "Bidding.hpp"
+#include "Play.hpp"
 
 namespace model
 {
@@ -13,8 +16,8 @@ namespace model
 class IPlayer
 {
 public:
-	virtual int getCard(std::vector<CardPtr> & hand) = 0; 
-	virtual Call getCall() = 0;
+	virtual int getCard(Hand const & hand, Bidding const & bidding, Play const & play) = 0; 
+	virtual Call getCall(Hand const & hand, Bidding const & bidding) = 0;
 };
 
 } // namespace model

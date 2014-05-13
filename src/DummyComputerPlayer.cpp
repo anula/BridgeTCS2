@@ -3,12 +3,12 @@
 
 using namespace model;
 
-int DummyComputerPlayer::getCard(std::vector<CardPtr> & hand)
+int DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Game const & game)
 {
 	return 0;
 }
 
-Call DummyComputerPlayer::getCall()
+Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding)
 {
 	return Call::createPass();
 }

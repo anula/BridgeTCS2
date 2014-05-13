@@ -3,14 +3,14 @@
 
 using namespace model;
 
-Call Arbiter::getCall(BiddingConstraint constraint)
+Call Arbiter::getCall(Bidding const & bidding)
 {
-	return player.getCall();
+	return player.getCall(hand, bidding);
 }
 
-CardPtr Arbiter::askPlayer()
+CardPtr Arbiter::askPlayer(Play const & play, Bidding const & bidding)
 {
-	int cardnum = player.getCard(hand);
+	int cardnum = player.getCard(hand, bidding, play);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
 	if(cardnum >= (int)hand.size() || cardnum < 0)
 		throw NumberOutOfBounds();
@@ -19,9 +19,9 @@ CardPtr Arbiter::askPlayer()
 	return cptr;
 }
 
-CardPtr Arbiter::askPartner()
+CardPtr Arbiter::askPartner(Play const & play, Bidding const & bidding)
 {
-	int cardnum = partner.getCard(hand);
+	int cardnum = partner.getCard(hand, bidding, play);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
 	if(cardnum >= (int)hand.size() || cardnum < 0)
 		throw NumberOutOfBounds();
@@ -29,16 +29,16 @@ CardPtr Arbiter::askPartner()
 	return cptr;
 }
 
-CardPtr Arbiter::getCard(Trump trickColor)
+CardPtr Arbiter::getCard(Play const & play, Bidding const & bidding)
 {
 	
 	if(hand.size() == 0)
 		throw EmptyHandException();
 		
 	if(role != Role::DUMMY)
-		return askPlayer(hand);
+		return askPlayer(play, bidding);
 	else
-		return askPartner(hand);
+		return askPartner(play, bidding);
 }
 
 void Arbiter::addCard(CardPtr && newCard)

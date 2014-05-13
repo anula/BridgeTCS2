@@ -11,7 +11,7 @@ class IDeck
 {
 public:
     virtual void shuffle() = 0;
-    virtual std::unique_ptr<Card> getCard() = 0;
+    virtual Card getCard() = 0;
     virtual int count() const = 0;
 };
 
@@ -19,12 +19,12 @@ class Deck : public IDeck
 {
 public:
     void shuffle();
-    std::unique_ptr<Card> getCard();
+    Card getCard();
     int count() const;
 protected:
     Deck() = default;
-    std::unique_ptr<Card> generateCard(Rank rank, Suit suit);
-    std::vector< std::unique_ptr<Card> > deck;
+    Card generateCard(Rank rank, Suit suit);
+    std::vector<Card> deck;
 };
 
 class Standard52Deck : public Deck 

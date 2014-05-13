@@ -51,7 +51,8 @@ class Deal
     int firstPlayer;
     Contract contract;
     DealResult dealResult;
-    
+    Bidding bidding;
+
     int performBidding();
     int performPlay(int declarer);
 };

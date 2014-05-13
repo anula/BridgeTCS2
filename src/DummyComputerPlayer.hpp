@@ -8,9 +8,8 @@ namespace model
 
 class DummyComputerPlayer : IPlayer
 {
-public:
-	int getCard(std::vector<CardPtr> & hand); 
-	Call getCall();
+     int getCard(Hand const & hand, Bidding const & bidding, Game const & game);
+     Call getCall(Hand const & hand, Bidding const & bidding);
 };
 
 } // namespace model
