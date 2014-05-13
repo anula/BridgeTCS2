@@ -20,15 +20,15 @@ public:
 		partner(partner) {}
 	
 	Call getCall(BiddingConstraint constraint); // proxy getcall do playera
-	CardPtr getCard(Trump trickColor); // proxy getcard do playera
-	void addCard(CardPtr && newCard); // dodaj karte do reki
+	Card getCard(Trump trickColor); // proxy getcard do playera
+	void addCard(Card newCard); // dodaj karte do reki
 	void setRole(Role newrole) { role = newrole; }
 	Role getRole() { return role; }
 	
 private:
 	
-	CardPtr askPlayer(); // popros playera o dodanie karty
-	CardPtr askPartner(); // pozwol partnerowi wziac karte
+	Card askPlayer(); // popros playera o dodanie karty
+	Card askPartner(); // pozwol partnerowi wziac karte
 	
 	Role role;
 	
@@ -36,22 +36,6 @@ private:
 	IPlayer& partner;
 
 	Hand hand;	
-};
-
-
-struct EmptyHandException : std::logic_error
-{
-	explicit EmptyHandException() : std::logic_error("This player's hand is empty.") {}
-};
-
-struct FullHandException : std::logic_error
-{
-	explicit FullHandException() : std::logic_error("This player's hand is full.") {}
-};
-
-struct NumberOutOfBounds : std::logic_error
-{
-	explicit NumberOutOfBounds() : std::logic_error("Card number is wrong.") {}
 };
 
 

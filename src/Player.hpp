@@ -16,7 +16,7 @@ public:
 	explicit Player(std::string _name) : name(_name) {}	
 	
 	std::string getName();
-	int getCard(const Hand & hand); 
+	Card getCard(const Hand & hand); 
 	Call getCall();
 	
 private:

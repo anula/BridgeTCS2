@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x -Isrc
 TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: BridgeTCS Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o
+all: BridgeTCS Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest

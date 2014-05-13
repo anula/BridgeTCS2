@@ -4,8 +4,8 @@ using namespace model;
 
 Card Hand::getCard(int index)
 {
-	if(index > (int)size())
-		throw OutOfHandException();
+	if(index > (int)size() || index < 0)
+		throw NumberOutOfBounds();
 	std::swap((*this)[index], this->back());
 	Card ret = this->back();
 	pop_back();

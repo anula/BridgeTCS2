@@ -16,6 +16,7 @@ class Hand : protected std::vector<Card>
 public:
 	Card getCard(int index);
 	void addCard(Card card);
+	int size(){ return this->size(); }
 	static const int MAX_SIZE = 13;
 	const std::vector<Card>& getCards() const;
 };
@@ -26,9 +27,14 @@ struct FullHandException : std::logic_error
 	explicit FullHandException() : std::logic_error("This player's hand is full.") {}
 };
 
-struct OutOfHandException : std::logic_error
+struct EmptyHandException : std::logic_error
 {
-	explicit OutOfHandException() : std::logic_error("This index is out of player's hand.") {}
+	explicit EmptyHandException() : std::logic_error("This Player's hand is empty.") {}
+};
+
+struct NumberOutOfBounds : std::logic_error
+{
+	explicit NumberOutOfBounds() : std::logic_error("This index makes no fucking sense.") {}
 };
 
 } // namespace model

@@ -1,9 +1,10 @@
 #ifndef TRUMP_HPP
 #define TRUMP_HPP
+#include "Card.hpp"
 namespace model
 {
 
-enum Trump
+enum class Trump
 {
 	CLUBS,
 	DIAMONDS,
@@ -11,6 +12,11 @@ enum Trump
 	SPADES,
 	NT
 };
+
+bool operator==(const Suit& s, const Trump& t){
+	return static_cast<int>(s)==static_cast<int>(t);
+}
+
 
 } // namespace model
 

@@ -1,5 +1,6 @@
 #include "Arbiter.hpp"
 #include "IPlayer.hpp"
+#include <vector>
 
 using namespace model;
 
@@ -8,44 +9,59 @@ Call Arbiter::getCall(BiddingConstraint constraint)
 	return player.getCall();
 }
 
-CardPtr Arbiter::askPlayer()
+Card Arbiter::askPlayer()
 {
-	int cardnum = player.getCard(hand);
+	int cardnum = -1;
+	const std::vector<Card>& h = hand.getCards();
+	do{
+		Card rec = player.getCard(hand);
+		for(int i = 0; i < h.size(); ++i)
+			if(h[i] == rec)
+				cardnum = i;
+	}while(cardnum == -1);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
 	if(cardnum >= (int)hand.size() || cardnum < 0)
 		throw NumberOutOfBounds();
 		
-	CardPtr cptr = std::move(hand[cardnum]);
-	return cptr;
+	Card card = hand.getCard(cardnum);
+	return card;
 }
 
-CardPtr Arbiter::askPartner()
+Card Arbiter::askPartner()
 {
-	int cardnum = partner.getCard(hand);
+	int cardnum = -1;
+	const std::vector<Card>& h = hand.getCards();
+	do{
+		Card rec = partner.getCard(hand);
+		for(int i = 0; i < h.size(); ++i)
+			if(h[i] == rec)
+				cardnum = i;
+	}while(cardnum == -1);
 	// jakos sprawdz, czy hand[cardnum] jest poprawna karta
 	if(cardnum >= (int)hand.size() || cardnum < 0)
 		throw NumberOutOfBounds();
-	CardPtr cptr = std::move(hand[cardnum]);
-	return cptr;
+		
+	Card card = hand.getCard(cardnum);
+	return card;
 }
 
-CardPtr Arbiter::getCard(Trump trickColor)
+Card Arbiter::getCard(Trump trickColor)
 {
 	
 	if(hand.size() == 0)
 		throw EmptyHandException();
 		
 	if(role != Role::DUMMY)
-		return askPlayer(hand);
+		return askPlayer();
 	else
-		return askPartner(hand);
+		return askPartner();
 }
 
-void Arbiter::addCard(CardPtr && newCard)
+void Arbiter::addCard(Card newCard)
 {
 	
 	if(hand.size() == 13)
 		throw FullHandException();
 		
-	hand.emplace_back(std::move(newCard));
+	hand.addCard(newCard);
 }
