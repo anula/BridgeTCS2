@@ -6,17 +6,17 @@ void ui::text::Bidding::notify(model::Bidding const & target)
 		
 		std::cout	<< "Bidding is going" << std::endl;
 		
-		BiddingConstraint constraint = target.getConstraint();
+		model::BiddingConstraint constraint = target.getCurrentConstraint();
 		std::cout	<< "VALUE: "
 					<< constraint.value << std::endl
 					<< "TRUMP: "
-					<< trumps[static_cast<int>(constraint.trump)] << std::endl
+					<< trumps[static_cast<int>(constraint.trump)] << std::endl;
 	
 	} else {
 	
 		std::cout	<< "Bidding finished" << std::endl;
 		
-		Contract contract = target.getContract();
+		model::Contract contract = target.getContract();
 		std::cout	<< "VALUE: "
 					<< contract.value << std::endl
 					<< "TRUMP: "
