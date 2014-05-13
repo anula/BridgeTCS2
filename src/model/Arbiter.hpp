@@ -7,6 +7,7 @@
 #include "Role.hpp"
 #include "BiddingConstraint.hpp"
 #include "Hand.hpp"
+#include "Play.hpp"
 #include <vector>
 
 namespace model
@@ -19,16 +20,17 @@ public:
 		player(player), 
 		partner(partner) {}
 	
-	Call getCall(BiddingConstraint constraint); // proxy getcall do playera
-	Card getCard(Trump trickColor); // proxy getcard do playera
+	Call getCall(Bidding const & bidding); // proxy getcall do playera
+	Card getCard(Bidding const & bidding, Play const & play); // proxy getcard do playera
 	void addCard(Card newCard); // dodaj karte do reki
+	
 	void setRole(Role newrole) { role = newrole; }
 	Role getRole() { return role; }
 	
 private:
 	
-	Card askPlayer(); // popros playera o dodanie karty
-	Card askPartner(); // pozwol partnerowi wziac karte
+	Card askPlayer(Play const & play, Bidding const & bidding); // popros playera o dodanie karty
+	Card askPartner(Play const & play, Bidding const & bidding); // pozwol partnerowi wziac karte
 	
 	Role role;
 	
@@ -37,7 +39,6 @@ private:
 
 	Hand hand;	
 };
-
 
 } // namespace model
 

@@ -13,29 +13,32 @@ test: Standard52DeckTest BiddingConstraintTest BiddingTest
 BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp
 	$(CC) $(CFLAGS) src/BridgeTCS.cpp -o bin/BridgeTCS
 
-Arbiter.o: bin src/Arbiter.cpp src/Arbiter.hpp
-	$(CC) $(CFLAGS) -c src/Arbiter.cpp -o bin/Arbiter.o
+Arbiter.o: bin src/model/Arbiter.cpp src/model/Arbiter.hpp
+	$(CC) $(CFLAGS) -c src/model/Arbiter.cpp -o bin/Arbiter.o
 
-Deal.o: bin src/Deal.cpp src/Deal.hpp src/Deal.hpp src/Trick.hpp src/Play.hpp src/Trump.hpp
-	$(CC) $(CFLAGS) -c src/Deal.cpp -o bin/Deal.o
+Deal.o: bin src/model/Deal.cpp src/model/Deal.hpp src/model/Trick.hpp src/model/Play.hpp src/model/Trump.hpp
+	$(CC) $(CFLAGS) -c src/model/Deal.cpp -o bin/Deal.o
 	
-Deck.o: bin src/Deck.cpp src/Deck.hpp
-	$(CC) $(CFLAGS) -c src/Deck.cpp -o bin/Deck.o
+Deck.o: bin src/model/Deck.cpp src/model/Deck.hpp
+	$(CC) $(CFLAGS) -c src/model/Deck.cpp -o bin/Deck.o
 
-Call.o: bin src/Call.cpp src/Call.hpp src/Trump.hpp
-	$(CC) $(CFLAGS) -c src/Call.cpp -o bin/Call.o
+Call.o: bin src/model/Call.cpp src/model/Call.hpp src/model/Trump.hpp
+	$(CC) $(CFLAGS) -c src/model/Call.cpp -o bin/Call.o
 
-Trick.o: bin src/Trick.cpp src/Trick.hpp src/Card.hpp src/Trump.hpp
-	$(CC) $(CFLAGS) -c src/Trick.cpp -o bin/Trick.o
+Trick.o: bin src/model/Trick.cpp src/model/Trick.hpp src/model/Card.hpp src/model/Trump.hpp
+	$(CC) $(CFLAGS) -c src/model/Trick.cpp -o bin/Trick.o
 	
-Bidding.o: bin src/Bidding.cpp src/Bidding.hpp src/Call.hpp src/BiddingConstraint.hpp src/Contract.hpp
-	$(CC) $(CFLAGS) -c src/Bidding.cpp -o bin/Bidding.o
+Bidding.o: bin src/model/Bidding.cpp src/model/Bidding.hpp src/model/Call.hpp src/model/BiddingConstraint.hpp src/model/Contract.hpp
+	$(CC) $(CFLAGS) -c src/model/Bidding.cpp -o bin/Bidding.o
 
-BiddingConstraint.o: bin src/BiddingConstraint.cpp src/BiddingConstraint.hpp src/Call.hpp src/Trump.hpp
-	$(CC) $(CFLAGS) -c src/BiddingConstraint.cpp -o bin/BiddingConstraint.o
+BiddingConstraint.o: bin src/model/BiddingConstraint.cpp src/model/BiddingConstraint.hpp src/model/Call.hpp src/model/Trump.hpp
+	$(CC) $(CFLAGS) -c src/model/BiddingConstraint.cpp -o bin/BiddingConstraint.o
 	
-Hand.o: bin src/Hand.cpp src/Hand.hpp
-	$(CC) $(CFLAGS) -c src/Hand.cpp -o bin/Hand.o
+Hand.o: bin src/model/Hand.cpp src/model/Hand.hpp
+	$(CC) $(CFLAGS) -c src/model/Hand.cpp -o bin/Hand.o
+
+#SimpleGame.o: src/SimpleGame.cpp src/SimpleGame.hpp src/model/Game.hpp
+#	$(CC) $(CFLAGS) -c src/SimpleGame.cpp -o bin/SimpleGame.o
 
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)

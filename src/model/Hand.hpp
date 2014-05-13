@@ -27,11 +27,6 @@ struct FullHandException : std::logic_error
 	explicit FullHandException() : std::logic_error("This player's hand is full.") {}
 };
 
-struct EmptyHandException : std::logic_error
-{
-	explicit EmptyHandException() : std::logic_error("This Player's hand is empty.") {}
-};
-
 struct NumberOutOfBounds : std::logic_error
 {
 	explicit NumberOutOfBounds() : std::logic_error("This index makes no fucking sense.") {}

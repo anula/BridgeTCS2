@@ -1,8 +1,6 @@
-#include "BiddingConstraint.hpp"
+#include "model/BiddingConstraint.hpp"
 
-using namespace model;
-
-bool BiddingConstraint::satisfies(Call const & call) const 
+bool model::BiddingConstraint::satisfies(Call const & call) const 
 {
 	switch (call.type) 
 	{
