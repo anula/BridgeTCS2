@@ -22,3 +22,4 @@ const std::vector<Card>& Hand::getCards() const
 {
 	return *this;
 }
+	

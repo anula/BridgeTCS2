@@ -3,14 +3,13 @@
 
 #include <iostream>
 #include <string>
-#include "ui/Observer.hpp"
 
 namespace ui
 {
 namespace text 
 {
 
-class Application : public ui::Observer<model::Application>
+class Application
 {
 public:
 

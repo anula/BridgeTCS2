@@ -3,8 +3,6 @@
 
 #include <boost/signals2/signal.hpp>
 
-#include "Observer.hpp"
-
 namespace ui
 {
 
