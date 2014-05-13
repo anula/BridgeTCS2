@@ -11,12 +11,14 @@
 namespace model
 {
 
-class Hand : protected std::vector<CardPtr> {
+class Hand : public std::vector<CardPtr> {
 public:
 	CardPtr getCard(int index);
 	void addCard(CardPtr && card);
 	static const int MAX_SIZE = 13;
 	const std::vector<CardPtr>& getCards() const;
+    using std::vector<CardPtr>::size;
+    using std::vector<CardPtr>::operator[];
 };
 
 
