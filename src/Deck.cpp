@@ -3,6 +3,8 @@
 #include <memory>
 #include "Deck.hpp"
 
+using namespace model;
+
 void Deck::shuffle()
 {
     std::random_shuffle(deck.begin(), deck.end());

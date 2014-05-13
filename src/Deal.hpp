@@ -9,6 +9,9 @@
 #include "Contract.hpp"
 #include "Deck.hpp"
 
+namespace model
+{
+
 struct DealResult
 {
   /* Tricks collected by pair who begins.
@@ -52,5 +55,7 @@ class Deal
     int performBidding();
     int performPlay(int declarer);
 };
+
+} // namespace model
 
 #endif // DEAL_HPP

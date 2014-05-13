@@ -7,6 +7,9 @@
 #include "Card.hpp"
 #include "Call.hpp"
 
+namespace model
+{
+
 class Player
 {
 public:	
@@ -19,4 +22,7 @@ public:
 private:
 	std::string name;
 };
+
+} // namespace model
+
 #endif

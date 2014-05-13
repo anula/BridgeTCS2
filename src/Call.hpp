@@ -3,6 +3,9 @@
 
 #include "Trump.hpp"
 
+namespace model
+{
+
 enum CallType
 {
 	PASS,
@@ -22,5 +25,7 @@ struct Call
 	static const Call createDouble();
 	static const Call createStandard(int value, Trump trump);
 };
+
+} // namespace model
 
 #endif // CALL_HPP

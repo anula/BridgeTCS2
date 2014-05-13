@@ -9,6 +9,9 @@
 #include "Hand.hpp"
 #include <vector>
 
+namespace model
+{
+
 class Arbiter{
 public:
 	
@@ -50,5 +53,8 @@ struct NumberOutOfBounds : std::logic_error
 {
 	explicit NumberOutOfBounds() : std::logic_error("Card number is wrong.") {}
 };
+
+
+} // namespace model
 
 #endif

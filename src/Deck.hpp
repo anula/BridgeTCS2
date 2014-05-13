@@ -4,6 +4,9 @@
 #include "Card.hpp"
 #include <vector>
 #include <memory>
+namespace model
+{
+
 class IDeck
 {
 public:
@@ -29,5 +32,8 @@ class Standard52Deck : public Deck
 public:
     Standard52Deck(); 
 };
+
+
+} // namespace model
 
 #endif // DECK_HPP

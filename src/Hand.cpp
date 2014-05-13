@@ -1,5 +1,7 @@
 #include "Hand.hpp"
 
+using namespace model;
+
 CardPtr Hand::getCard(int index)
 {
 	if(index > (int)size())

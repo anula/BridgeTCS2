@@ -5,6 +5,9 @@
 #include<string>
 #include<array>
 
+namespace model
+{
+
 class Game{
 	
 public:
@@ -17,5 +20,6 @@ private:
 	std::array<Arbiter, 4> arbiters;
 };
 
+} // namespace model
 
 #endif // GAME_HPP

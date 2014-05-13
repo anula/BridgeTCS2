@@ -4,6 +4,8 @@
 #include "Call.hpp"
 #include "BiddingConstraint.hpp"
 
+using namespace model;
+
 TEST(BiddingConstraintTest, SatisfiesDouble)
 {
   BiddingConstraint bidCon;

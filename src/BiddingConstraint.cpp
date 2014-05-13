@@ -1,5 +1,7 @@
 #include "BiddingConstraint.hpp"
 
+using namespace model;
+
 bool BiddingConstraint::satisfies(Call const & call) const 
 {
 	switch (call.type) 

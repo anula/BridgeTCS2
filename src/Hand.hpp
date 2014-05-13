@@ -8,6 +8,9 @@
 #include <vector>
 
 
+namespace model
+{
+
 class Hand : protected std::vector<CardPtr> {
 public:
 	CardPtr getCard(int index);
@@ -26,5 +29,7 @@ struct OutOfHandException : std::logic_error
 {
 	explicit OutOfHandException() : std::logic_error("This index is out of player's hand.") {}
 };
+
+} // namespace model
 
 #endif

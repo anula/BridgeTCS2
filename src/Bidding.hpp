@@ -7,6 +7,9 @@
 #include "Call.hpp"
 #include "Contract.hpp"
 
+namespace model
+{
+
 class Bidding
 {
 public:
@@ -87,4 +90,7 @@ private:
 	}
 	
 };
+
+} // namespace model
+
 #endif // BIDDING_HPP

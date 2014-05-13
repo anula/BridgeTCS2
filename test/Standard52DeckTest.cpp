@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include "Deck.hpp"
 
+using namespace model;
+
 TEST(Standard52Test, SimpleTest)
 {
     Standard52Deck deck;

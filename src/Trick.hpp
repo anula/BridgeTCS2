@@ -6,6 +6,9 @@
 #include "Trump.hpp"
 #include <vector>
 
+namespace model
+{
+
 class Trick
 {
 public:
@@ -21,5 +24,7 @@ private:
 	bool hasColor;
 	std::array<CardPtr, 4> cards;
 };
+
+} // namespace model
 
 #endif

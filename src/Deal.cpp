@@ -2,6 +2,8 @@
 #include "Trick.hpp"
 #include "Play.hpp"
 
+using namespace model;
+
 void Deal::perform() {
   Standard52Deck deck;
   deck.shuffle();

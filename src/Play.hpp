@@ -6,6 +6,9 @@
 #include "Trick.hpp"
 #include <vector>
 
+namespace model
+{
+
 class Play
 {
 public:
@@ -57,5 +60,7 @@ private:
   std::array<int, 4> tricksCollected;
   std::vector<Trick> tricks;					// lewy danej gry
 };
+
+} // namespace model
 
 #endif

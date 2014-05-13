@@ -1,5 +1,7 @@
 #include "Call.hpp"
 
+using namespace model;
+
 static Call passCall =      {CallType::PASS};
 static Call doubleCall =    {CallType::DOUBLE};
 static Call redoubleCall =  {CallType::REDOUBLE};

@@ -3,6 +3,9 @@
 
 #include <memory>
 
+namespace model
+{
+
 enum class Suit
 {
     CLUBS,
@@ -42,5 +45,7 @@ private:
 };
 
 using CardPtr = std::unique_ptr<Card>;
+
+} // namespace model
 
 #endif // CARD_HPP

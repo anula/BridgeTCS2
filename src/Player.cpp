@@ -1,6 +1,8 @@
 #include "Player.hpp"
 #include <string>
 
+usint namespace model;
+
 std::string Player::getName()
 {
 	return name;

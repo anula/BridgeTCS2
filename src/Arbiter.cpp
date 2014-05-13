@@ -1,6 +1,8 @@
 #include "Arbiter.hpp"
 #include "IPlayer.hpp"
 
+using namespace model;
+
 Call Arbiter::getCall(BiddingConstraint constraint)
 {
 	return player.getCall();

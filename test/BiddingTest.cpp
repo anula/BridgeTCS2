@@ -4,6 +4,8 @@
 #include "Call.hpp"
 #include "Bidding.hpp"
 
+using namespace model;
+
 TEST(BiddingTest, CanWePass)
 {
 	Bidding bidding;

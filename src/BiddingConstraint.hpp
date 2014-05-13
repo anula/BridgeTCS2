@@ -4,6 +4,9 @@
 #include "Trump.hpp"
 #include "Call.hpp"
 
+namespace model
+{
+
 struct BiddingConstraint
 {
 	int value;
@@ -13,4 +16,7 @@ struct BiddingConstraint
 	
 	bool satisfies(Call const& call) const;
 };
+
+} // namespace model
+
 #endif // BIDDINGCONSTRAINT_HPP 

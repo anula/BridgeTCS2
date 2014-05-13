@@ -1,5 +1,7 @@
 #include "Trick.hpp"
 
+using namespace model;
+
 bool operator == (Suit s, Trump t)
 {
 	return static_cast<Suit>(t) == s;

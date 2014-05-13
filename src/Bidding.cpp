@@ -1,5 +1,7 @@
 #include "Bidding.hpp"
 
+using namespace model;
+
 Bidding::Bidding() 
 		: whoBidsNow(0), passCount(0), 
 		lastNonPass(Call::createPass()), 

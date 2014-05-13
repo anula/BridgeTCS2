@@ -1,5 +1,8 @@
 #ifndef TRUMP_HPP
 #define TRUMP_HPP
+namespace model
+{
+
 enum Trump
 {
 	CLUBS,
@@ -8,4 +11,7 @@ enum Trump
 	SPADES,
 	NT
 };
+
+} // namespace model
+
 #endif // TRUMP_HPP
