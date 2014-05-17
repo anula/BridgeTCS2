@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "Trump.hpp"
-#include "Call.hpp"
+#include "model/Trump.hpp"
+#include "model/Call.hpp"
 #include "model/Bidding.hpp"
 
 using namespace model;

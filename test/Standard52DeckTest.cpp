@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Deck.hpp"
+#include "model/Deck.hpp"
 
 using namespace model;
 

@@ -13,7 +13,7 @@ enum class Trump
 	NT
 };
 
-bool operator==(const Suit& s, const Trump& t){
+inline bool operator==(const Suit& s, const Trump& t){
 	return static_cast<int>(s)==static_cast<int>(t);
 }
 
