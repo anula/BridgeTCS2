@@ -53,6 +53,7 @@ int Deal::performPlay(int declarer) {
 		{
 			trick.addCardAt(arbiters[j].getCard(bidding, play), j);
 		}
+    play.addTrick(std::move(trick));
 		// lewa pełna: dowiedz się, kto zbiera lewę
 		int winner = trick.resolve(play.getTrump());
 		// zwiększ liczbę lew tego playera
