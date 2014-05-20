@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv) 
 {
-    model::Application application;
+    model::Application application; // dziedziczy po Observable
     ui::text::Application appView;
     application.sigModified.connect(
         [&appView] (model::Application const & app) {

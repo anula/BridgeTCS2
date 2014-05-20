@@ -1,4 +1,6 @@
 #include "Application.hpp"
+#include "ui/text/Player.hpp"
+#include "model/Game.hpp"
 
 void model::Application::run()
 {
@@ -6,7 +8,7 @@ void model::Application::run()
     DummyComputerPlayer dummy1;
     DummyComputerPlayer dummy2;
     DummyComputerPlayer dummy3;
-    //Player user = Player("Zdzisław");
+    ui::text::Player user;
     sigModified(*this);
     sigModified(*this);
 }

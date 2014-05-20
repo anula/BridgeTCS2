@@ -2,13 +2,14 @@
 #define GAME_HPP
 #include "IPlayer.hpp"
 #include "Arbiter.hpp"
+#include "../ui/Observable.hpp"
 #include<string>
 #include<array>
 
 namespace model
 {
 
-class IGame : public Observable<IGame>
+class IGame : public ui::Observable<IGame>
 {
 	
 public:

@@ -1,5 +1,5 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef IPLAYER_HPP
+#define IPLAYER_HPP
 
 #include <string>
 #include <stdexcept>
@@ -16,7 +16,7 @@ namespace model
 class IPlayer
 {
 public:
-	virtual Card getCard(Hand const & hand, Bidding const & bidding, Play const & play) = 0; 
+	virtual Card getCard(Hand & hand, Bidding const & bidding, Play const & play) = 0; 
 	virtual Call getCall(Hand const & hand, Bidding const & bidding) = 0;
 };
 

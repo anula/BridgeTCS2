@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x -Isrc
 TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o BridgeTCS
+all: Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o BridgeTCS
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -11,7 +11,7 @@ test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/BiddingTest
 
 BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp 
-	$(CC) $(CFLAGS) src/BridgeTCS.cpp bin/Application.o bin/DummyComputerPlayer.o bin/Call.o -o bin/BridgeTCS
+	$(CC) $(CFLAGS) src/BridgeTCS.cpp bin/Application.o bin/DummyComputerPlayer.o bin/Hand.o bin/Bidding.o bin/BiddingConstraint.o bin/Call.o bin/Player.o bin/Printer.o bin/ui_text_Hand.o -o bin/BridgeTCS
 
 Arbiter.o: bin src/model/Arbiter.cpp src/model/Arbiter.hpp
 	$(CC) $(CFLAGS) -c src/model/Arbiter.cpp -o bin/Arbiter.o
@@ -45,6 +45,15 @@ DummyComputerPlayer.o: bin src/model/DummyComputerPlayer.cpp src/model/DummyComp
 
 Application.o: bin src/Application.cpp src/Application.hpp
 	$(CC) $(CFLAGS) -c src/Application.cpp -o bin/Application.o
+
+Player.o: bin src/ui/text/Player.cpp src/ui/text/Player.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Player.cpp -o bin/Player.o
+
+Printer.o: bin src/ui/text/Printer.cpp src/ui/text/Printer.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Printer.cpp -o bin/Printer.o
+
+ui_text_Hand.o: bin src/ui/text/Hand.cpp src/ui/text/Hand.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Hand.cpp -o bin/ui_text_Hand.o
 
 #SimpleGame.o: src/SimpleGame.cpp src/SimpleGame.hpp src/model/Game.hpp
 #	$(CC) $(CFLAGS) -c src/SimpleGame.cpp -o bin/SimpleGame.o
