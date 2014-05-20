@@ -40,8 +40,9 @@ public:
 	Trick const & getTrick(int i) {
 		return tricks[i];
 	}
-	void addTrick(Trick && trick) {
-		tricks.emplace_back(std::move(trick));
+	Trick & newTrick() {
+		tricks.emplace_back();
+		return tricks.back();
 	}
 	int trickCount() {
     return tricks.size();
