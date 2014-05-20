@@ -3,7 +3,7 @@ CFLAGS=--std=c++0x -Isrc
 TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Application.o BridgeTCS
+all: Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o BridgeTCS
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -24,6 +24,9 @@ Deck.o: bin src/model/Deck.cpp src/model/Deck.hpp
 
 Call.o: bin src/model/Call.cpp src/model/Call.hpp src/model/Trump.hpp
 	$(CC) $(CFLAGS) -c src/model/Call.cpp -o bin/Call.o
+	
+Play.o: bin src/model/Play.cpp src/model/Play.hpp src/model/Trump.hpp src/model/Trick.hpp
+	$(CC) $(CFLAGS) -c src/model/Play.cpp -o bin/Play.o
 
 Trick.o: bin src/model/Trick.cpp src/model/Trick.hpp src/model/Card.hpp src/model/Trump.hpp
 	$(CC) $(CFLAGS) -c src/model/Trick.cpp -o bin/Trick.o

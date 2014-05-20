@@ -11,7 +11,7 @@
 namespace model
 {
 
-class Hand : public std::vector<Card> {
+class Hand : protected std::vector<Card> {
 public:
 	Card getCard(int index);
 	void addCard(Card card);

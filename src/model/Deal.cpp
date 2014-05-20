@@ -42,25 +42,24 @@ int Deal::performBidding() {
 }
 
 int Deal::performPlay(int declarer) {
-  Play play(contract.trump, declarer);
+ 	Play play(contract.trump, declarer);
 
 	for (int i = 0; i < 13; i++)
 	{
-		// stwórz nową lewę
-		Trick trick = Trick();
-		// wypełnij ją kartami
-		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (j+1)%4, k++)
+		play.currentTrick = Trick();
+		
+		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
 		{
-			trick.addCardAt(arbiters[j].getCard(bidding, play), j);
+			play.currentTrick.addCard(arbiters[j].getCard(bidding, play));
 		}
-		// lewa pełna: dowiedz się, kto zbiera lewę
-		int winner = trick.resolve(play.getTrump());
-		// zwiększ liczbę lew tego playera
+		
+		int winner = play.currentTrick.resolve(play.getTrump());
+		
 		play.incrementPlayerScore(winner);
-		// ustaw zwycięzcę nowym rozgrywającym
+		
 		play.setBeginningPlayer(winner);
-		// zapisz lewę do stanu gry
-		play.addTrick(std::move(trick));
+		
+		play.addTrick(play.currentTrick);
 	}	
 
   return play.getResult();

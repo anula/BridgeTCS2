@@ -2,21 +2,7 @@
 
 using namespace model;
 
-bool operator == (Suit s, Trump t)
-{
-	return static_cast<Suit>(t) == s;
-}
-
-void Trick::addCardAt(Card card, int i)
-{
-	cards[i] = card;
-	if (hasColor == false) {
-		hasColor = true;
-		colorOfTrick = card.suit;		
-	}
-}
-
-int Trick::resolve(Trump trump) const
+int Trick::resolve(Trump trump) const 
 {
 	// jeśli gramy z atu
 	if (trump != Trump::NT) {
@@ -39,10 +25,11 @@ int Trick::resolve(Trump trump) const
 	// jeśli gramy bez atu, lub w lewie nie ma atu
 	int maximalColor = -1;
 	int maximalColorOwnerIndex = -1;
+	Suit suit = cards[0].suit;
 	// przejrzyj lewę
 	for (int i = 0; i < 4; i++)
 	{	// jeśli karta ma kolor tej lewy
-		if (this->cards[i].suit == this->colorOfTrick) {
+		if (this->cards[i].suit == suit) {
 			if (static_cast<int>(this->cards[i].rank) > maximalColor)
 			{	// jeśli da się poprawić zwycięzcę, popraw
 				maximalColor = static_cast<int>(this->cards[i].rank);
@@ -53,3 +40,8 @@ int Trick::resolve(Trump trump) const
 	return maximalColorOwnerIndex;
 }
 
+Trump Trick::getTrump(){
+	if(cards.size() == 0)
+		return Trump::NT;
+	return static_cast<Trump>(cards[0].suit);
+}
