@@ -2,8 +2,6 @@
 #define APPLICATION_HPP
 
 #include "ui/Observable.hpp"
-#include "model/IPlayer.hpp"
-#include "model/Player.hpp"
 #include "model/DummyComputerPlayer.hpp"
 
 namespace model
