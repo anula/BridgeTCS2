@@ -11,8 +11,6 @@ namespace text
 	
 class Bidding
 {
-	static const std::string trumps[];
-	
 public:
 	void notify(model::Bidding const &);
 	

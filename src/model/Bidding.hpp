@@ -6,11 +6,12 @@
 #include "BiddingConstraint.hpp"
 #include "Call.hpp"
 #include "Contract.hpp"
+#include "../ui/Observable.hpp"
 
 namespace model
 {
 
-class Bidding
+class Bidding : public ui::Observable<Bidding>
 {
 public:
 	Bidding();

@@ -4,12 +4,13 @@
 #include <array>
 #include "Card.hpp"
 #include "Trump.hpp"
+//#include "../ui/Observable.hpp"
 #include <vector>
 
 namespace model
 {
 
-class Trick
+class Trick //: public ui::Observable<Trick>
 {
 public:
 	Trick () {}

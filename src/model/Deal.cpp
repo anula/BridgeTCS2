@@ -25,7 +25,7 @@ void Deal::perform() {
 }
 
 int Deal::performBidding() {
-  bidding = Bidding();
+  //bidding = Bidding();
   int who = firstPlayer;
   while (bidding.stillGoing()) {
     BiddingConstraint constraint = bidding.getCurrentConstraint();
@@ -54,7 +54,6 @@ int Deal::performPlay(int declarer) {
 		}
 		
 		int winner = play.currentTrick.resolve(play.getTrump());
-		
 		play.incrementPlayerScore(winner);
 		
 		play.setBeginningPlayer(winner);

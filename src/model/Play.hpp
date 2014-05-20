@@ -4,12 +4,13 @@
 #include <array>
 #include "Trump.hpp"
 #include "Trick.hpp"
+#include "../ui/Observable.hpp"
 #include <vector>
 
 namespace model
 {
 
-class Play
+class Play : public ui::Observable<Play>
 {
 public:
 	/* Przyjmuje: kolor atutowy, ID rozgrywajacego.
@@ -33,6 +34,10 @@ public:
   	int getResult();
   	
 	Trick currentTrick;
+	/*Trick & newTrick() {
+		tricks.emplace_back();
+		return tricks.back();
+	}*/
 private:
 	
   	Trump trump;

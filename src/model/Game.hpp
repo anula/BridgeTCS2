@@ -8,7 +8,7 @@
 namespace model
 {
 
-class IGame
+class IGame : public Observable<IGame>
 {
 	
 public:

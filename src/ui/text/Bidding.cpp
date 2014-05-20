@@ -1,29 +1,7 @@
 #include "ui/text/Bidding.hpp"
 
-void ui::text::Bidding::notify(model::Bidding const & target) 
+void ui::text::Bidding::notify(model::Bidding const & bidding) 
 {
-	if(target.stillGoing()) {
-		
-		std::cout	<< "Bidding is going" << std::endl;
-		
-		model::BiddingConstraint constraint = target.getCurrentConstraint();
-		std::cout	<< "VALUE: "
-					<< constraint.value << std::endl
-					<< "TRUMP: "
-					<< trumps[static_cast<int>(constraint.trump)] << std::endl;
-	
-	} else {
-	
-		std::cout	<< "Bidding finished" << std::endl;
-		
-		model::Contract contract = target.getContract();
-		std::cout	<< "VALUE: "
-					<< contract.value << std::endl
-					<< "TRUMP: "
-					<< trumps[static_cast<int>(contract.trump)] << std::endl
-					<< "MULTIPLIER: "
-					<< contract.multiplier << std::endl;
-	}
+	Printer::print(bidding);
 }
 
-const std::string ui::text::Bidding::trumps[] = {"C","D","H","S","NT"};
