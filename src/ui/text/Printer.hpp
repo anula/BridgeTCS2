@@ -15,6 +15,7 @@ namespace text
 class Printer {
 public:
 	static void print(model::Card const &, std::ostream & = std::cout);
+	static void print(model::Trick const &, std::ostream & = std::cout);
 	static void print(model::Hand const &, std::ostream & = std::cout);
 	static void print(model::Bidding const &, std::ostream & = std::cout);
 	static void print(model::Call const &, std::ostream & = std::cout);
