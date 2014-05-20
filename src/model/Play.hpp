@@ -1,5 +1,5 @@
-#ifndef PLAYSTATE_HPP
-#define PLAYSTATE_HPP
+#ifndef PLAY_HPP
+#define PLAY_HPP
 
 #include <array>
 #include "Trump.hpp"
