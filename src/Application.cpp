@@ -8,4 +8,5 @@ void model::Application::run()
     DummyComputerPlayer dummy3;
     //Player user = Player("Zdzisław");
     sigModified(*this);
+    sigModified(*this);
 }

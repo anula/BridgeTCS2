@@ -8,6 +8,7 @@
 #include "Bidding.hpp"
 #include "Contract.hpp"
 #include "Deck.hpp"
+#include "../ui/Observable.hpp"
 
 namespace model
 {
@@ -25,7 +26,7 @@ struct DealResult
   Contract contract;
 };
 
-class Deal
+class Deal : public ui::Observable<Deal>
 {
   public: 
     Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
