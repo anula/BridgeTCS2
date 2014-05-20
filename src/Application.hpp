@@ -2,6 +2,9 @@
 #define APPLICATION_HPP
 
 #include "ui/Observable.hpp"
+#include "model/IPlayer.hpp"
+#include "model/Player.hpp"
+#include "model/DummyComputerPlayer.hpp"
 
 namespace model
 {
@@ -11,13 +14,9 @@ class Application : public ui::Observable<Application>
     
 public:
 
-    Application() : name("IHaveNoIdeaWhatImDoing") {}
+    Application() {}
 
-    void run()
-    {
-        sigModified(*this);
-    }
-    std::string name;
+    void run();
 
 };
 

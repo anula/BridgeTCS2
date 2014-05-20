@@ -3,9 +3,9 @@
 
 using namespace model;
 
-int DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Game const & game)
+Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Play const & play)
 {
-	return 0;
+	
 }
 
 Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding)
