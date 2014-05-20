@@ -14,10 +14,14 @@ namespace text
 
 class Printer {
 public:
-	void print(model::Card const &, std::ostream & = std::cout);
-	void print(model::Hand const &, std::ostream & = std::cout);
-	void print(model::Bidding const &, std::ostream & = std::cout);
-	void print(model::Call const &, std::ostream & = std::cout);
+	static void print(model::Card const &, std::ostream & = std::cout);
+	static void print(model::Hand const &, std::ostream & = std::cout);
+	static void print(model::Bidding const &, std::ostream & = std::cout);
+	static void print(model::Call const &, std::ostream & = std::cout);
+	
+private:
+	static const char ranks[];
+	static const std::string suits[];
 };
 
 }
