@@ -6,9 +6,9 @@
 namespace model
 {
 
-class DummyComputerPlayer : IPlayer
+class DummyComputerPlayer : public IPlayer
 {
-     int getCard(Hand const & hand, Bidding const & bidding, Game const & game);
+     Card getCard(Hand const & hand, Bidding const & bidding, Play const & play);
      Call getCall(Hand const & hand, Bidding const & bidding);
 };
 

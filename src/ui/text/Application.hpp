@@ -16,7 +16,6 @@ public:
     void notify(model::Application const & app) 
     {
         std::cout << "Hello World!" << std::endl;
-        std::cout << app.name << std::endl;
     }
 };
 

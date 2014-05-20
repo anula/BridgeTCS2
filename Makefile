@@ -3,15 +3,15 @@ CFLAGS=--std=c++0x -Isrc
 TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 
-all: BridgeTCS Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o
+all: Arbiter.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Application.o BridgeTCS
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
 	bin/BiddingConstraintTest
 	bin/BiddingTest
 
-BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp
-	$(CC) $(CFLAGS) src/BridgeTCS.cpp -o bin/BridgeTCS
+BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp 
+	$(CC) $(CFLAGS) src/BridgeTCS.cpp bin/Application.o bin/DummyComputerPlayer.o bin/Call.o -o bin/BridgeTCS
 
 Arbiter.o: bin src/model/Arbiter.cpp src/model/Arbiter.hpp
 	$(CC) $(CFLAGS) -c src/model/Arbiter.cpp -o bin/Arbiter.o
@@ -36,6 +36,12 @@ BiddingConstraint.o: bin src/model/BiddingConstraint.cpp src/model/BiddingConstr
 	
 Hand.o: bin src/model/Hand.cpp src/model/Hand.hpp
 	$(CC) $(CFLAGS) -c src/model/Hand.cpp -o bin/Hand.o
+
+DummyComputerPlayer.o: bin src/model/DummyComputerPlayer.cpp src/model/DummyComputerPlayer.hpp src/model/IPlayer.hpp
+	$(CC) $(CFLAGS) -c src/model/DummyComputerPlayer.cpp -o bin/DummyComputerPlayer.o
+
+Application.o: bin src/Application.cpp src/Application.hpp
+	$(CC) $(CFLAGS) -c src/Application.cpp -o bin/Application.o
 
 #SimpleGame.o: src/SimpleGame.cpp src/SimpleGame.hpp src/model/Game.hpp
 #	$(CC) $(CFLAGS) -c src/SimpleGame.cpp -o bin/SimpleGame.o

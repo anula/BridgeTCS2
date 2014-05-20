@@ -18,7 +18,7 @@ public:
 	
 	virtual void start(int starter) = 0;
 	
-private:
+protected:
 	
 	std::array<Arbiter, 4> arbiters;
 };
