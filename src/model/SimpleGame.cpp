@@ -5,6 +5,7 @@
 
 void SimpleGame::start(int starter) 
 {
+	sigModified(*this);
 	Deal oneAndOnly(arbiters, starter);
 	oneAndOnly.perform();
 	DealResult results = oneAndOnly.getDealResult();

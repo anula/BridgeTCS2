@@ -1,6 +1,6 @@
 #include <functional>
 
-#include "Application.hpp"
+#include "model/Application.hpp"
 #include "ui/text/Application.hpp"
 
 

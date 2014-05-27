@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "model/Application.hpp"
+
 namespace ui
 {
 namespace text 
@@ -15,7 +17,10 @@ public:
 
     void notify(model::Application const & app) 
     {
-        std::cout << "Hello World!" << std::endl;
+        if (app.finished)
+            std::cout << "Dziękujemy za grę!" << std::endl;
+        else if (app.started)
+            std::cout << "Zapraszamy do gry..." << std::endl;
     }
 };
 
