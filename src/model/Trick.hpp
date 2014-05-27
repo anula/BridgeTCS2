@@ -14,7 +14,7 @@ class Trick //: public ui::Observable<Trick>
 {
 public:
 	Trick () {}
-	Trump getTrump();
+	Trump getTrump() const;
 	int getSize() { return cards.size(); }
 	int resolve(Trump trump) const;
 	void addCard(Card card) { cards.push_back(card); }

@@ -34,10 +34,7 @@ public:
   	int getResult();
   	
 	Trick currentTrick;
-	/*Trick & newTrick() {
-		tricks.emplace_back();
-		return tricks.back();
-	}*/
+	
 private:
 	
   	Trump trump;

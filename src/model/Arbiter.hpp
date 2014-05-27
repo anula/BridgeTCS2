@@ -8,6 +8,7 @@
 #include "BiddingConstraint.hpp"
 #include "Hand.hpp"
 #include "Play.hpp"
+#include "Trump.hpp"
 #include <vector>
 
 namespace model
@@ -25,12 +26,12 @@ public:
 	void addCard(Card newCard); // dodaj karte do reki
 	
 	void setRole(Role newrole) { role = newrole; }
-	Role getRole() { return role; }
+	Role getRole() const { return role; }
 	
 private:
 	
-	Card askPlayer(Play const & play, Bidding const & bidding); // popros playera o dodanie karty
-	Card askPartner(Play const & play, Bidding const & bidding); // pozwol partnerowi wziac karte
+	Card askPlayer(IPlayer const & player, Play const & play, Bidding const & bidding); // popros playera o dodanie karty
+	bool validateCard(Card const & c, std::vector<Card> const & h, Play const & t) const;
 	
 	Role role;
 	

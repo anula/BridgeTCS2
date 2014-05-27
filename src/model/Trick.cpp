@@ -40,7 +40,8 @@ int Trick::resolve(Trump trump) const
 	return maximalColorOwnerIndex;
 }
 
-Trump Trick::getTrump(){
+Trump Trick::getTrump() const
+{
 	if(cards.size() == 0)
 		return Trump::NT;
 	return static_cast<Trump>(cards[0].suit);
