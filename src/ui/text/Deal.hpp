@@ -6,6 +6,7 @@
 
 #include "model/Deal.hpp"
 #include "model/Contract.hpp"
+#include "Printer.hpp"
 
 namespace ui
 {
@@ -16,9 +17,15 @@ class Deal
 {
 public:
     
-    Deal(int n = 0);
+    Deal(int n = 0) : indent("") {
+		while (n--)
+		   indent = indent + "\t";
+	}
 
-    void notify(model::Deal const & deal);
+    void notify(model::Deal const & deal)
+	{
+		//Printer::print(deal);
+	}
 private:
     std::string indent;
 };
