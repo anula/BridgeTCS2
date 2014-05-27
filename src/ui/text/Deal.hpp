@@ -22,7 +22,7 @@ public:
 
     void notify(model::Deal const & deal)
     {
-        
+
     }
 private:
     std::string indent;
