@@ -5,6 +5,7 @@
 #include <string>
 
 #include "model/Deal.hpp"
+#include "model/Contract.hpp"
 
 namespace ui
 {
