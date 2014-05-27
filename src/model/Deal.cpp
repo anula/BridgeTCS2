@@ -50,15 +50,14 @@ int Deal::performPlay(int declarer) {
 
 	for (int i = 0; i < 13; i++)
 	{
-    if (i == 1)
-    {
-      play.setDummyHand(&arbiters[i].getHand());
-    }
 		Trick currentTrick = play.newTrick();
 		
 		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
 		{
 			currentTrick.addCard(arbiters[j].getCard(bidding, play));
+			if (i == 0 && k == 0) {
+				play.setDummyHand(&arbiters[k].getHand());
+			}
 		}
 		
 		int winner = currentTrick.resolve(play.getTrump());
