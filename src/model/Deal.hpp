@@ -29,9 +29,13 @@ struct DealResult
 class Deal : public ui::Observable<Deal>
 {
   public: 
-    Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
+    Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters),
+           biddingFinished(false), playFinished(false)
     {
     }
+    
+    bool biddingFinished;
+    bool playFinished;
 
     /*
      * Main method of class Deal.
@@ -45,6 +49,12 @@ class Deal : public ui::Observable<Deal>
      */
     DealResult getDealResult() const {
       return dealResult;
+    }
+    
+    Contract getContract() const {
+        if (bidding.stillGoing())
+            throw 666;
+        return contract;
     }
 
   private:

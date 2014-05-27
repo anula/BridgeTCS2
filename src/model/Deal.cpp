@@ -14,6 +14,8 @@ void Deal::perform() {
   int declarer;
 
   declarer = performBidding();
+  biddingFinished = true;
+  sigModified();
   if (contract.value == 0) { // everyone passed
     dealResult.contract = contract;
     dealResult.tricksCollected = 0;
@@ -22,6 +24,8 @@ void Deal::perform() {
 
   int tricksCollected = performPlay(declarer);
   dealResult.tricksCollected = tricksCollected;
+  playFinished = true;
+  sigModified();
 }
 
 int Deal::performBidding() {
