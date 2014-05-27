@@ -7,7 +7,7 @@ using namespace model;
 void Deal::perform() {
   Standard52Deck deck;
   deck.shuffle();
-  for (int i = 0; i < deck.count(); i++) {
+  for (int i = 0; deck.count() > 0; i++) {
     arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
   }
 
@@ -50,19 +50,17 @@ int Deal::performPlay(int declarer) {
 
 	for (int i = 0; i < 13; i++)
 	{
-		play.currentTrick = Trick();
+		Trick currentTrick = play.newTrick();
 		
 		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
 		{
-			play.currentTrick.addCard(arbiters[j].getCard(bidding, play));
+			currentTrick.addCard(arbiters[j].getCard(bidding, play));
 		}
 		
-		int winner = play.currentTrick.resolve(play.getTrump());
+		int winner = currentTrick.resolve(play.getTrump());
 		play.incrementPlayerScore(winner);
 		
 		play.setBeginningPlayer(winner);
-		
-		play.addTrick(play.currentTrick);
 	}	
 
   return play.getResult();

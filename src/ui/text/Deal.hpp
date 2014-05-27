@@ -16,25 +16,12 @@ class Deal
 {
 public:
     
-    Deal(int n = 0) : indent("") {
-        while (n--)
-           indent = indent + "\t";
-    }
+    Deal(int n = 0, std::string text);
 
-    void notify(model::Deal const & deal)
-    {
-        if (deal.playFinished)
-	   {
-			std::cout << indent << "Rozdanie zakończone." << std::endl;
-			return;
-	   }
-	   if (deal.biddingFinished)
-	   {
-			std::cout << indent << "Licytacja zakończona." << std::endl;
-	   }
-    }
+    void notify(model::Deal const & deal);
 private:
     std::string indent;
+    std::string text;
 };
 
 }
