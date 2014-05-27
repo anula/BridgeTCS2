@@ -16,7 +16,7 @@ namespace model
 class IPlayer
 {
 public:
-	virtual Card getCard(Hand & hand, Bidding const & bidding, Play const & play) const = 0; 
+	virtual Card getCard(Hand const & hand, Bidding const & bidding, Play const & play) const = 0; 
 	virtual Call getCall(Hand const & hand, Bidding const & bidding) const = 0;
 };
 

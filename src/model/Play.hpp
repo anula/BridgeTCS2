@@ -29,12 +29,18 @@ public:
 	
 	Trick const & getTrick(int i) { return tricks[i]; }
 	void addTrick(Trick trick) { tricks.push_back(trick); }
-	int trickCount() { return tricks.size(); }
-	
+  	int trickCount() { return tricks.size(); }
+
   	int getResult();
-  	
-	Trick currentTrick;
-	
+
+  	Trick const & getCurrentTrick() const {
+		return tricks.back();
+	}
+
+	Trick & newTrick() {
+		tricks.emplace_back();
+		return tricks.back();
+	}
 private:
 	
   	Trump trump;

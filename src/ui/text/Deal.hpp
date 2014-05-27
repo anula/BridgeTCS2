@@ -5,6 +5,7 @@
 #include <string>
 
 #include "model/Deal.hpp"
+#include "model/Contract.hpp"
 
 namespace ui
 {
@@ -15,15 +16,9 @@ class Deal
 {
 public:
     
-    Deal(int n = 0) : indent("") {
-        while (n--)
-           indent = indent + "\t";
-    }
+    Deal(int n = 0);
 
-    void notify(model::Deal const & deal)
-    {
-        
-    }
+    void notify(model::Deal const & deal);
 private:
     std::string indent;
 };

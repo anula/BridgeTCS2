@@ -13,7 +13,7 @@ namespace text
 class Player : public model::IPlayer
 {
 public: 
-    model::Card getCard(model::Hand & hand, model::Bidding const & bidding, model::Play const & play) const;
+    model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const;
     model::Call getCall(model::Hand const & hand, model::Bidding const & bidding) const;
 };
 

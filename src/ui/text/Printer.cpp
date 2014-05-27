@@ -1,47 +1,63 @@
 #include "Printer.hpp"
 
-void ui::text::Printer::print(model::Card const & card) 
+const char ui::text::Printer::ranks[] = {'2','3','4','5','6','7','8','9','T','J','Q','K','A'};
+const std::string ui::text::Printer::suits[] = {"\u2663", "\u2666", "\u2665", "\u2660"};
+const std::string ui::text::Printer::trumps[] = {"\u2663", "\u2666", "\u2665", "\u2660", "NT"};
+const std::string ui::text::Printer::calls[] = {"PASS", "DOUBLE", "REDOUBLE", "STANDARD"};
+
+void ui::text::Printer::print(model::Card const & card, std::string indent) 
 {
-	std::cout << ui::text::Hand::ranks[static_cast<int>(card.rank)]
+	std::cout << indent << ui::text::Printer::ranks[static_cast<int>(card.rank)]
 		<< "["
-		<< ui::text::Hand::suits[static_cast<int>(card.suit)]
+		<< ui::text::Printer::suits[static_cast<int>(card.suit)]
 		<< "]";
 }
 
-void ui::text::Printer::print(model::Trick const & trick) 
+void ui::text::Printer::print(model::Trick const & trick, std::string indent)
 {
-	std::cout << "Hello, World!" << std::endl;
+	std::cout << indent << "Hello, World!" << std::endl;
 }
 
-void ui::text::Printer::print(model::Hand const & hand)
+void ui::text::Printer::print(model::Hand const & hand, std::string indent)
 {
+	std::cout << indent << "Hand: " << std::endl;
+	std::cout << indent;
 	for(model::Card c : hand.getCards()) {
-		print(c);
+		print(c, "");
 		std::cout << ' ';
 	}
+	std::cout << std::endl;
 }
 
-void ui::text::Printer::print(model::Bidding const & bidding)
+void ui::text::Printer::print(model::Bidding const & bidding, std::string indent)
 {
 	if(bidding.stillGoing()) {
-		std::cout	<< "Bidding is going" << std::endl;
+		std::cout	<< indent << "Bidding is going" << std::endl;
 		
 		model::BiddingConstraint constraint = bidding.getCurrentConstraint();
-		std::cout	<< "VALUE: "
+		std::cout	<< indent << "VALUE: "
 			<< constraint.value << std::endl
-			<< "TRUMP: "
-			<< ui::text::Hand::trumps[static_cast<int>(constraint.trump)] << std::endl;
+			<< indent << "TRUMP: "
+			<< ui::text::Printer::trumps[static_cast<int>(constraint.trump)] << std::endl;
 	} else {
 
-		std::cout	<< "Bidding finished" << std::endl;
+		std::cout	<< indent << "Bidding finished" << std::endl;
 
 		model::Contract contract = bidding.getContract();
 		std::cout	<< "VALUE: "
 			<< contract.value << std::endl
-			<< "TRUMP: "
-			<< ui::text::Hand::trumps[static_cast<int>(contract.trump)] << std::endl
-			<< "MULTIPLIER: "
+			<< indent << "TRUMP: "
+			<< ui::text::Printer::trumps[static_cast<int>(contract.trump)] << std::endl
+			<< indent << "MULTIPLIER: "
 			<< contract.multiplier << std::endl;
 	}
+}
+
+void ui::text::Printer::print(model::Call const & call, std::string indent)
+{
+	if(call.type == model::CallType::STANDARD)
+		std::cout << indent << call.value << ui::text::Printer::trumps[static_cast<int>(call.trump)];
+	else
+		std::cout << indent << ui::text::Printer::calls[static_cast<int>(call.type)];
 }
 

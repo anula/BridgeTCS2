@@ -3,9 +3,10 @@
 
 using namespace model;
 
-Card DummyComputerPlayer::getCard(Hand & hand, Bidding const & bidding, Play const & play) const
+Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Play const & play) const
 {
-	return hand.getCard(0);
+	const std::vector<Card>& h = hand.getCards();
+	return h[0];
 }
 
 Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding) const

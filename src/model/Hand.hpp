@@ -15,7 +15,7 @@ class Hand : protected std::vector<Card> {
 public:
 	Card getCard(int index);
 	void addCard(Card card);
-	int size(){ return this->size(); }
+    using std::vector<Card>::size;
 	static const int MAX_SIZE = 13;
 	const std::vector<Card>& getCards() const;
 };

@@ -42,7 +42,7 @@ void Arbiter::addCard(Card newCard)
 
 bool Arbiter::validateCard(Card const & cc, std::vector<Card> const & hh, Play const & play) const
 {
-	Trump t = play.currentTrick.getTrump();
+	Trump t = play.getCurrentTrick().getTrump();
 	
 	if(t == Trump::NT)
 		return true;
