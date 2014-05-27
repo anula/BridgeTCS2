@@ -26,7 +26,9 @@ public:
 	void addCard(Card newCard); // dodaj karte do reki
 	
 	void setRole(Role newrole) { role = newrole; }
-	Role getRole() const { return role; }
+	Role getRole() { return role; }
+
+  	Hand const & getHand() const { return hand; }
 	
 private:
 	

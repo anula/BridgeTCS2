@@ -4,6 +4,7 @@
 #include <array>
 #include "Trump.hpp"
 #include "Trick.hpp"
+#include "Hand.hpp"
 #include "../ui/Observable.hpp"
 #include <vector>
 
@@ -41,11 +42,21 @@ public:
 		tricks.emplace_back();
 		return tricks.back();
 	}
+
+  void setDummyHand(Hand const * hand) {
+    dummyhand = hand;
+  }
+
+  Hand const * getDummyHand() const {
+    return dummyhand;
+  }
+
 private:
 	
   	Trump trump;
   	int beginningPlayer; 						// gracz zaczynajacy nastepna lewe
   	int primaryBeginningPlayer;					// gracz, ktory zaczynal pierwsza lewe gry
+    Hand const * dummyhand;
   	std::array<int, 4> tricksCollected;
   	std::vector<Trick> tricks;					// lewy danej gry
 };
