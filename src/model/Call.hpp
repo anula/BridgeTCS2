@@ -24,8 +24,6 @@ struct Call
 	static const Call createRedouble();
 	static const Call createDouble();
 	static const Call createStandard(int value, Trump trump);
-private:
-    Call(){}
 };
 
 } // namespace model
