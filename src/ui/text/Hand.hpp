@@ -13,10 +13,11 @@ namespace text
 class Hand
 {
 public:
+	Hand(std::string text) : text(text) {}
 	void notify(model::Hand const &);
-	static const char ranks[];// = {'2','3','4','5','6','7','8','9','T','J','Q','K','A'};
-	static const std::string suits[];// = {"\u2663", "\u2666", "\u2665", "\u2660"};
-	static const std::string trumps[];
+
+private:
+	std::string text;
 };
 
 }

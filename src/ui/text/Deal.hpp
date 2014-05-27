@@ -15,17 +15,12 @@ class Deal
 {
 public:
     
-    Deal(int n = 0) : indent("") {
-        while (n--)
-           indent = indent + "\t";
-    }
+    Deal(int n = 0, std::string text);
 
-    void notify(model::Deal const & deal)
-    {
-
-    }
+    void notify(model::Deal const & deal);
 private:
     std::string indent;
+    std::string text;
 };
 
 }
