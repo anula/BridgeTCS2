@@ -57,7 +57,7 @@ class Deal : public ui::Observable<Deal>
         return contract;
     }
 
-  private:
+private:
     std::array<Arbiter, 4> & arbiters;
     int firstPlayer;
     Contract contract;
