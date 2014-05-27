@@ -6,7 +6,9 @@ using namespace model;
 
 Call Arbiter::getCall(Bidding const & bidding)
 {
-	return player.getCall(hand, bidding);
+	Call call = player.getCall(hand, bidding);
+	//check
+	return call;
 }
 
 Card Arbiter::askPlayer(Play const & play, Bidding const & bidding)
@@ -21,7 +23,7 @@ Card Arbiter::askPlayer(Play const & play, Bidding const & bidding)
 				cardnum = i;
 	}while(cardnum == -1);
 	
-	return h[cardnum];
+	return hand.getCard(cardnum);
 }
 
 Card Arbiter::askPartner(Play const & play, Bidding const & bidding)
@@ -36,7 +38,7 @@ Card Arbiter::askPartner(Play const & play, Bidding const & bidding)
 				cardnum = i;
 	}while(cardnum == -1);
 	
-	return h[cardnum];
+	return hand.getCard(cardnum);
 }
 
 Card Arbiter::getCard(Bidding const & bidding, Play const & play)

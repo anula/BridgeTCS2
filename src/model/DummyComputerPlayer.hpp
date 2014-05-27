@@ -8,7 +8,7 @@ namespace model
 
 class DummyComputerPlayer : public IPlayer
 {
-     Card getCard(Hand const & hand, Bidding const & bidding, Play const & play);
+     Card getCard(Hand & hand, Bidding const & bidding, Play const & play);
      Call getCall(Hand const & hand, Bidding const & bidding);
 };
 

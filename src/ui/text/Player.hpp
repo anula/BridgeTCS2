@@ -10,10 +10,10 @@ namespace ui
 namespace text
 {
 
-class Player : public IPlayer
+class Player : public model::IPlayer
 {
 public: 
-    model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play);
+    model::Card getCard(model::Hand & hand, model::Bidding const & bidding, model::Play const & play);
     model::Call getCall(model::Hand const & hand, model::Bidding const & bidding);
 };
 

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "model/Application.hpp"
+
 namespace ui
 {
 namespace text 
@@ -12,11 +14,21 @@ namespace text
 class Application
 {
 public:
+    
+    Application(int n = 0) : indent("") {
+        while (n--)
+           indent = indent + "\t";
+    }
 
     void notify(model::Application const & app) 
     {
-        std::cout << "Hello World!" << std::endl;
+        if (app.finished)
+            std::cout << indent << "Dziękujemy za grę!" << std::endl;
+        else if (app.started)
+            std::cout << indent << "Zapraszamy do gry..." << std::endl;
     }
+private:
+    std::string indent;
 };
 
 }

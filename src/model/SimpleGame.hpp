@@ -9,8 +9,8 @@ using namespace model;
 class SimpleGame : public IGame
 {
 public:
-	SimpleGame(IPlayer & player1, IPlayer & player2, IPlayer & player3, IPlayer & player4)
-			: IGame(player1, player2, player3, player4) {}
+	SimpleGame(IPlayer& p1, IPlayer& p2, IPlayer& p3, IPlayer& p4)
+			: IGame(p1, p2, p3, p4) {}
 	
 	void start(int starter);
 };

@@ -11,11 +11,11 @@ class Application : public ui::Observable<Application>
 {
     
 public:
+    bool started;
+    bool finished;
 
-    Application() {}
-
+    Application() : started(false), finished(false) {}
     void run();
-
 };
 
 } // namespace model

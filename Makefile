@@ -2,16 +2,17 @@ CC=g++
 CFLAGS=--std=c++0x -Isrc
 TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
+OBJECTS=$(wildcard bin/*.o)
 
-all: Arbiter.o Deal.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Application.o BridgeTCS
+all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o BridgeTCS
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
 	bin/BiddingConstraintTest
 	bin/BiddingTest
 
-BridgeTCS: bin src/BridgeTCS.cpp src/Application.hpp src/ui/text/Application.hpp 
-	$(CC) $(CFLAGS) src/BridgeTCS.cpp bin/Application.o bin/DummyComputerPlayer.o bin/Call.o -o bin/BridgeTCS
+BridgeTCS: bin src/BridgeTCS.cpp src/model/Application.hpp src/ui/text/Application.hpp
+	$(CC) $(CFLAGS) src/BridgeTCS.cpp $(OBJECTS) -o bin/BridgeTCS
 
 Arbiter.o: bin src/model/Arbiter.cpp src/model/Arbiter.hpp
 	$(CC) $(CFLAGS) -c src/model/Arbiter.cpp -o bin/Arbiter.o
@@ -24,6 +25,9 @@ Deck.o: bin src/model/Deck.cpp src/model/Deck.hpp
 
 Call.o: bin src/model/Call.cpp src/model/Call.hpp src/model/Trump.hpp
 	$(CC) $(CFLAGS) -c src/model/Call.cpp -o bin/Call.o
+	
+Play.o: bin src/model/Play.cpp src/model/Play.hpp src/model/Trump.hpp src/model/Trick.hpp
+	$(CC) $(CFLAGS) -c src/model/Play.cpp -o bin/Play.o
 
 Trick.o: bin src/model/Trick.cpp src/model/Trick.hpp src/model/Card.hpp src/model/Trump.hpp
 	$(CC) $(CFLAGS) -c src/model/Trick.cpp -o bin/Trick.o
@@ -40,11 +44,20 @@ Hand.o: bin src/model/Hand.cpp src/model/Hand.hpp
 DummyComputerPlayer.o: bin src/model/DummyComputerPlayer.cpp src/model/DummyComputerPlayer.hpp src/model/IPlayer.hpp
 	$(CC) $(CFLAGS) -c src/model/DummyComputerPlayer.cpp -o bin/DummyComputerPlayer.o
 
-Application.o: bin src/Application.cpp src/Application.hpp
-	$(CC) $(CFLAGS) -c src/Application.cpp -o bin/Application.o
+Application.o: bin src/model/Application.cpp src/model/Application.hpp
+	$(CC) $(CFLAGS) -c src/model/Application.cpp -o bin/Application.o
 
-#SimpleGame.o: src/SimpleGame.cpp src/SimpleGame.hpp src/model/Game.hpp
-#	$(CC) $(CFLAGS) -c src/SimpleGame.cpp -o bin/SimpleGame.o
+Player.o: bin src/ui/text/Player.cpp src/ui/text/Player.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Player.cpp -o bin/Player.o
+
+Printer.o: bin src/ui/text/Printer.cpp src/ui/text/Printer.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Printer.cpp -o bin/Printer.o
+
+ui_text_Hand.o: bin src/ui/text/Hand.cpp src/ui/text/Hand.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Hand.cpp -o bin/ui_text_Hand.o
+
+SimpleGame.o: bin src/model/SimpleGame.cpp src/model/SimpleGame.hpp src/model/Game.hpp
+	$(CC) $(CFLAGS) -c src/model/SimpleGame.cpp -o bin/SimpleGame.o
 
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)

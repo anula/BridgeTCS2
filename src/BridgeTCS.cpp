@@ -1,13 +1,13 @@
 #include <functional>
 
-#include "Application.hpp"
+#include "model/Application.hpp"
 #include "ui/text/Application.hpp"
 
 
 int main(int argc, char** argv) 
 {
-    model::Application application;
-    ui::text::Application appView;
+    model::Application application; // dziedziczy po Observable
+    ui::text::Application appView(1);
     application.sigModified.connect(
         [&appView] (model::Application const & app) {
             appView.notify(app);
