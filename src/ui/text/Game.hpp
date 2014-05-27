@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "../../model/Game.hpp"
+#include "model/Game.hpp"
 
 namespace ui
 {
@@ -14,11 +14,19 @@ namespace text
 class Game
 {
 public:
+    
+    Game(int n = 0) : indent("") {
+        while (n--)
+           indent = indent + "\t";
+    }
 
     void notify(model::IGame const & game)
     {
-        std::cout << "Zaczynamy robra!" << std::endl;
+        std::cout << indent << "Zaczynamy robra!" << std::endl;
     }
+
+private:
+    std::string indent;
 };
 
 }

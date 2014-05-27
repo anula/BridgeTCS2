@@ -13,7 +13,7 @@ void model::Application::run()
     DummyComputerPlayer dummy3;
     ui::text::Player user;
     SimpleGame game(dummy1, dummy2, dummy3, user);
-    ui::text::Game gameView;
+    ui::text::Game gameView(2);
     game.sigModified.connect(
         [&gameView] (model::IGame const & game) {
             gameView.notify(game);
