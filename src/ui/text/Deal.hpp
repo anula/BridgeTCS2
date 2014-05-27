@@ -5,6 +5,7 @@
 #include <string>
 
 #include "model/Deal.hpp"
+#include "model/Contract.hpp"
 
 namespace ui
 {
@@ -22,7 +23,15 @@ public:
 
     void notify(model::Deal const & deal)
     {
-
+        if (deal.playFinished)
+	   {
+			std::cout << indent << "Rozdanie zakończone." << std::endl;
+			return;
+	   }
+	   if (deal.biddingFinished)
+	   {
+			std::cout << indent << "Licytacja zakończona." << std::endl;
+	   }
     }
 private:
     std::string indent;
