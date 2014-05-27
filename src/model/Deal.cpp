@@ -7,7 +7,7 @@ using namespace model;
 void Deal::perform() {
   Standard52Deck deck;
   deck.shuffle();
-  for (int i = 0; i < deck.count(); i++) {
+  for (int i = 0; deck.count() > 0; i++) {
     arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
   }
 
