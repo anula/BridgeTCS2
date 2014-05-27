@@ -15,6 +15,10 @@ namespace text
 { 
 
 class Printer {
+	static const char ranks[];
+	static const std::string suits[];
+	static const std::string trumps[];
+	static const std::string calls[];
 public:
 	static void print(model::Card const &);
 	static void print(model::Trick const &);
