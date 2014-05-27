@@ -26,6 +26,8 @@ public:
 	
 	void setRole(Role newrole) { role = newrole; }
 	Role getRole() { return role; }
+
+  Hand const & getHand() const { return hand; }
 	
 private:
 	
