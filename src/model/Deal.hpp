@@ -28,7 +28,7 @@ struct DealResult
 
 class Deal : public ui::Observable<Deal>
 {
-  public: 
+public: 
     Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters)
     {
     }
@@ -47,7 +47,7 @@ class Deal : public ui::Observable<Deal>
       return dealResult;
     }
 
-  private:
+private:
     std::array<Arbiter, 4> & arbiters;
     int firstPlayer;
     Contract contract;
