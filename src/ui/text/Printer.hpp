@@ -20,11 +20,11 @@ class Printer {
 	static const std::string trumps[];
 	static const std::string calls[];
 public:
-	static void print(model::Card const &);
-	static void print(model::Trick const &);
-	static void print(model::Hand const &);
-	static void print(model::Bidding const &);
-	static void print(model::Call const &);
+	static void print(model::Card const &, std::string indent="");
+	static void print(model::Trick const &, std::string indent="");
+	static void print(model::Hand const &, std::string indent="");
+	static void print(model::Bidding const &, std::string indent="");
+	static void print(model::Call const &, std::string indent="");
 };
 
 }
