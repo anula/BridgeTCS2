@@ -14,7 +14,9 @@ model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bid
 {
     Printer::print(hand);
     Printer::print(bidding);
-    Printer::print(play.getCurrentTrick());
+    for(auto&& trick : play.getTricksHistory()) {
+        Printer::print(trick);
+    }
     std::cout << "Enter card number:" << std::endl;
     int cardNumber;
     std::cin >> cardNumber;

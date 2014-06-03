@@ -38,6 +38,10 @@ public:
 		return tricks.back();
 	}
 
+    std::vector<Trick> const & getTricksHistory() const {
+        return tricks;
+    }
+
 	Trick & newTrick() {
 		tricks.emplace_back();
 		return tricks.back();

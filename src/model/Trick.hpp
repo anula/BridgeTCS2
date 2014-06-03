@@ -15,9 +15,10 @@ class Trick //: public ui::Observable<Trick>
 public:
 	Trick () {}
 	Trump getTrump() const;
-	int getSize() { return cards.size(); }
+	int getSize() const { return cards.size(); }
 	int resolve(Trump trump) const;
 	void addCard(Card card) { cards.push_back(card); }
+	const std::vector<Card>& getCards() const { return cards; }
 private:
 	std::vector<Card> cards;
 };
