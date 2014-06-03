@@ -23,7 +23,6 @@ void ui::text::Printer::print(model::Trick const & trick, std::string indent)
 
 void ui::text::Printer::print(model::Hand const & hand, std::string indent)
 {
-	std::cout << indent << "Hand: " << std::endl;
 	std::cout << indent;
 	for(model::Card c : hand.getCards()) {
 		print(c, "");

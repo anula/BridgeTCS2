@@ -12,7 +12,12 @@ namespace text
 
 model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
 {
+    std::cout << "Your hand is:  ";
     Printer::print(hand);
+    if(play.getDummyHand() != nullptr) {
+        std::cout << "Dummy hand is: ";
+        Printer::print(*play.getDummyHand());
+    }
     Printer::print(bidding);
     for(auto&& trick : play.getTricksHistory()) {
         Printer::print(trick);
