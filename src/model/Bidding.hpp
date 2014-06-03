@@ -38,6 +38,9 @@ public:
 	const BiddingConstraint getCurrentConstraint() const;
 	
 	bool stillGoing() const;
+
+    std::vector<std::pair<int, Call>> const& getHistory() const;
+
 	
 private:
 	

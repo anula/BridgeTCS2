@@ -31,25 +31,18 @@ void ui::text::Printer::print(model::Hand const & hand, std::string indent)
 
 void ui::text::Printer::print(model::Bidding const & bidding, std::string indent)
 {
+    for(auto& call : bidding.getHistory()) {
+        print(call.second);
+    }
 	if(bidding.stillGoing()) {
 		std::cout	<< indent << "Bidding is going" << std::endl;
 		
-		model::BiddingConstraint constraint = bidding.getCurrentConstraint();
-		std::cout	<< indent << "VALUE: "
-			<< constraint.value << std::endl
-			<< indent << "TRUMP: "
-			<< ui::text::Printer::trumps[static_cast<int>(constraint.trump)] << std::endl;
+        print(bidding.getCurrentConstraint());
 	} else {
 
 		std::cout	<< indent << "Bidding finished" << std::endl;
 
-		model::Contract contract = bidding.getContract();
-		std::cout	<< "VALUE: "
-			<< contract.value << std::endl
-			<< indent << "TRUMP: "
-			<< ui::text::Printer::trumps[static_cast<int>(contract.trump)] << std::endl
-			<< indent << "MULTIPLIER: "
-			<< contract.multiplier << std::endl;
+		print(bidding.getContract());
 	}
 }
 
@@ -59,5 +52,21 @@ void ui::text::Printer::print(model::Call const & call, std::string indent)
 		std::cout << indent << call.value << ui::text::Printer::trumps[static_cast<int>(call.trump)];
 	else
 		std::cout << indent << ui::text::Printer::calls[static_cast<int>(call.type)];
+    std::cout << std::endl;
 }
 
+void ui::text::Printer::print(model::Contract const & contract, std::string indent){
+		std::cout	<< "VALUE: "
+			<< contract.value << std::endl
+			<< indent << "TRUMP: "
+			<< ui::text::Printer::trumps[static_cast<int>(contract.trump)] << std::endl
+			<< indent << "MULTIPLIER: "
+			<< contract.multiplier << std::endl;
+}
+
+void ui::text::Printer::print(model::BiddingConstraint const & constraint, std::string indent){
+		std::cout	<< indent << "VALUE: "
+			<< constraint.value << std::endl
+			<< indent << "TRUMP: "
+			<< ui::text::Printer::trumps[static_cast<int>(constraint.trump)] << std::endl;
+}
