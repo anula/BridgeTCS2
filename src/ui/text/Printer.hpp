@@ -25,6 +25,8 @@ public:
 	static void print(model::Hand const &, std::string indent="");
 	static void print(model::Bidding const &, std::string indent="");
 	static void print(model::Call const &, std::string indent="");
+	static void print(model::Contract const &, std::string indent="");
+	static void print(model::BiddingConstraint const &, std::string indent="");
 };
 
 }

@@ -31,6 +31,12 @@ struct NumberOutOfBounds : std::logic_error
 	explicit NumberOutOfBounds() : std::logic_error("This index makes no fucking sense.") {}
 };
 
+struct CardComparator {
+	bool operator() (Card const & c1, Card const & c2) {
+		return (c1.rank == c2.rank) ? (c1.suit < c2.suit) : (c1.rank < c2.rank);
+	}
+};
+
 } // namespace model
 
 #endif

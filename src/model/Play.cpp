@@ -15,3 +15,4 @@ int Play::getResult()
    	int fp = (getPrimaryBeginningPlayer() + 1) % 4;
     return getScoreOf(fp) + getScoreOf((fp+2) % 4);
 }
+

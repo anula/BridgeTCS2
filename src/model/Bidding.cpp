@@ -109,3 +109,7 @@ bool Bidding::stillGoing() const
 		return false;
 	return true;
 }
+
+std::vector<std::pair<int, Call>> const& Bidding::getHistory() const {
+    return history;
+}
