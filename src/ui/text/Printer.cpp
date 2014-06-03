@@ -5,7 +5,7 @@ const std::string ui::text::Printer::suits[] = {"\u2663", "\u2666", "\u2665", "\
 const std::string ui::text::Printer::trumps[] = {"\u2663", "\u2666", "\u2665", "\u2660", "NT"};
 const std::string ui::text::Printer::calls[] = {"PASS", "DOUBLE", "REDOUBLE", "STANDARD"};
 
-void ui::text::Printer::print(model::Card const & card, std::string indent) 
+void ui::text::Printer::print(model::Card const & card, std::string indent)
 {
 	std::cout << indent << ui::text::Printer::ranks[static_cast<int>(card.rank)]
 		<< "["

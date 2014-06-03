@@ -35,7 +35,7 @@ public:
 	 */
 	int getDeclarer() const;
 	
-	const BiddingConstraint getCurrentConstraint() const;
+	const BiddingConstraint& getCurrentConstraint() const;
 	
 	bool stillGoing() const;
 
@@ -63,7 +63,7 @@ private:
 	GPair whoDidLastNonPass; /* who made lastNonPass */
 	GPair whoDidLastActual; /* who made lastActual */
 	std::vector<std::pair<int, Call>> history;
-	
+	BiddingConstraint currentConstraint;
 	GPair getPair(int who) const
 	{
 		if (who % 2 == 0)
@@ -77,7 +77,7 @@ private:
 		return getPair(whoBidsNow);
 	}
 	
-	void next() 
+	void advanceBidder() 
 	{
 		++whoBidsNow;
 		whoBidsNow %= 4;
@@ -92,6 +92,8 @@ private:
 	{
 		history.push_back(std::make_pair(whoBidsNow, call));
 	}
+	
+	void updateCurrentConstraint();
 	
 };
 

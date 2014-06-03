@@ -1,4 +1,4 @@
-#include "Application.hpp"
+#include "model/Application.hpp"
 #include "ui/text/Player.hpp"
 #include "model/Game.hpp"
 #include "model/SimpleGame.hpp"
@@ -6,20 +6,14 @@
 
 void model::Application::run()
 {
-    started = true;
-    sigModified(*this);
     DummyComputerPlayer dummy1;
     DummyComputerPlayer dummy2;
     DummyComputerPlayer dummy3;
     ui::text::Player user;
-    SimpleGame game(dummy1, dummy2, dummy3, user);
-    ui::text::Game gameView(2);
-    game.sigModified.connect(
-        [&gameView] (model::IGame const & game) {
-            gameView.notify(game);
-        }
-    );
-    game.start(0);
-    finished = true;
+    game = std::unique_ptr<IGame>(new SimpleGame(dummy1, dummy2, dummy3, user));
+		state = STARTED;
+    sigModified(*this);
+    game->start(0);
+		state = FINISHED;
     sigModified(*this);
 }

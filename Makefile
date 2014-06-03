@@ -4,7 +4,7 @@ TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 OBJECTS=$(wildcard bin/*.o)
 
-all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o BridgeTCS
+all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Application.o BridgeTCS 
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -55,6 +55,9 @@ Printer.o: bin src/ui/text/Printer.cpp src/ui/text/Printer.hpp
 
 ui_text_Hand.o: bin src/ui/text/Hand.cpp src/ui/text/Hand.hpp
 	$(CC) $(CFLAGS) -c src/ui/text/Hand.cpp -o bin/ui_text_Hand.o
+
+ui_text_Application.o: bin src/ui/text/Application.cpp src/ui/text/Application.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Application.cpp -o bin/ui_text_Application.o
 
 SimpleGame.o: bin src/model/SimpleGame.cpp src/model/SimpleGame.hpp src/model/Game.hpp
 	$(CC) $(CFLAGS) -c src/model/SimpleGame.cpp -o bin/SimpleGame.o
