@@ -13,7 +13,11 @@ namespace text
 model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
 {
     Printer::print(hand);
-    std::cout << "Enter card number:" << std::endl;
+    Printer::print(bidding);
+    for(auto&& trick : play.getTricksHistory()) {
+        Printer::print(trick);
+    }
+    std::cout << "Enter card number: ";
     int cardNumber;
     std::cin >> cardNumber;
     const std::vector<model::Card> & h = hand.getCards();
@@ -24,6 +28,7 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
 {
     Printer::print(hand);
     Printer::print(bidding);
+    
     // move that later to scanner or something
     std::cout << "Enter P for pass, D for double, R for redouble or S <value> <C/D/H/S/N> for standard call.\n ex. S 1 C" << std::endl;
     std::string type, trump;

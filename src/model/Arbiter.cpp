@@ -4,8 +4,12 @@ using namespace model;
 
 Call Arbiter::getCall(Bidding const & bidding)
 {
-	Call call = player.getCall(hand, bidding);
-	//check
+	Call call;
+	while(true){
+		call = player.getCall(hand, bidding);
+		if(bidding.getCurrentConstraint().satisfies(call))
+			break;
+	}
 	return call;
 }
 
