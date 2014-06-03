@@ -15,10 +15,10 @@ void ui::text::Printer::print(model::Card const & card, std::string indent)
 
 void ui::text::Printer::print(model::Trick const & trick, std::string indent)
 {
-    std::cout << trick.getSize() << std::endl;
     for(auto& c : trick.getCards()) {
         print(c, indent);
     }
+    std::cout << std::endl;
 }
 
 void ui::text::Printer::print(model::Hand const & hand, std::string indent)
