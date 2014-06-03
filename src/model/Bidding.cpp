@@ -32,7 +32,8 @@ bool Bidding::makeCall(Call const & call)
 			whoDidLastActual = currentPair();
 	}
 	archive(call);
-	next();
+	advanceBidder();
+	updateCurrentConstraint();
 	return true;
 }
 
@@ -73,43 +74,35 @@ int Bidding::getDeclarer() const
 	}
 }
 
-const BiddingConstraint Bidding::getCurrentConstraint() const
+const BiddingConstraint & Bidding::getCurrentConstraint() const 
 {
-	BiddingConstraint result;
+	return currentConstraint;
+}
+
+
+void Bidding::updateCurrentConstraint()
+{
+	currentConstraint = BiddingConstraint();
 	if (lastNonPass.type == CallType::PASS)
 	{
 		// nothing happened so far
-		result.value = 0; // wtf am i doing
-		result.trump = Trump::NT;
-		result.doublePossible = false;
-		result.redoublePossible = false;
-		return result;
+		currentConstraint.value = 0; // wtf am i doing
+		currentConstraint.trump = Trump::NT;
+		currentConstraint.doublePossible = false;
+		currentConstraint.redoublePossible = false;
+		return;
 	}
 	/* ok, lastActual has correct value */
-	result.value = lastActual.value;
-	result.trump = lastActual.trump;
+	currentConstraint.value = lastActual.value;
+	currentConstraint.trump = lastActual.trump;
 	/* is double possible? */
-	bool temp = true;
-	if (lastNonPass.type != CallType::STANDARD)
-		temp = false;
-	if (whoDidLastNonPass == currentPair())
-		temp = false;
-	result.doublePossible = temp;
+	currentConstraint.doublePossible = (lastNonPass.type == CallType::STANDARD && whoDidLastNonPass != currentPair());
 	/* is redouble possible? */
-	temp = true;
-	if (lastNonPass.type != CallType::DOUBLE)
-		temp = false;
-	if (whoDidLastNonPass == currentPair())
-		temp = false;
-	result.redoublePossible = temp;
-	
-	return result;
-	
+	currentConstraint.redoublePossible = (lastNonPass.type == CallType::DOUBLE && whoDidLastNonPass != currentPair());
 }
 
 bool Bidding::stillGoing() const
 {
-	/* a bit ugly, I'm sorry */
 	if (passCount == 4)
 		return false;
 	if (passCount == 3 && lastNonPass.type != CallType::PASS)
