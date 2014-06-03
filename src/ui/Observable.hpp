@@ -10,7 +10,7 @@ template <class T>
 class Observable
 {
 public:
-    boost::signals2::signal<void (T const &)> sigModified;
+    mutable boost::signals2::signal<void (T const &)> sigModified;
 };
 
 }
