@@ -30,9 +30,8 @@ class Deal : public ui::Observable<Deal>
 {
   public: 
     Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters),
-           biddingFinished(false), playFinished(false)
+           biddingFinished(false), playFinished(false), play(nullptr)
     {
-    	sigModified(*this);
     }
     
     bool biddingFinished;
@@ -62,8 +61,8 @@ class Deal : public ui::Observable<Deal>
     	return bidding;
     }
     
-    const Play & getPlay() const {
-    	return *play;
+    Play* getPlay() const {
+    	return play;
     }
 
 private:
@@ -72,7 +71,7 @@ private:
     Contract contract;
     DealResult dealResult;
     Bidding bidding;
-    std::unique_ptr<model::Play> play;
+    Play* play;
 
     int performBidding();
     int performPlay(int declarer);

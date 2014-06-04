@@ -29,6 +29,7 @@ void Deal::perform() {
 }
 
 int Deal::performBidding() {
+   	sigModified(*this);
 	int who = firstPlayer;
 	while (bidding.stillGoing()) {
 		BiddingConstraint constraint = bidding.getCurrentConstraint();
@@ -45,7 +46,7 @@ int Deal::performBidding() {
 }
 
 int Deal::performPlay(int declarer) {
- 	play = std::unique_ptr<model::Play>(new model::Play(contract.trump, declarer));
+ 	play = new model::Play(contract.trump, declarer);
  	sigModified(*this);
 
 	for (int i = 0; i < 13; i++)
@@ -64,7 +65,11 @@ int Deal::performPlay(int declarer) {
 		play->incrementPlayerScore(winner);
 		
 		play->setBeginningPlayer(winner);
-	}	
+	}
 
-	return play->getResult();
+	int playResult = play->getResult();
+	delete play;
+	play = nullptr;
+	
+	return playResult;
 }
