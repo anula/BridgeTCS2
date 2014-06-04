@@ -32,6 +32,7 @@ class Deal : public ui::Observable<Deal>
     Deal(std::array<Arbiter, 4> & arbiters, int firstPlayer) : firstPlayer(firstPlayer), arbiters(arbiters),
            biddingFinished(false), playFinished(false)
     {
+    	sigModified(*this);
     }
     
     bool biddingFinished;
@@ -56,6 +57,14 @@ class Deal : public ui::Observable<Deal>
             throw 666;
         return contract;
     }
+    
+    const Bidding & getBidding() const {
+    	return bidding;
+    }
+    
+    const Play & getPlay() const {
+    	return *play;
+    }
 
 private:
     std::array<Arbiter, 4> & arbiters;
@@ -63,6 +72,7 @@ private:
     Contract contract;
     DealResult dealResult;
     Bidding bidding;
+    std::unique_ptr<model::Play> play;
 
     int performBidding();
     int performPlay(int declarer);

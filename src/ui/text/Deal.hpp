@@ -7,6 +7,8 @@
 #include "model/Deal.hpp"
 #include "model/Contract.hpp"
 #include "Printer.hpp"
+#include "ui/text/Bidding.hpp"
+#include "ui/text/Play.hpp"
 
 namespace ui
 {
@@ -22,12 +24,12 @@ public:
 		   indent = indent + "\t";
 	}
 
-    void notify(model::Deal const & deal)
-	{
-		//Printer::print(deal);
-	}
+    void notify(model::Deal const &);
+    
 private:
     std::string indent;
+    ui::text::Bidding biddingView;
+    ui::text::Play playView;
 };
 
 }

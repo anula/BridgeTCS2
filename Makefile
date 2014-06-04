@@ -4,7 +4,7 @@ TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 OBJECTS=$(wildcard bin/*.o)
 
-all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Application.o BridgeTCS 
+all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Deal.o ui_text_Play.o ui_text_Application.o ui_text_Bidding.o BridgeTCS
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -58,6 +58,15 @@ ui_text_Hand.o: bin src/ui/text/Hand.cpp src/ui/text/Hand.hpp
 
 ui_text_Application.o: bin src/ui/text/Application.cpp src/ui/text/Application.hpp
 	$(CC) $(CFLAGS) -c src/ui/text/Application.cpp -o bin/ui_text_Application.o
+	
+ui_text_Deal.o: bin src/ui/text/Deal.cpp src/ui/text/Deal.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Deal.cpp -o bin/ui_text_Deal.o
+
+ui_text_Play.o: bin src/ui/text/Play.cpp src/ui/text/Play.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Play.cpp -o bin/ui_text_Play.o
+	
+ui_text_Bidding.o: bin src/ui/text/Bidding.cpp src/ui/text/Bidding.hpp
+	$(CC) $(CFLAGS) -c src/ui/text/Bidding.cpp -o bin/ui_text_Bidding.o
 
 SimpleGame.o: bin src/model/SimpleGame.cpp src/model/SimpleGame.hpp src/model/Game.hpp
 	$(CC) $(CFLAGS) -c src/model/SimpleGame.cpp -o bin/SimpleGame.o

@@ -8,7 +8,7 @@ void Deal::perform() {
   Standard52Deck deck;
   deck.shuffle();
   for (int i = 0; deck.count() > 0; i++) {
-    arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
+	arbiters[(firstPlayer+i)%4].addCard(std::move(deck.getCard()));
   }
 
   int declarer;
@@ -17,9 +17,9 @@ void Deal::perform() {
   biddingFinished = true;
   sigModified(*this);
   if (contract.value == 0) { // everyone passed
-    dealResult.contract = contract;
-    dealResult.tricksCollected = 0;
-    return;
+	dealResult.contract = contract;
+	dealResult.tricksCollected = 0;
+	return;
   }
 
   int tricksCollected = performPlay(declarer);
@@ -29,42 +29,42 @@ void Deal::perform() {
 }
 
 int Deal::performBidding() {
-  //bidding = Bidding();
-  int who = firstPlayer;
-  while (bidding.stillGoing()) {
-    BiddingConstraint constraint = bidding.getCurrentConstraint();
-    Call call = arbiters[who].getCall(bidding);
-    bool callSucceed = bidding.makeCall(call);
-    if (!callSucceed) // should not happen
-      throw 666;
-    who++;
-    who %= 4;
-  }
-  this->contract = bidding.getContract();
+	int who = firstPlayer;
+	while (bidding.stillGoing()) {
+		BiddingConstraint constraint = bidding.getCurrentConstraint();
+		Call call = arbiters[who].getCall(bidding);
+		bool callSucceed = bidding.makeCall(call);
+		if (!callSucceed) // should not happen
+			throw 666;
+		who++;
+		who %= 4;
+	}
+	this->contract = bidding.getContract();
 
-  return (firstPlayer + bidding.getDeclarer())%4;
+	return (firstPlayer + bidding.getDeclarer())%4;
 }
 
 int Deal::performPlay(int declarer) {
- 	Play play(contract.trump, declarer);
+ 	play = std::unique_ptr<model::Play>(new model::Play(contract.trump, declarer));
+ 	sigModified(*this);
 
 	for (int i = 0; i < 13; i++)
 	{
-		Trick & currentTrick = play.newTrick();
+		Trick currentTrick = play->newTrick();
 		
-		for (int j = play.getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
+		for (int j = play->getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
 		{
-			currentTrick.addCard(arbiters[j].getCard(bidding, play));
+			currentTrick.addCard(arbiters[j].getCard(bidding, *play));
 			if (i == 0 && k == 0) {
-				play.setDummyHand(&arbiters[k].getHand());
+				play->setDummyHand(&arbiters[k].getHand());
 			}
 		}
 		
-		int winner = currentTrick.resolve(play.getTrump());
-		play.incrementPlayerScore(winner);
+		int winner = currentTrick.resolve(play->getTrump());
+		play->incrementPlayerScore(winner);
 		
-		play.setBeginningPlayer(winner);
+		play->setBeginningPlayer(winner);
 	}	
 
-  return play.getResult();
+	return play->getResult();
 }
