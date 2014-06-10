@@ -12,7 +12,7 @@ Bidding::Bidding()
 bool Bidding::makeCall(Call const & call)
 {
 	if (!stillGoing())
-		throw 666; // AVAUATUH
+		throw std::logic_error("bidding is still going"); 
 	if (!getCurrentConstraint().satisfies(call))
 		return false;
 	/* all right, call is legal */
@@ -42,7 +42,7 @@ bool Bidding::makeCall(Call const & call)
 const Contract Bidding::getContract() const
 {
 	if (stillGoing())
-		throw 666;
+		throw std::logic_error("bidding is still going");
 	Contract result;
 	if (lastNonPass.type == CallType::PASS) 
 	{
@@ -66,9 +66,7 @@ const Contract Bidding::getContract() const
 int Bidding::getDeclarer() const 
 {
 	if (stillGoing())
-		throw 666;
-	if (lastNonPass.type == CallType::PASS)
-		return 666; /* don't do it */
+		throw std::logic_error("bidding is still going");
 	for (std::pair<int, Call> c : history) {
 		if (c.second.trump == lastActual.trump
 				&& getPair(c.first) == whoDidLastActual)
