@@ -13,7 +13,7 @@ void model::Application::run()
     game = std::unique_ptr<IGame>(new SimpleGame(dummy1, dummy2, dummy3, user));
 	state = STARTED;
     sigModified(*this);
-    game->start(0);
+    game->start();
 	state = FINISHED;
     sigModified(*this);
 }
