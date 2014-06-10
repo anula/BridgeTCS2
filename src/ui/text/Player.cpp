@@ -13,20 +13,29 @@ namespace text
 
 model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
 {
-    std::cout << "Your hand is:  ";
-    Printer::print(hand);
-    if(play.getDummyHand() != nullptr) {
-        std::cout << "Dummy hand is: ";
-        Printer::print(*play.getDummyHand());
-    }
-    Printer::print(bidding);
-    for(auto&& trick : play.getTricksHistory()) {
-        Printer::print(trick);
-    }
-    std::cout << "Enter card number: ";
     int cardNumber;
-    std::cin >> cardNumber;
     const std::vector<model::Card> & h = hand.getCards();
+
+    for (;;) {
+        std::cout << "Your hand is:  ";
+        Printer::print(hand);
+        if(play.getDummyHand() != nullptr) {
+            std::cout << "Dummy hand is: ";
+            Printer::print(*play.getDummyHand());
+        }
+        Printer::print(bidding);
+        for(auto&& trick : play.getTricksHistory()) {
+            Printer::print(trick);
+        }
+        std::cout << "Enter card number: ";
+        std::cin >> cardNumber;
+
+        if ( cardNumber < 0 || cardNumber >= h.size() ) {
+            std::cout << boost::format("%1% is not a valid card number. Hand contains %2% cards.") % cardNumber % h.size() << std::endl;
+            continue;   
+        }
+        break;
+    }
     return h[cardNumber];
 }
 
