@@ -33,7 +33,7 @@ struct NumberOutOfBounds : std::logic_error
 
 struct CardComparator {
 	bool operator() (Card const & c1, Card const & c2) {
-		return (c1.rank == c2.rank) ? (c1.suit < c2.suit) : (c1.rank < c2.rank);
+		return (c1.suit == c2.suit) ? (c1.rank < c2.rank) : (c1.suit < c2.suit);
 	}
 };
 

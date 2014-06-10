@@ -12,7 +12,7 @@ public:
 	SimpleGame(IPlayer& p1, IPlayer& p2, IPlayer& p3, IPlayer& p4)
 			: IGame(p1, p2, p3, p4) {}
 	
-	void start(int starter);
+	void start(int starter=IGame::STARTING_PLAYER);
 };
 
 #endif

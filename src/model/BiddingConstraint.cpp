@@ -18,6 +18,6 @@ bool model::BiddingConstraint::satisfies(Call const & call) const
 				return true;
 			if (call.value == value && call.trump > trump)
 				return true;
-			return false;
 	}
+	return false;
 }
