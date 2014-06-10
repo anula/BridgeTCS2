@@ -4,7 +4,7 @@ TESTFLAGS=
 LDTESTFLAGS=-lgtest -lgtest_main -pthread
 OBJECTS=$(wildcard bin/*.o)
 
-all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Deal.o ui_text_Play.o ui_text_Application.o ui_text_Bidding.o BridgeTCS
+all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Deal.o ui_text_Play.o ui_text_Application.o ui_text_Bidding.o BridgeTCS Scorer.o
 
 test: Standard52DeckTest BiddingConstraintTest BiddingTest
 	bin/Standard52DeckTest
@@ -70,6 +70,9 @@ ui_text_Bidding.o: bin src/ui/text/Bidding.cpp src/ui/text/Bidding.hpp
 
 SimpleGame.o: bin src/model/SimpleGame.cpp src/model/SimpleGame.hpp src/model/Game.hpp
 	$(CC) $(CFLAGS) -c src/model/SimpleGame.cpp -o bin/SimpleGame.o
+
+Scorer.o: bin src/model/Scorer.cpp src/model/Scorer.hpp
+	$(CC) $(CFLAGS) -c src/model/Scorer.cpp -o bin/Scorer.o
 
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)
