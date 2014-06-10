@@ -13,24 +13,24 @@ class Application : public ui::Observable<Application>
 {
     
 public:
-		enum State {
-			INITIAL, STARTED, FINISHED
-		};
+	enum State {
+		INITIAL, STARTED, FINISHED
+	};
 
-		State state;
+	State state;
 
     Application() : state(INITIAL) {}
     void run();
 
-		model::IGame const & getGame() const {
-			if (game) {
-				return *game;
-			}
-			throw std::logic_error("Game has not yet been initialized");
+	model::IGame const & getGame() const {
+		if (game) {
+			return *game;
 		}
+		throw std::logic_error("Game has not yet been initialized");
+	}
 
 private:
-		std::unique_ptr<model::IGame> game;
+	std::unique_ptr<model::IGame> game;
 };
 
 } // namespace model
