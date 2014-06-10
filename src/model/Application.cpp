@@ -11,9 +11,9 @@ void model::Application::run()
     DummyComputerPlayer dummy3;
     ui::text::Player user;
     game = std::unique_ptr<IGame>(new SimpleGame(dummy1, dummy2, dummy3, user));
-		state = STARTED;
+	state = STARTED;
     sigModified(*this);
     game->start(0);
-		state = FINISHED;
+	state = FINISHED;
     sigModified(*this);
 }
