@@ -1,9 +1,13 @@
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <locale>
 #include "ui/text/Player.hpp"
 #include "ui/text/Printer.hpp"
 #include "model/Trump.hpp"
 #include <boost/format.hpp>
+#include <boost/algorithm/string/erase.hpp>
+#include <boost/algorithm/string.hpp>
 
 namespace ui
 {
@@ -24,7 +28,7 @@ model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bid
             Printer::print(*play.getDummyHand());
         }
         Printer::print(bidding);
-        for(auto&& trick : play.getTricksHistory()) {
+        for(auto& trick : play.getTricksHistory()) {
             Printer::print(trick);
         }
         std::cout << "Enter card number: ";
@@ -64,14 +68,21 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
             std::cout << instruction << std::endl;
         }
         
-        std::string type, trump;
+        char type, trump;
         int value;
-        std::cin >> type;
-        if(type == "S")
+				std::string line;
+				getline(std::cin, line);
+				boost::erase_all(line, " ");
+				boost::to_lower(line);
+
+				std::istringstream inputStream(line);
+
+        inputStream >> type;
+        if(type == 's')
         {
-            std::cin >> value >> trump;
-            std::string trumps[] = { "C", "D", "H", "S", "N" };
-            for(int i = 0; i < sizeof(trumps)/sizeof(std::string); i++)
+            inputStream >> value >> trump;
+            char trumps[] = { 'c', 'd', 'h', 's', 'n' };
+            for(int i = 0; i < sizeof(trumps)/sizeof(trumps[0]); i++)
             {
                 if(trump == trumps[i]) {
                     call = model::Call::createStandard( value, static_cast<model::Trump>(i));
@@ -79,17 +90,17 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
                 }
             }
         }
-        else if(type == "P") 
+        else if(type == 'p') 
         {
             call = model::Call::createPass();
             success = true;
         }
-        else if(type == "D")
+        else if(type == 'd')
         {
             call = model::Call::createDouble();
             success = true;
         }
-        else if(type == "R")
+        else if(type == 'r')
         {
             call = model::Call::createRedouble();
             success = true;
