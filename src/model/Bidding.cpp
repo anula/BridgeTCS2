@@ -5,12 +5,14 @@ using namespace model;
 Bidding::Bidding() 
 		: whoBidsNow(0), passCount(0), 
 		lastNonPass(Call::createPass()), 
-		lastActual(Call::createPass()) {}
+		lastActual(Call::createPass()) 
+{
+}
 
 bool Bidding::makeCall(Call const & call)
 {
 	if (!stillGoing())
-		throw 666;
+		throw 666; // AVAUATUH
 	if (!getCurrentConstraint().satisfies(call))
 		return false;
 	/* all right, call is legal */

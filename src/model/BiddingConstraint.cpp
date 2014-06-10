@@ -14,6 +14,8 @@ bool model::BiddingConstraint::satisfies(Call const & call) const
 			return redoublePossible;
 			
 		case STANDARD:
+			if (call.value > 7)
+				return false;
 			if (call.value > value)
 				return true;
 			if (call.value == value && call.trump > trump)
