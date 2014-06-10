@@ -1,8 +1,14 @@
 #include "Printer.hpp"
 
 const char ui::text::Printer::ranks[] = {'2','3','4','5','6','7','8','9','T','J','Q','K','A'};
+#ifdef UNICODE
 const std::string ui::text::Printer::suits[] = {"\u2663", "\u2666", "\u2665", "\u2660"};
 const std::string ui::text::Printer::trumps[] = {"\u2663", "\u2666", "\u2665", "\u2660", "NT"};
+#else
+const std::string ui::text::Printer::suits[] = {"C", "D", "H", "S"};
+const std::string ui::text::Printer::trumps[] = {"C", "D", "H", "S", "N"};
+
+#endif
 const std::string ui::text::Printer::calls[] = {"PASS", "DOUBLE", "REDOUBLE", "STANDARD"};
 
 void ui::text::Printer::print(model::Card const & card, std::string indent)
