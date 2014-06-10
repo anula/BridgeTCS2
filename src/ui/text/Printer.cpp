@@ -66,8 +66,7 @@ void ui::text::Printer::print(model::Call const & call, std::string indent)
 void ui::text::Printer::print(model::Contract const & contract, std::string indent){
 		std::cout	<< "VALUE: "
 			<< contract.value << std::endl
-			<< indent << "TRUMP: "
-			<< ui::text::Printer::trumps[static_cast<int>(contract.trump)] << std::endl
+			<< indent << "TRUMP: " << ui::text::Printer::trumps[static_cast<int>(contract.trump)] << std::endl
 			<< indent << "MULTIPLIER: "
 			<< contract.multiplier << std::endl;
 }

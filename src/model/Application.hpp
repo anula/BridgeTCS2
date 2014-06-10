@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "ui/Observable.hpp"
+#include "ui/text/Printer.hpp"
 #include "model/DummyComputerPlayer.hpp"
 #include "model/Game.hpp"
 

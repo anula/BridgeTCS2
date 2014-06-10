@@ -2,9 +2,10 @@
 #define GAME_HPP
 #include "IPlayer.hpp"
 #include "Arbiter.hpp"
+#include "Deal.hpp"
 #include "../ui/Observable.hpp"
-#include<string>
-#include<array>
+#include <string>
+#include <array>
 
 namespace model
 {
@@ -18,6 +19,7 @@ public:
 			: arbiters{{ {p1, p3}, {p2, p4}, {p3, p1}, {p4, p2} }} {}
 	
 	virtual void start(int starter=IGame::STARTING_PLAYER) = 0;
+	DealResult result;
 	
 protected:
 	

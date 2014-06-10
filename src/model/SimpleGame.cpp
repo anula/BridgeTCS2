@@ -15,5 +15,5 @@ void SimpleGame::start(int starter)
         }
     );
 	oneAndOnly.perform();
-	DealResult results = oneAndOnly.getDealResult();
+	result = oneAndOnly.getDealResult();
 }
