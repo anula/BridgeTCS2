@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <utility>
+#include <stdexcept>
 #include "BiddingConstraint.hpp"
 #include "Call.hpp"
 #include "Contract.hpp"
