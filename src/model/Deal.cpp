@@ -51,7 +51,7 @@ int Deal::performPlay(int declarer) {
 
 	for (int i = 0; i < 13; i++)
 	{
-		Trick currentTrick = play->newTrick();
+		Trick & currentTrick = play->newTrick();
 		
 		for (int j = play->getBeginningPlayer(), k = 0; k < 4; j = (++j)%4, k++)
 		{

@@ -2,7 +2,7 @@
 
 using namespace model;
 
-Play::Play(Trump trump, int firstPlayerID) : trump(trump), beginningPlayer(firstPlayerID), primaryBeginningPlayer(firstPlayerID)
+Play::Play(Trump trump, int firstPlayerID) : trump(trump), beginningPlayer(firstPlayerID), primaryBeginningPlayer(firstPlayerID), dummyhand(nullptr)
 {
 	this->tricksCollected.fill(0);
 }
