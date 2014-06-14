@@ -7,7 +7,7 @@ int Trick::resolve(Trump trump) const
 	// jeśli gramy z atu
 	if (trump != Trump::NT) {
 		int maximalTrump = -1;
-		int maximalTrumpOwnerIndex = -1;
+		int maximalTrumpIndex = -1;
 		// przejrzyj lewę
 		for (int i = 0; i < 4; i++)
 		{	// jeśli karta ma kolor atutowy
@@ -15,16 +15,16 @@ int Trick::resolve(Trump trump) const
 				if (static_cast<int>(this->cards[i].rank) > maximalTrump)
 				{	// jeśli da się poprawić zwycięzcę, popraw
 					maximalTrump = static_cast<int>(this->cards[i].rank);
-					maximalTrumpOwnerIndex = i;						
+					maximalTrumpIndex = i;						
 				}
 			}
 		}
-		if (maximalTrumpOwnerIndex != -1)
-			return maximalTrumpOwnerIndex;
+		if (maximalTrumpIndex != -1)
+			return maximalTrumpIndex;
 	}
 	// jeśli gramy bez atu, lub w lewie nie ma atu
 	int maximalColor = -1;
-	int maximalColorOwnerIndex = -1;
+	int maximalColorIndex = -1;
 	Suit suit = cards[0].suit;
 	// przejrzyj lewę
 	for (int i = 0; i < 4; i++)
@@ -33,11 +33,11 @@ int Trick::resolve(Trump trump) const
 			if (static_cast<int>(this->cards[i].rank) > maximalColor)
 			{	// jeśli da się poprawić zwycięzcę, popraw
 				maximalColor = static_cast<int>(this->cards[i].rank);
-				maximalColorOwnerIndex = i;						
+				maximalColorIndex = i;						
 			}
 		}
 	}
-	return maximalColorOwnerIndex;
+	return maximalColorIndex;
 }
 
 Trump Trick::getTrump() const

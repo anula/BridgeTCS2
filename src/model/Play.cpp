@@ -12,7 +12,7 @@ int Play::getResult()
 {
 	if(trickCount() < 13)
    		return -1;
-   	int fp = (getPrimaryBeginningPlayer() + 1) % 4;
+   	int fp = (getPrimaryBeginningPlayer()) % 4;
     return getScoreOf(fp) + getScoreOf((fp+2) % 4);
 }
 
