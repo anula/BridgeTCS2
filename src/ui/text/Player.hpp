@@ -12,6 +12,8 @@ namespace text
 
 class Player : public model::IPlayer
 {
+	static const char ranks[];
+	static const char suits[];
 public: 
     model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play);
     model::Card getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play);
