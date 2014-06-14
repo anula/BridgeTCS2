@@ -1,5 +1,9 @@
+#include <random>
+#include <cmath>
+
 #include "DummyComputerPlayer.hpp"
 #include "model/Call.hpp"
+#include "model/BiddingConstraint.hpp"
 
 using namespace model;
 
@@ -24,6 +28,16 @@ Card DummyComputerPlayer::strategy(Hand const & hand, Bidding const & bidding, P
 }
 Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding)
 {
-	return Call::createPass();
+    BiddingConstraint biddConst = bidding.getCurrentConstraint();
+	std::random_device rd;
+	std::default_random_engine e1(rd());
+	std::uniform_int_distribution<int> distVal(1, 4);
+	std::uniform_int_distribution<int> distTru(0, 4);
+    Call call = Call::createStandard(distVal(e1), static_cast<Trump>(distTru(e1)));
+    if (biddConst.satisfies(call)) {
+        return call;
+    } else {
+        return Call::createPass();
+    }
 }
 

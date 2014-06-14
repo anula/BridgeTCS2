@@ -41,7 +41,7 @@ BiddingConstraint.o: bin src/model/BiddingConstraint.cpp src/model/BiddingConstr
 Hand.o: bin src/model/Hand.cpp src/model/Hand.hpp
 	$(CC) $(CFLAGS) -c src/model/Hand.cpp -o bin/Hand.o
 
-DummyComputerPlayer.o: bin src/model/DummyComputerPlayer.cpp src/model/DummyComputerPlayer.hpp src/model/IPlayer.hpp
+DummyComputerPlayer.o: bin src/model/DummyComputerPlayer.cpp src/model/DummyComputerPlayer.hpp src/model/IPlayer.hpp src/model/Call.hpp src/model/BiddingConstraint.hpp
 	$(CC) $(CFLAGS) -c src/model/DummyComputerPlayer.cpp -o bin/DummyComputerPlayer.o
 
 Application.o: bin src/model/Application.cpp src/model/Application.hpp
