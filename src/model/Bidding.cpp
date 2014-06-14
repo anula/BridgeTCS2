@@ -73,7 +73,7 @@ int Bidding::getDeclarer() const
 				&& getPair(c.first) == whoDidLastActual)
 			return c.first;
 	}
-    throw "everyone passed";
+    return 0;
 }
 
 const BiddingConstraint & Bidding::getCurrentConstraint() const 
