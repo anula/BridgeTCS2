@@ -18,7 +18,8 @@ Card Arbiter::askPlayer(IPlayer const & pplayer, Play const & play, Bidding cons
 	int cardnum = -1;
 	const std::vector<Card>& h = hand.getCards();
 	do{
-		Card rec = pplayer.getCard(hand, bidding, play);
+		Card rec = role != Role::DUMMY ? pplayer.getCard(hand, bidding, play) :
+                                         pplayer.getDummyCard(hand, bidding, play);
 		for(int i = 0; i < h.size(); ++i)
 			if(h[i] == rec)
 				cardnum = i;

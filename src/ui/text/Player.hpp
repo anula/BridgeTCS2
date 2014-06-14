@@ -14,6 +14,7 @@ class Player : public model::IPlayer
 {
 public: 
     model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const;
+    model::Card getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const;
     model::Call getCall(model::Hand const & hand, model::Bidding const & bidding) const;
 };
 

@@ -43,6 +43,12 @@ model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bid
     return h[cardNumber];
 }
 
+model::Card Player::getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
+{
+    std::cout << "Play card from dummy." << std::endl;
+    return getCard(hand, bidding, play);
+}
+
 model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bidding) const 
 {
     Printer::print(hand);

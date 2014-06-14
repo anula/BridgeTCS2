@@ -41,7 +41,7 @@ int Deal::performBidding() {
 		who %= 4;
 	}
 	this->contract = bidding.getContract();
-
+    arbiters[(firstPlayer + bidding.getDeclarer() + 2)%4].setRole(model::Role::DUMMY);
 	return (firstPlayer + bidding.getDeclarer())%4;
 }
 

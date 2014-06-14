@@ -68,10 +68,12 @@ int Bidding::getDeclarer() const
 	if (stillGoing())
 		throw std::logic_error("bidding is still going");
 	for (std::pair<int, Call> c : history) {
-		if (c.second.trump == lastActual.trump
+		if (c.second.type == model::CallType::STANDARD &&
+                c.second.trump == lastActual.trump
 				&& getPair(c.first) == whoDidLastActual)
 			return c.first;
 	}
+    throw "everyone passed";
 }
 
 const BiddingConstraint & Bidding::getCurrentConstraint() const 

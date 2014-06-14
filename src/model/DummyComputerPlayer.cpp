@@ -13,6 +13,11 @@ Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Pl
 	return h[0];
 }
 
+Card DummyComputerPlayer::getDummyCard(Hand const & hand, Bidding const & bidding, Play const & play) const
+{
+    return getCard(hand, bidding, play);
+}
+
 Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding) const
 {
 	return Call::createPass();
