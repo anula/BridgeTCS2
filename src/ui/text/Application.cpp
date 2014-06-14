@@ -1,4 +1,6 @@
 #include "ui/text/Application.hpp"
+#include <boost/algorithm/string/erase.hpp>
+#include <boost/algorithm/string.hpp>
 
 void ui::text::Application::notify(model::Application const & app) 
 {
@@ -6,7 +8,11 @@ void ui::text::Application::notify(model::Application const & app)
 		std::cout << indent << "Welcome!" << std::endl;
         std::cout << indent << "Type :quit to exit BridgeTCS. Enter anything else to start the game!" << std::endl;
         std::string tmp;
-        std::cin >> tmp;
+        if (!getline(std::cin, tmp)) {
+            throw new std::runtime_error("Game interrupted");
+        }
+        boost::erase_all(tmp, " ");
+        boost::to_lower(tmp);
         if(tmp != ":quit") {
             app.getGame().sigModified.connect(
                 [this] (model::IGame const & game) {
@@ -16,7 +22,6 @@ void ui::text::Application::notify(model::Application const & app)
         } else {
             exit(0);
         }
-        std::getline(std::cin, tmp);
     } else if (app.state == model::Application::State::FINISHED) {
 		std::cout << "Contract: " << std::endl;
 		ui::text::Printer::print(app.getGame().result.contract);
