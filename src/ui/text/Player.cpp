@@ -15,14 +15,14 @@ namespace ui
 namespace text
 {
 
-model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
+model::Card Player::strategy(bool fromDummy, model::Hand const & playerHand, model::Bidding const & bidding, model::Play const & play) 
 {
+    model::Hand const & hand = fromDummy ? *play.getDummyHand() : playerHand;
     int cardNumber;
     const std::vector<model::Card> & h = hand.getCards();
-
     for (;;) {
         std::cout << "Your hand is:  ";
-        Printer::print(hand);
+        Printer::print(playerHand);
         if(play.getDummyHand() != nullptr) {
             std::cout << "Dummy hand is: ";
             Printer::print(*play.getDummyHand());
@@ -40,16 +40,27 @@ model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bid
         }
         break;
     }
+    if(!fromDummy)
+    {
+        myHand = hand;
+        myHand.getCard(cardNumber);
+    }
     return h[cardNumber];
 }
 
-model::Card Player::getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const 
+model::Card Player::getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play)  
 {
     std::cout << "Play card from dummy." << std::endl;
-    return getCard(hand, bidding, play);
+    return strategy(true, myHand, bidding, play);
 }
 
-model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bidding) const 
+model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) 
+{
+    std::cout << "Play card from your hand." << std::endl;
+    return strategy(false, hand, bidding, play);
+}
+
+model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bidding)
 {
     Printer::print(hand);
     Printer::print(bidding);

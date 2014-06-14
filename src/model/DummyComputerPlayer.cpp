@@ -3,7 +3,17 @@
 
 using namespace model;
 
-Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Play const & play) const
+Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Play const & play)
+{
+    return strategy(hand, bidding, play);
+}
+
+Card DummyComputerPlayer::getDummyCard(Hand const & hand, Bidding const & bidding, Play const & play)
+{
+    return strategy(hand, bidding, play);
+}
+
+Card DummyComputerPlayer::strategy(Hand const & hand, Bidding const & bidding, Play const & play)
 {
 	const std::vector<Card>& h = hand.getCards();
     for(auto & card : h) {
@@ -12,13 +22,7 @@ Card DummyComputerPlayer::getCard(Hand const & hand, Bidding const & bidding, Pl
     }
 	return h[0];
 }
-
-Card DummyComputerPlayer::getDummyCard(Hand const & hand, Bidding const & bidding, Play const & play) const
-{
-    return getCard(hand, bidding, play);
-}
-
-Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding) const
+Call DummyComputerPlayer::getCall(Hand const & hand, Bidding const & bidding)
 {
 	return Call::createPass();
 }

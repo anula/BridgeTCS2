@@ -13,7 +13,7 @@ Call Arbiter::getCall(Bidding const & bidding)
 	return call;
 }
 
-Card Arbiter::askPlayer(IPlayer const & pplayer, Play const & play, Bidding const & bidding)
+Card Arbiter::askPlayer(IPlayer & pplayer, Play const & play, Bidding const & bidding)
 {
 	int cardnum = -1;
 	const std::vector<Card>& h = hand.getCards();

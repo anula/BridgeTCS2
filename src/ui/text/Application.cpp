@@ -16,7 +16,8 @@ void ui::text::Application::notify(model::Application const & app)
         } else {
             exit(0);
         }
-	} else if (app.state == model::Application::State::FINISHED) {
+        std::getline(std::cin, tmp);
+    } else if (app.state == model::Application::State::FINISHED) {
 		std::cout << "Contract: " << std::endl;
 		ui::text::Printer::print(app.getGame().result.contract);
 		std::cout << std::endl;

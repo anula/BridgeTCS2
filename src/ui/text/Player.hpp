@@ -13,9 +13,12 @@ namespace text
 class Player : public model::IPlayer
 {
 public: 
-    model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const;
-    model::Card getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) const;
-    model::Call getCall(model::Hand const & hand, model::Bidding const & bidding) const;
+    model::Card getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play);
+    model::Card getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play);
+    model::Call getCall(model::Hand const & hand, model::Bidding const & bidding);
+private:
+    model::Card strategy(bool fromDummy, model::Hand const & playerHand, model::Bidding const & bidding, model::Play const & play);
+    model::Hand myHand;
 };
 
 } // namespace text

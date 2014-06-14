@@ -32,7 +32,7 @@ public:
 	
 private:
 	
-	Card askPlayer(IPlayer const & player, Play const & play, Bidding const & bidding); // popros playera o dodanie karty
+	Card askPlayer(IPlayer & player, Play const & play, Bidding const & bidding); // popros playera o dodanie karty
 	bool validateCard(Card const & c, std::vector<Card> const & h, Play const & t) const;
 	
 	Role role;
