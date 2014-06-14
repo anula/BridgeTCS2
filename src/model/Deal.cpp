@@ -57,7 +57,7 @@ int Deal::performPlay(int declarer) {
 		{
 			currentTrick.addCard(arbiters[j].getCard(bidding, *play));
 			if (i == 0 && k == 0) {
-				play->setDummyHand(&arbiters[k].getHand());
+				play->setDummyHand(&arbiters[(firstPlayer + bidding.getDeclarer() + 2)%4].getHand());
 			}
 		}
 		
