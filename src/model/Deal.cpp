@@ -61,7 +61,8 @@ int Deal::performPlay(int declarer) {
 			}
 		}
 		
-		int winner = currentTrick.resolve(play->getTrump());
+		int winningCard = currentTrick.resolve(play->getTrump());
+        int winner = (play->getBeginningPlayer() + winningCard) % 4;
 		play->incrementPlayerScore(winner);
 		
 		play->setBeginningPlayer(winner);
