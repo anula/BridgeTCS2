@@ -11,7 +11,7 @@ void model::Application::run()
         DummyComputerPlayer dummy2;
         DummyComputerPlayer dummy3;
         ui::text::Player user;
-        game = std::unique_ptr<IGame>(new SimpleGame(dummy1, dummy2, dummy3, user));
+        game.reset(new SimpleGame(dummy1, dummy2, dummy3, user));
         state = STARTED;
         sigModified(*this);
         game->start();
