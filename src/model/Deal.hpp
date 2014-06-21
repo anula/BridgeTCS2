@@ -15,6 +15,7 @@ namespace model
 
 struct DealResult
 {
+  static const int BOOK = 6;
   /* Tricks collected by pair who begins.
    * If during bidding everyone bid PASS 
    * it is equal zero.
@@ -24,6 +25,32 @@ struct DealResult
   /* Contract bidded by pair who begins.
    */
   Contract contract;
+
+  int getOvertricks() const
+  {
+      return tricksCollected - BOOK;
+  }
+
+  bool isSmallSlam() const
+  {
+      return tricksCollected == 6;
+  }
+
+  bool isGrandSlam() const
+  {
+      return tricksCollected == 7;
+  }
+
+  bool wasMade() const
+  {
+      return contract.value <= tricksCollected;
+  }
+
+  bool isDown() const
+  {
+      return !wasMade();
+  }
+
 };
 
 class Deal : public ui::Observable<Deal>
