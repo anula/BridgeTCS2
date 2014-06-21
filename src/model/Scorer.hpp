@@ -13,8 +13,8 @@ class Scorer
 	/* usage: isVunerable[Scorer::SIDE_XX] */
 	bool isVunerable[2];
 
-	/* Returns something! */
-	bool update(DealResult const &);
+	/* Counts score based on result of the deal */
+	void update(DealResult const &);
 
 public:
 	/* Side constants */

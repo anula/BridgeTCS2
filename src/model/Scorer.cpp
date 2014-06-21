@@ -9,7 +9,7 @@ namespace model
 		return trump == model::Trump::DIAMONDS || trump == model::Trump::CLUBS;
 	}
 
-	bool Scorer::update(DealResult const & dealResult) 
+	void Scorer::update(DealResult const & dealResult) 
 	{
 		DealScore score;
 		int multiplier = dealResult.contract.multiplier;
