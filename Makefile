@@ -6,10 +6,11 @@ OBJECTS=$(wildcard bin/*.o)
 
 all: Arbiter.o SimpleGame.o Deck.o BiddingConstraint.o Call.o Bidding.o Trick.o Hand.o DummyComputerPlayer.o Play.o Deal.o Application.o Player.o Printer.o ui_text_Hand.o ui_text_Deal.o ui_text_Play.o ui_text_Application.o ui_text_Bidding.o BridgeTCS Scorer.o
 
-test: Standard52DeckTest BiddingConstraintTest BiddingTest
+test: Standard52DeckTest BiddingConstraintTest BiddingTest ScorerTest
 	bin/Standard52DeckTest
 	bin/BiddingConstraintTest
 	bin/BiddingTest
+	bin/ScorerTest
 
 BridgeTCS: bin src/BridgeTCS.cpp src/model/Application.hpp src/ui/text/Application.hpp
 	$(CC) $(CFLAGS) src/BridgeTCS.cpp $(OBJECTS) -o bin/BridgeTCS
@@ -74,6 +75,9 @@ SimpleGame.o: bin src/model/SimpleGame.cpp src/model/SimpleGame.hpp src/model/Ga
 Scorer.o: bin src/model/Scorer.cpp src/model/Scorer.hpp
 	$(CC) $(CFLAGS) -c src/model/Scorer.cpp -o bin/Scorer.o
 
+Score.o: bin src/model/Score.cpp src/model/Score.hpp
+	$(CC) $(CFLAGS) -c src/model/Score.cpp -o bin/Score.o
+
 Standard52DeckTest: bin test/Standard52DeckTest.cpp Deck.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/Standard52DeckTest.cpp bin/Deck.o -o bin/Standard52DeckTest $(LDTESTFLAGS)
 
@@ -83,6 +87,8 @@ BiddingConstraintTest: bin test/BiddingConstraintTest.cpp Call.o BiddingConstrai
 BiddingTest: bin test/BiddingTest.cpp Call.o BiddingConstraint.o Bidding.o
 	$(CC) $(CFLAGS) $(TESTFLAGS) test/BiddingTest.cpp bin/BiddingConstraint.o bin/Bidding.o bin/Call.o -o bin/BiddingTest $(LDTESTFLAGS)
 
+ScorerTest: bin test/ScorerTest.cpp Deal.o Scorer.o Score.o Deck.o Play.o Arbiter.o Hand.o Bidding.o Call.o BiddingConstraint.o Trick.o
+	$(CC) $(CFLAGS) $(TESTFLAGS) test/ScorerTest.cpp bin/Deal.o bin/Scorer.o bin/Deck.o bin/Play.o bin/Score.o bin/Arbiter.o bin/Hand.o bin/Bidding.o bin/BiddingConstraint.o bin/Call.o bin/Trick.o -o bin/ScorerTest $(LDTESTFLAGS)
 
 
 clean:
