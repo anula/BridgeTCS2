@@ -29,16 +29,16 @@ namespace model
 				/* Calculate points for the subsequent tricks */
 				if ( dealResult.tricksCollected > 1 )
 				{
-					score.contractPoints += multiplier * SUBSEQUENT_NT_CONTRACT_POINTS;
+					score.contractPoints += multiplier * SUBSEQUENT_NT_CONTRACT_POINTS * (dealResult.tricksCollected - 1);
 				}
 			}
 			else if ( isMinor(trump) )
 			{
-				score.contractPoints += multiplier * MINOR_CONTRACT_POINTS;
+				score.contractPoints += multiplier * dealResult.tricksCollected * MINOR_CONTRACT_POINTS;
 			}
 			else
 			{
-				score.contractPoints += multiplier * MAJOR_CONTRACT_POINTS;
+				score.contractPoints += multiplier * dealResult.tricksCollected * MAJOR_CONTRACT_POINTS;
 			}
 		}
 
@@ -123,8 +123,18 @@ namespace model
 			}
 		}
 
-		// TODO what is it supposed to return?
-		return false;
+		saveScore(score);
+	}
+
+	void Scorer::saveScore(DealScore const & dealScore)
+	{
+		// TODO Update summarized team scores
+		deals.push_back(dealScore);
+	}
+
+	std::vector<DealScore> const & Scorer::getDealScores()
+	{
+		return deals;
 	}
 
 }

@@ -1,7 +1,9 @@
 #ifndef SCORER_H
 #define SCORER_H
 
+#include <vector>
 #include "Deal.hpp"
+#include "Score.hpp"
 
 namespace model
 {
@@ -12,11 +14,17 @@ class Scorer
 {
 	/* usage: isVunerable[Scorer::SIDE_XX] */
 	bool isVunerable[2];
+	std::vector<DealScore> deals;
 
+	void saveScore(DealScore const & dealScore);
+
+public:
 	/* Counts score based on result of the deal */
 	void update(DealResult const &);
 
-public:
+	/* Getter for "deals" field */
+	std::vector<DealScore> const & getDealScores();
+
 	/* Side constants */
 	static const int SIDE_NS = 0;
 	static const int SIDE_WE = 1;
