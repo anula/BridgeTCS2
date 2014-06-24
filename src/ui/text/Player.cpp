@@ -26,10 +26,10 @@ model::Card Player::strategy(bool fromDummy, model::Hand const & playerHand, mod
     for (;;) {
     	std::cout << "Bidding history:" << std::endl;
     	Printer::print(bidding);
-        std::cout << "Your hand is:  ";
+        std::cout << "Your hand is:" << std::endl;
         Printer::print(playerHand);
         if(play.getDummyHand() != nullptr) {
-            std::cout << "Dummy hand is: ";
+            std::cout << "Dummy hand is:" << std::endl;
             Printer::print(*play.getDummyHand());
         }
         std::cout << "Tricks:" << std::endl;
@@ -84,6 +84,7 @@ model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bid
 
 model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bidding)
 {
+	std::cout << "Your hand is:" << std::endl;
 	Printer::print(hand);
 	Printer::print(bidding);
 
