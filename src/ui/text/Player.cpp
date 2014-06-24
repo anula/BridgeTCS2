@@ -94,7 +94,7 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
 	const int MAX_FAILS = 5;
 
 	do {
-		std::string instruction = "Enter P for pass, D for double, R for redouble or S <value> <C/D/H/S/N> for standard call.\n ex. S 1 C";
+		std::string instruction = "Enter P for pass, D for double, R for redouble or S <value> <C/D/H/S/N> for standard call.\n ex. S 1 C, or just 1 C";
 		if ( failCount > 1 )
 		{
 			std::cout << boost::format("You have entered a wrong bidding %1% times in a row. After %2%th attempt game will automatically pass.") % failCount % MAX_FAILS
@@ -120,19 +120,8 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
 		std::istringstream inputStream(line);
 
 		inputStream >> type;
-		if(type == 's')
-		{
-			inputStream >> value >> trump;
-			char trumps[] = { 'c', 'd', 'h', 's', 'n' };
-			for(int i = 0; i < sizeof(trumps)/sizeof(trumps[0]); i++)
-			{
-				if(trump == trumps[i]) {
-					call = model::Call::createStandard( value, static_cast<model::Trump>(i));
-					success = true;
-				}
-			}
-		}
-		else if(type == 'p') 
+		
+		if(type == 'p') 
 		{
 			call = model::Call::createPass();
 			success = true;
@@ -146,8 +135,26 @@ model::Call Player::getCall(model::Hand const & hand, model::Bidding const & bid
 		{
 			call = model::Call::createRedouble();
 			success = true;
-
 		}
+		else
+		{
+			if(type == 's')
+				inputStream >> value >> trump;
+			else
+			{
+				value=type-'0';
+				inputStream >> trump;
+			}
+			char trumps[] = { 'c', 'd', 'h', 's', 'n' };
+			for(int i = 0; i < sizeof(trumps)/sizeof(trumps[0]); i++)
+			{
+				if(trump == trumps[i]) {
+					call = model::Call::createStandard( value, static_cast<model::Trump>(i));
+					success = true;
+				}
+			}
+		}
+		
 
 		if ( !success )
 			failCount += 1;
