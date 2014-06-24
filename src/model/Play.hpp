@@ -14,19 +14,35 @@ namespace model
 class Play : public ui::Observable<Play>
 {
 public:
+
+	enum State {
+		INITIAL, NEWWINNER
+	};
+
+	State state;
+
 	/* Przyjmuje: kolor atutowy, ID rozgrywajacego.
 	 */
 	Play(Trump trump, int firstPlayerID);
 	
 	Trump getTrump() { return trump; }
 	
-	int getBeginningPlayer() { return beginningPlayer; }
-	void setBeginningPlayer(int player) { beginningPlayer = player; }
+	int getBeginningPlayer() const { return beginningPlayer; }
 	
-	int getPrimaryBeginningPlayer() { return primaryBeginningPlayer; }
+	void setBeginningPlayer(int player) { 
+		beginningPlayer = player; 
+		state=NEWWINNER;
+		sigModified(*this);
+		state=INITIAL;
+	}
+	
+	int getPrimaryBeginningPlayer() const { return primaryBeginningPlayer; }
 	
 	int getScoreOf(int player) { return tricksCollected[player]; }
-	void incrementPlayerScore(int player) { tricksCollected[player]++; }
+	
+	void incrementPlayerScore(int player) { 
+		tricksCollected[player]++;
+	}
 	
 	Trick const & getTrick(int i) { return tricks[i]; }
 	void addTrick(Trick trick) { tricks.push_back(trick); }

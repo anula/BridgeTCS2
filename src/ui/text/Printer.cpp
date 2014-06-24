@@ -13,8 +13,9 @@ const std::string ui::text::Printer::calls[] = {"PASS", "DOUBLE", "REDOUBLE", "S
 
 void ui::text::Printer::print(model::Card const & card, std::string indent)
 {
-	std::cout << indent << ui::text::Printer::ranks[static_cast<int>(card.rank)]
+	std::cout << indent 
 		<< "["
+		<< ui::text::Printer::ranks[static_cast<int>(card.rank)]
 		<< ui::text::Printer::suits[static_cast<int>(card.suit)]
 		<< "]";
 }

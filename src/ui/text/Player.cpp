@@ -24,17 +24,19 @@ model::Card Player::strategy(bool fromDummy, model::Hand const & playerHand, mod
     int cardNumber;
     const std::vector<model::Card> & h = hand.getCards();
     for (;;) {
+    	std::cout << "Bidding history:" << std::endl;
+    	Printer::print(bidding);
         std::cout << "Your hand is:  ";
         Printer::print(playerHand);
         if(play.getDummyHand() != nullptr) {
             std::cout << "Dummy hand is: ";
             Printer::print(*play.getDummyHand());
         }
-        Printer::print(bidding);
+        std::cout << "Tricks:" << std::endl;
         for(auto& trick : play.getTricksHistory()) {
             Printer::print(trick);
         }
-        std::cout << "Enter card (eg. K D): ";
+        std::cout << "Enter card (eg. K D) from " << (fromDummy ? "dummy" : "your hand") << ": ";
         std::string line;
         if (!getline(std::cin, line)) {
             throw new std::runtime_error("Game interrupted");
@@ -72,13 +74,11 @@ model::Card Player::strategy(bool fromDummy, model::Hand const & playerHand, mod
 
 model::Card Player::getDummyCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play)  
 {
-	std::cout << "Play card from dummy." << std::endl;
 	return strategy(true, myHand, bidding, play);
 }
 
 model::Card Player::getCard(model::Hand const & hand, model::Bidding const & bidding, model::Play const & play) 
 {
-	std::cout << "Play card from your hand." << std::endl;
 	return strategy(false, hand, bidding, play);
 }
 
