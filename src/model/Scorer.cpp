@@ -11,11 +11,14 @@ namespace model
 
 	bool Scorer::isGameOver()
 	{
-		return false;
+		return wins[Scorer::SIDE_NS] >= Scorer::GAMES_TO_WIN || wins[Scorer::SIDE_WE] >= Scorer::GAMES_TO_WIN;
 	}
 
 	void Scorer::update(DealResult const & dealResult) 
 	{
+		if ( isGameOver() )
+			throw std::logic_error("Rubber is already finished");
+		
 		DealScore score;
 		int multiplier = dealResult.contract.multiplier;
 		int declarer = dealResult.contract.declarer;
@@ -63,14 +66,14 @@ namespace model
 			/* Reouble */
 			if ( multiplier == 4 )
 			{
-				if ( isVunerable[side] ) score.overtrickPoints += overtricks * VUNERABLE_REDOUBLED_OVERTRICK_POINTS;
-				else score.overtrickPoints += overtricks * NOT_VUNERABLE_REDOUBLED_OVERTRICK_POINTS;
+				if ( isVulnerable[side] ) score.overtrickPoints += overtricks * VULNERABLE_REDOUBLED_OVERTRICK_POINTS;
+				else score.overtrickPoints += overtricks * NOT_VULNERABLE_REDOUBLED_OVERTRICK_POINTS;
 			}
 			/* Double */
 			else if ( multiplier == 2 )
 			{
-				if ( isVunerable[side] ) score.overtrickPoints += overtricks * VUNERABLE_DOUBLED_OVERTRICK_POINTS;
-				else score.overtrickPoints += overtricks * NOT_VUNERABLE_DOUBLED_OVERTRICK_POINTS;
+				if ( isVulnerable[side] ) score.overtrickPoints += overtricks * VULNERABLE_DOUBLED_OVERTRICK_POINTS;
+				else score.overtrickPoints += overtricks * NOT_VULNERABLE_DOUBLED_OVERTRICK_POINTS;
 
 			}
 			/* No multiplication */
@@ -85,13 +88,13 @@ namespace model
 		/* Slam bonus */
 		if ( dealResult.isGrandSlam() )
 		{
-			if ( isVunerable[side] ) score.slamBonus += VUNERABLE_GRAND_SLAM_POINTS;
-			else score.slamBonus += NOT_VUNERABLE_GRAND_SLAM_POINTS;
+			if ( isVulnerable[side] ) score.slamBonus += VULNERABLE_GRAND_SLAM_POINTS;
+			else score.slamBonus += NOT_VULNERABLE_GRAND_SLAM_POINTS;
 		}
 		else if ( dealResult.isSmallSlam() )
 		{
-			if ( isVunerable[side] ) score.slamBonus += VUNERABLE_SMALL_SLAM_POINTS;
-			else score.slamBonus += NOT_VUNERABLE_SMALL_SLAM_POINTS;
+			if ( isVulnerable[side] ) score.slamBonus += VULNERABLE_SMALL_SLAM_POINTS;
+			else score.slamBonus += NOT_VULNERABLE_SMALL_SLAM_POINTS;
 		}
 
 		/* Doubled or redoubled bonus */
@@ -107,19 +110,19 @@ namespace model
 			int undertricks = -dealResult.getOvertricks();
 			if ( multiplier == 1 )
 			{
-				if ( isVunerable[side] ) score.penaltyPoints += undertricks * VUNERABLE_UNDOUBLED_PENALTY_POINTS;
-				else score.penaltyPoints += undertricks * NOT_VUNERABLE_UNDOUBLED_PENALTY_POINTS;	
+				if ( isVulnerable[side] ) score.penaltyPoints += undertricks * VULNERABLE_UNDOUBLED_PENALTY_POINTS;
+				else score.penaltyPoints += undertricks * NOT_VULNERABLE_UNDOUBLED_PENALTY_POINTS;	
 			} else {
 				ScoringScheme::iterator scoringScheme;
 				if ( multiplier == 4 )
 				{
-					if ( isVunerable[side] ) scoringScheme = VUNERABLE_REDOUBLED_PENALTY_POINTS.begin();
-					else scoringScheme = NOT_VUNERABLE_REDOUBLED_PENALTY_POINTS.begin();	
+					if ( isVulnerable[side] ) scoringScheme = VULNERABLE_REDOUBLED_PENALTY_POINTS.begin();
+					else scoringScheme = NOT_VULNERABLE_REDOUBLED_PENALTY_POINTS.begin();	
 				}
 				else if ( multiplier == 2 )
 				{
-					if ( isVunerable[side] ) scoringScheme = VUNERABLE_DOUBLED_PENALTY_POINTS.begin();
-					else scoringScheme = NOT_VUNERABLE_DOUBLED_PENALTY_POINTS.begin();	
+					if ( isVulnerable[side] ) scoringScheme = VULNERABLE_DOUBLED_PENALTY_POINTS.begin();
+					else scoringScheme = NOT_VULNERABLE_DOUBLED_PENALTY_POINTS.begin();	
 				}
 
 				/* As long as there are undertricks for which penalty points were not yet assigned */
@@ -137,18 +140,60 @@ namespace model
 			}
 		}
 
-		saveScore(score);
-	}
+		// Save detailed score for the deal
+		deals.push_back(score);
 
-	void Scorer::saveScore(DealScore const & dealScore)
-	{
-		// TODO Update summarized team scores
-		deals.push_back(dealScore);
+		// Count points above and below the line
+		int opposingSide = Scorer::getOpposingSide(side);
+
+		// Only contract points are scored over the line
+		int belowDeclarerSide = score.contractPoints;
+		belowTheLine[side].push_back(belowDeclarerSide);
+		// Remaining points with the exception of pentaly points are written above the line
+		aboveTheLine[side].push_back(score.slamBonus + score.overtrickPoints + score.honorBonus + score.insultBonus);
+		// Opposing team cannot score below the line in this deal
+		belowTheLine[opposingSide].push_back(0);
+		// Penalty points are added above their line
+		aboveTheLine[opposingSide].push_back(score.penaltyPoints);
+
+		// If declaring team has scored more than the game limit,
+		// increase game counter and reinitialize game related variables
+		scoredThisGame[side] += belowDeclarerSide;
+		if ( scoredThisGame[side] > Scorer::POINTS_PER_GAME ) {
+			scoredThisGame[Scorer::SIDE_WE] = 0;
+			scoredThisGame[Scorer::SIDE_NS] = 0;
+			wins[side] += 1;
+			isVulnerable[side] = true;
+		}
+
+		// if rubber has ended, add bonus points to winning team
+		if ( isGameOver() ) {
+			if ( isVulnerable[opposingSide] ){
+				aboveTheLine[opposingSide].back() += Scorer::SLOW_RUBBER_BONUS;
+			} else {
+				aboveTheLine[opposingSide].back() += Scorer::FAST_RUBBER_BONUS;
+			}
+		}
 	}
 
 	std::vector<DealScore> const & Scorer::getDealScores()
 	{
 		return deals;
+	}
+
+	std::vector<int> const & Scorer::getPointsBelowLine(int side)
+	{
+		return belowTheLine[side];
+	}
+
+	std::vector<int> const & Scorer::getPointsAboveLine(int side)
+	{
+		return aboveTheLine[side];
+	}
+
+	int Scorer::getOpposingSide(int side)
+	{
+		return 1 - side;
 	}
 
 }
