@@ -13,8 +13,9 @@ const std::string ui::text::Printer::calls[] = {"PASS", "DOUBLE", "REDOUBLE", "S
 
 void ui::text::Printer::print(model::Card const & card, std::string indent)
 {
-	std::cout << indent << ui::text::Printer::ranks[static_cast<int>(card.rank)]
+	std::cout << indent 
 		<< "["
+		<< ui::text::Printer::ranks[static_cast<int>(card.rank)]
 		<< ui::text::Printer::suits[static_cast<int>(card.suit)]
 		<< "]";
 }
@@ -29,12 +30,15 @@ void ui::text::Printer::print(model::Trick const & trick, std::string indent)
 
 void ui::text::Printer::print(model::Hand const & hand, std::string indent)
 {
-	std::cout << indent;
-	for(model::Card c : hand.getCards()) {
-		print(c, "");
-		std::cout << ' ';
+	for(int i=3; i>=0; i--){
+		std::cout << indent << ui::text::Printer::suits[i] << ": ";
+		for(int j=hand.getCards().size()-1; j>=0; j--){
+			model::Card c=hand.getCards()[j];
+			if(static_cast<int>(c.suit)==i)
+				std::cout << ui::text::Printer::ranks[static_cast<int>(c.rank)] << " ";
+		}
+		std::cout << std::endl;
 	}
-	std::cout << std::endl;
 }
 
 void ui::text::Printer::print(model::Bidding const & bidding, std::string indent)
