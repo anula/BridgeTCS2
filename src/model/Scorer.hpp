@@ -21,6 +21,7 @@ class Scorer
 public:
 	/* Counts score based on result of the deal */
 	void update(DealResult const &);
+	bool isGameOver();
 
 	/* Getter for "deals" field */
 	std::vector<DealScore> const & getDealScores();

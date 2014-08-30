@@ -9,13 +9,27 @@ namespace model
 		return trump == model::Trump::DIAMONDS || trump == model::Trump::CLUBS;
 	}
 
+	bool Scorer::isGameOver()
+	{
+		return false;
+	}
+
 	void Scorer::update(DealResult const & dealResult) 
 	{
 		DealScore score;
 		int multiplier = dealResult.contract.multiplier;
+		int declarer = dealResult.contract.declarer;
 		Trump trump = dealResult.contract.trump;
-		// TODO - set declaring side
+		// Set declaring side based on the declarer from contract
 		int side = 0;
+		if ( declarer == 0 || declarer == 2 )
+		{
+			side = Scorer::SIDE_NS;
+		}
+		else
+		{
+			side = Scorer::SIDE_WE;
+		}
 
 		/* Count contract points */
 		if ( dealResult.wasMade() and dealResult.tricksCollected > 0 )
