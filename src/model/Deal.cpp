@@ -13,7 +13,7 @@ void Deal::perform() {
 
   int declarer;
 
-  declarer = performBidding();
+  declarer = contract.declarer = performBidding();
   biddingFinished = true;
   sigModified(*this);
   dealResult.contract = contract;

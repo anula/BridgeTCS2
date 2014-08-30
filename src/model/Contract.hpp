@@ -9,6 +9,7 @@ struct Contract
 	int value;
 	Trump trump;
 	int multiplier;
+	int declarer;
 };
 
 } // namespace model
