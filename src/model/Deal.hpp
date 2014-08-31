@@ -28,22 +28,22 @@ struct DealResult
 
   int getOvertricks() const
   {
-      return tricksCollected - BOOK;
+      return tricksCollected - BOOK - contract.value;
   }
 
   bool isSmallSlam() const
   {
-      return tricksCollected == 6;
+      return tricksCollected == 12;
   }
 
   bool isGrandSlam() const
   {
-      return tricksCollected == 7;
+      return tricksCollected == 13;
   }
 
   bool wasMade() const
   {
-      return contract.value <= tricksCollected;
+      return contract.value + BOOK <= tricksCollected;
   }
 
   bool isDown() const

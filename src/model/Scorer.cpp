@@ -9,7 +9,7 @@ namespace model
 		return trump == model::Trump::DIAMONDS || trump == model::Trump::CLUBS;
 	}
 
-	bool Scorer::isGameOver()
+	bool Scorer::isGameOver() const
 	{
 		return wins[Scorer::SIDE_NS] >= Scorer::GAMES_TO_WIN || wins[Scorer::SIDE_WE] >= Scorer::GAMES_TO_WIN;
 	}
@@ -21,6 +21,7 @@ namespace model
 		
 		DealScore score;
 		int multiplier = dealResult.contract.multiplier;
+		int value = dealResult.contract.value;
 		int declarer = dealResult.contract.declarer;
 		Trump trump = dealResult.contract.trump;
 		// Set declaring side based on the declarer from contract
@@ -35,7 +36,7 @@ namespace model
 		}
 
 		/* Count contract points */
-		if ( dealResult.wasMade() and dealResult.tricksCollected > 0 )
+		if ( dealResult.wasMade() && value > 0 )
 		{
 			/* For notrump, there is distinction between 1st and subsequent tricks */
 			if ( trump == model::Trump::NT )
@@ -44,18 +45,18 @@ namespace model
 				score.contractPoints += multiplier * FIRST_NT_CONTRACT_POINTS;
 
 				/* Calculate points for the subsequent tricks */
-				if ( dealResult.tricksCollected > 1 )
+				if ( value > 1 )
 				{
-					score.contractPoints += multiplier * SUBSEQUENT_NT_CONTRACT_POINTS * (dealResult.tricksCollected - 1);
+					score.contractPoints += multiplier * SUBSEQUENT_NT_CONTRACT_POINTS * (value - 1);
 				}
 			}
 			else if ( isMinor(trump) )
 			{
-				score.contractPoints += multiplier * dealResult.tricksCollected * MINOR_CONTRACT_POINTS;
+				score.contractPoints += multiplier * value * MINOR_CONTRACT_POINTS;
 			}
 			else
 			{
-				score.contractPoints += multiplier * dealResult.tricksCollected * MAJOR_CONTRACT_POINTS;
+				score.contractPoints += multiplier * value * MAJOR_CONTRACT_POINTS;
 			}
 		}
 
@@ -169,29 +170,29 @@ namespace model
 		// if rubber has ended, add bonus points to winning team
 		if ( isGameOver() ) {
 			if ( isVulnerable[opposingSide] ){
-				aboveTheLine[opposingSide].back() += Scorer::SLOW_RUBBER_BONUS;
+				aboveTheLine[side].back() += Scorer::SLOW_RUBBER_BONUS;
 			} else {
-				aboveTheLine[opposingSide].back() += Scorer::FAST_RUBBER_BONUS;
+				aboveTheLine[side].back() += Scorer::FAST_RUBBER_BONUS;
 			}
 		}
 	}
 
-	std::vector<DealScore> const & Scorer::getDealScores()
+	std::vector<DealScore> const & Scorer::getDealScores() const
 	{
 		return deals;
 	}
 
-	std::vector<int> const & Scorer::getPointsBelowLine(int side)
+	std::vector<int> const & Scorer::getPointsBelowLine(int side) const
 	{
 		return belowTheLine[side];
 	}
 
-	std::vector<int> const & Scorer::getPointsAboveLine(int side)
+	std::vector<int> const & Scorer::getPointsAboveLine(int side) const
 	{
 		return aboveTheLine[side];
 	}
 
-	int Scorer::getOpposingSide(int side)
+	int Scorer::getOpposingSide(int side) 
 	{
 		return 1 - side;
 	}

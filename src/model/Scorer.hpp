@@ -39,14 +39,14 @@ public:
 
 	/* Counts score based on result of the deal */
 	void update(DealResult const &);
-	bool isGameOver();
+	bool isGameOver() const;
 
 	/* Getter for "deals" field */
-	std::vector<DealScore> const & getDealScores();
+	std::vector<DealScore> const & getDealScores() const;
 
 	/* Getters for points below/above the line */
-	std::vector<int> const & getPointsBelowLine(int side);
-	std::vector<int> const & getPointsAboveLine(int side);
+	std::vector<int> const & getPointsBelowLine(int side) const;
+	std::vector<int> const & getPointsAboveLine(int side) const;
 
 	/* Side constants */
 	static const int SIDE_NS = 0;
